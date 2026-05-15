@@ -2,14 +2,18 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes, viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=5">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="white">
-<meta name="theme-color" content="#1847F0">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <title>Onboarding — Pragma Studio</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Instrument+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-* { margin: 0; padding: 0; box-sizing: border-box; }
+* { 
+  margin: 0; 
+  padding: 0; 
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
 
 :root {
   --black:  #111110;
@@ -23,174 +27,195 @@
   --green:  #22c55e;
 }
 
-html { font-size: 16px; -webkit-font-smoothing: antialiased; -webkit-tap-highlight-color: transparent; }
+html { 
+  font-size: 16px; 
+  -webkit-font-smoothing: antialiased;
+  -webkit-touch-callout: none;
+}
 
 body {
   font-family: 'Instrument Sans', sans-serif;
   background: var(--white);
   color: var(--black);
   line-height: 1.6;
-  -webkit-user-select: none;
-  user-select: none;
+  overflow-x: hidden;
+  width: 100%;
+  max-width: 100%;
 }
 
 /* ── TOPBAR ─────────────────────────────────────────── */
 .topbar {
   border-bottom: 1px solid var(--rule);
-  padding: 22px 64px;
+  padding: 16px 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  max-width: 1280px;
-  margin: 0 auto;
+  width: 100%;
 }
 
-.topbar-brand { font-size: 14px; font-weight: 600; letter-spacing: 0.04em; }
-.topbar-meta  { font-size: 12px; color: var(--g3); }
+.topbar-brand { 
+  font-size: 12px; 
+  font-weight: 600; 
+  letter-spacing: 0.04em; 
+}
+
+.topbar-meta  { 
+  font-size: 10px; 
+  color: var(--g3); 
+}
 
 /* ── HERO ───────────────────────────────────────────── */
 .hero {
-  padding: 72px 64px 60px;
-  max-width: 1280px;
-  margin: 0 auto;
+  padding: 40px 20px 30px;
   border-bottom: 1px solid var(--rule);
+  width: 100%;
 }
 
 .hero-eyebrow {
-  font-size: 12px; font-weight: 600;
-  letter-spacing: 0.12em; text-transform: uppercase;
-  color: var(--accent); margin-bottom: 16px;
+  font-size: 10px; 
+  font-weight: 600;
+  letter-spacing: 0.12em; 
+  text-transform: uppercase;
+  color: var(--accent); 
+  margin-bottom: 12px;
 }
 
 .hero-title {
   font-family: 'Playfair Display', serif;
-  font-size: clamp(42px, 5vw, 68px);
-  line-height: 1.06;
-  letter-spacing: -1px;
-  margin-bottom: 16px;
-  max-width: 600px;
+  font-size: 28px;
+  line-height: 1.1;
+  letter-spacing: -0.5px;
+  margin-bottom: 12px;
 }
 
-.hero-title em { font-style: italic; color: var(--g3); }
+.hero-title em { 
+  font-style: italic; 
+  color: var(--g3); 
+}
 
 .hero-body {
-  font-size: 15px; color: var(--g4);
-  line-height: 1.75; font-weight: 300;
-  max-width: 540px;
+  font-size: 13px; 
+  color: var(--g4);
+  line-height: 1.6; 
+  font-weight: 300;
 }
 
 /* ── QUIZ CONTAINER ────────────────────────────────── */
 .quiz-wrap {
-  padding: 60px 64px;
-  max-width: 1280px;
-  margin: 0 auto;
-  border-bottom: 1px solid var(--rule);
+  padding: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 .quiz-grid {
-  display: grid;
-  grid-template-columns: 280px 1fr;
-  gap: 80px;
-  align-items: start;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 }
 
 .quiz-sidebar {
-  position: sticky;
-  top: 40px;
+  padding: 16px 20px;
+  background: var(--g1);
+  border-bottom: 1px solid var(--rule);
+  width: 100%;
 }
 
 .quiz-progress {
-  margin-bottom: 48px;
+  margin-bottom: 12px;
 }
 
 .progress-label {
-  font-size: 11px; font-weight: 600;
-  letter-spacing: 0.12em; text-transform: uppercase;
-  color: var(--accent); margin-bottom: 12px;
+  font-size: 10px; 
+  font-weight: 600;
+  letter-spacing: 0.12em; 
+  text-transform: uppercase;
+  color: var(--accent); 
+  margin-bottom: 8px;
 }
 
 .progress-bar-container {
-  height: 8px;
-  background: var(--g1);
-  border-radius: 4px;
+  height: 6px;
+  background: var(--white);
+  border-radius: 3px;
   overflow: hidden;
-  margin-bottom: 12px;
+  margin-bottom: 8px;
 }
 
 .progress-bar {
   height: 100%;
   background: var(--accent);
-  transition: width 0.4s ease;
+  transition: width 0.3s ease;
 }
 
 .progress-text {
-  font-size: 13px; color: var(--g4); font-weight: 500;
+  font-size: 11px; 
+  color: var(--g4); 
+  font-weight: 500;
 }
 
 .quiz-section-badge {
   display: inline-block;
-  background: var(--g1);
+  background: var(--white);
   color: var(--accent);
-  font-size: 10px;
+  font-size: 8px;
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  padding: 6px 10px;
-  border-radius: 4px;
-  margin-top: 32px;
-  margin-bottom: 20px;
+  padding: 4px 8px;
+  border-radius: 3px;
+  margin-top: 12px;
+  margin-bottom: 0;
 }
 
 .quiz-navigator {
-  margin-top: 28px;
-  margin-bottom: 28px;
-  padding: 16px;
-  background: var(--g1);
-  border-radius: 8px;
+  margin-top: 12px;
+  padding: 10px;
+  background: var(--white);
+  border: 1px solid var(--rule);
+  border-radius: 6px;
 }
 
 .navigator-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 12px;
+  margin-bottom: 8px;
 }
 
 .navigator-label {
-  font-size: 10px;
+  font-size: 9px;
   font-weight: 700;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--g3);
-  margin: 0;
 }
 
 .navigator-toggle {
-  background: var(--white);
-  border: 1px solid var(--rule);
-  color: var(--g4);
-  width: 28px;
-  height: 28px;
-  border-radius: 4px;
+  background: var(--accent);
+  border: none;
+  color: var(--white);
+  width: 24px;
+  height: 24px;
+  border-radius: 3px;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 12px;
   font-weight: bold;
-  transition: all 0.2s;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 0;
+  transition: all 0.2s;
 }
 
-.navigator-toggle:hover {
-  border-color: var(--accent);
-  color: var(--accent);
+.navigator-toggle:active {
+  transform: scale(0.95);
 }
 
 .navigator-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 6px;
+  grid-template-columns: repeat(8, 1fr);
+  gap: 4px;
   transition: all 0.3s ease;
   max-height: 500px;
   overflow: hidden;
@@ -199,29 +224,31 @@ body {
 .navigator-grid.collapsed {
   max-height: 0;
   opacity: 0;
-  margin-bottom: 0;
+  overflow: hidden;
+  gap: 0;
 }
 
 .navigator-item {
   aspect-ratio: 1;
-  border: 2px solid var(--rule);
-  border-radius: 4px;
+  border: 1px solid var(--rule);
+  border-radius: 3px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 10px;
+  font-size: 7px;
   font-weight: 700;
   cursor: pointer;
-  transition: all 0.2s;
   background: var(--white);
   color: var(--g4);
-  min-width: 36px;
-  min-height: 36px;
+  transition: all 0.15s;
+  padding: 0;
+  min-height: 28px;
+  -webkit-user-select: none;
+  user-select: none;
 }
 
-.navigator-item:hover:not(.current) {
-  border-color: var(--accent);
-  transform: scale(1.08);
+.navigator-item:active {
+  transform: scale(0.95);
 }
 
 .navigator-item.answered {
@@ -237,109 +264,97 @@ body {
   font-weight: 700;
 }
 
-.navigator-item.current.answered {
-  background: var(--accent);
-}
-
 .quiz-estimated {
-  margin-top: 20px;
-  padding: 16px;
+  margin-top: 12px;
+  padding: 10px;
   background: var(--white);
   border: 1px solid var(--rule);
-  border-radius: 8px;
+  border-radius: 6px;
+  text-align: center;
 }
 
 .estimated-icon {
-  font-size: 10px; font-weight: 600;
-  letter-spacing: 0.12em; text-transform: uppercase;
-  color: var(--g3); margin-bottom: 6px;
+  font-size: 9px; 
+  font-weight: 600;
+  letter-spacing: 0.1em; 
+  text-transform: uppercase;
+  color: var(--g3); 
+  margin-bottom: 4px;
 }
 
 .estimated-time {
-  font-size: 16px; font-weight: 600; color: var(--black);
+  font-size: 13px; 
+  font-weight: 600; 
+  color: var(--black);
 }
 
 .estimated-note {
-  font-size: 12px; color: var(--g3); margin-top: 4px;
+  font-size: 10px; 
+  color: var(--g3); 
+  margin-top: 2px;
 }
 
 /* ── MAIN QUIZ ─────────────────────────────────────── */
 .quiz-main {
   display: none;
+  padding: 20px;
+  width: 100%;
 }
 
 .quiz-main.active {
   display: block;
 }
 
-.question-card {
-  margin-bottom: 40px;
-}
-
 .question-title {
   font-family: 'Playfair Display', serif;
-  font-size: 32px;
+  font-size: 20px;
   line-height: 1.2;
-  letter-spacing: -0.5px;
-  margin-bottom: 32px;
+  margin-bottom: 20px;
   color: var(--black);
 }
 
 .options-hint {
-  font-size: 12px;
+  font-size: 11px;
   color: var(--g3);
-  margin-bottom: 16px;
+  margin-bottom: 12px;
   font-style: italic;
 }
 
 .options-group {
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  margin-bottom: 40px;
+  gap: 10px;
+  margin-bottom: 24px;
 }
 
 .option-label {
   display: flex;
   align-items: flex-start;
-  gap: 16px;
-  padding: 18px 20px;
+  gap: 12px;
+  padding: 12px 14px;
   border: 1px solid var(--rule);
-  border-radius: 8px;
+  border-radius: 6px;
   cursor: pointer;
-  transition: all 0.2s ease;
   background: var(--white);
+  transition: all 0.15s;
+  -webkit-user-select: none;
+  user-select: none;
 }
 
-.option-label:hover {
-  border-color: var(--accent);
+.option-label:active {
   background: var(--g1);
 }
 
 .option-label input[type="checkbox"],
 .option-label input[type="radio"] {
-  margin-top: 2px;
+  margin-top: 3px;
   cursor: pointer;
   accent-color: var(--accent);
-  width: 20px;
-  height: 20px;
+  width: 18px;
+  height: 18px;
   flex-shrink: 0;
   -webkit-appearance: none;
   appearance: none;
-}
-
-.option-label input[type="checkbox"] {
-  position: relative;
-}
-
-.option-label input[type="checkbox"]:checked::before {
-  content: '✓';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: var(--accent);
-  font-weight: bold;
 }
 
 .option-label input:checked + .option-text {
@@ -348,15 +363,15 @@ body {
 }
 
 .option-text {
-  font-size: 15px;
+  font-size: 13px;
   color: var(--black);
-  line-height: 1.5;
+  line-height: 1.4;
   flex: 1;
 }
 
 .text-input-group {
   display: none;
-  margin-bottom: 40px;
+  margin-bottom: 24px;
 }
 
 .text-input-group.active {
@@ -365,15 +380,14 @@ body {
 
 .text-input-group textarea {
   width: 100%;
-  padding: 18px 20px;
-  font-size: 15px;
+  padding: 12px 14px;
+  font-size: 14px;
   font-family: 'Instrument Sans', sans-serif;
   border: 1px solid var(--rule);
-  border-radius: 8px;
+  border-radius: 6px;
   resize: vertical;
-  min-height: 120px;
+  min-height: 100px;
   color: var(--black);
-  transition: border-color 0.2s;
   -webkit-appearance: none;
   appearance: none;
   -webkit-user-select: text;
@@ -390,9 +404,65 @@ body {
   color: var(--g3);
 }
 
+/* ── BUTTONS ────────────────────────────────────────── */
+.quiz-controls {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding: 0 20px;
+}
+
+.btn-nav {
+  padding: 12px 14px;
+  border: 1px solid var(--rule);
+  background: var(--white);
+  color: var(--black);
+  border-radius: 6px;
+  font-family: 'Instrument Sans', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  display: none;
+  transition: all 0.15s;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.btn-nav.visible {
+  display: block;
+}
+
+.btn-nav:active {
+  background: var(--g1);
+}
+
+.btn-next {
+  flex: 1;
+  padding: 12px 14px;
+  background: var(--accent);
+  color: var(--white);
+  border: none;
+  border-radius: 6px;
+  font-family: 'Instrument Sans', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.btn-next:active {
+  background: #0935c9;
+  transform: scale(0.98);
+}
+
 /* ── REVIEW SCREEN ─────────────────────────────────── */
 .quiz-review {
   display: none;
+  padding: 20px;
+  width: 100%;
 }
 
 .quiz-review.active {
@@ -401,659 +471,189 @@ body {
 
 .review-title {
   font-family: 'Playfair Display', serif;
-  font-size: 48px;
+  font-size: 24px;
   line-height: 1.1;
-  letter-spacing: -1px;
-  margin-bottom: 40px;
+  margin-bottom: 24px;
   color: var(--black);
 }
 
 .review-section {
-  margin-bottom: 48px;
+  margin-bottom: 32px;
 }
 
 .review-section-title {
-  font-size: 16px;
+  font-size: 12px;
   font-weight: 600;
   color: var(--accent);
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  margin-bottom: 24px;
-  padding-bottom: 12px;
+  margin-bottom: 16px;
+  padding-bottom: 8px;
   border-bottom: 1px solid var(--rule);
 }
 
 .review-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 24px;
-  margin-bottom: 32px;
+  grid-template-columns: 1fr;
+  gap: 12px;
+  margin-bottom: 20px;
 }
 
 .review-card {
   border: 1px solid var(--rule);
-  border-radius: 10px;
-  padding: 24px;
+  border-radius: 6px;
+  padding: 12px;
   background: var(--white);
 }
 
 .review-card-label {
-  font-size: 11px; font-weight: 600;
-  letter-spacing: 0.12em; text-transform: uppercase;
-  color: var(--accent); margin-bottom: 10px;
+  font-size: 9px; 
+  font-weight: 600;
+  letter-spacing: 0.1em; 
+  text-transform: uppercase;
+  color: var(--accent); 
+  margin-bottom: 6px;
 }
 
 .review-card-question {
-  font-size: 14px; font-weight: 600;
-  color: var(--black); margin-bottom: 12px;
+  font-size: 12px; 
+  font-weight: 600;
+  color: var(--black); 
+  margin-bottom: 8px;
 }
 
 .review-card-answer {
-  font-size: 14px;
+  font-size: 12px;
   color: var(--g4);
-  line-height: 1.6;
+  line-height: 1.5;
 }
 
 .review-actions {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px;
-  margin-bottom: 32px;
+  grid-template-columns: 1fr;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.btn-copy,
+.btn-download {
+  padding: 12px 14px;
+  border: none;
+  border-radius: 6px;
+  font-family: 'Instrument Sans', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.15s;
+  -webkit-user-select: none;
+  user-select: none;
 }
 
 .btn-copy {
-  padding: 18px 24px;
   background: var(--accent);
   color: var(--white);
-  border: none;
-  border-radius: 8px;
-  font-family: 'Instrument Sans', sans-serif;
-  font-size: 14px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.2s;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
 }
 
-.btn-copy:hover {
+.btn-copy:active {
   background: #0935c9;
-  transform: translateY(-2px);
 }
 
 .btn-download {
-  padding: 18px 24px;
   background: var(--white);
   color: var(--accent);
   border: 1px solid var(--accent);
-  border-radius: 8px;
-  font-family: 'Instrument Sans', sans-serif;
-  font-size: 14px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.2s;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
 }
 
-.btn-download:hover {
+.btn-download:active {
   background: var(--g1);
 }
 
 .completion-box {
   border: 1px solid var(--rule);
-  border-radius: 10px;
-  padding: 32px 24px;
+  border-radius: 6px;
+  padding: 16px 12px;
   text-align: center;
   background: var(--g1);
 }
 
 .completion-icon {
-  font-size: 32px;
-  margin-bottom: 12px;
+  font-size: 28px;
+  margin-bottom: 8px;
 }
 
 .completion-text {
-  font-size: 16px; font-weight: 600;
+  font-size: 13px; 
+  font-weight: 600;
   color: var(--black);
 }
 
 .completion-subtext {
-  font-size: 13px;
+  font-size: 11px;
   color: var(--g4);
-  margin-top: 8px;
-}
-
-/* ── BUTTONS ────────────────────────────────────────── */
-.quiz-controls {
-  display: flex;
-  gap: 12px;
-  margin-top: 48px;
-}
-
-.btn-nav {
-  padding: 14px 28px;
-  border: 1px solid var(--rule);
-  background: var(--white);
-  color: var(--black);
-  border-radius: 8px;
-  font-family: 'Instrument Sans', sans-serif;
-  font-size: 13px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.2s;
-  display: none;
-}
-
-.btn-nav.visible {
-  display: inline-block;
-}
-
-.btn-nav:hover {
-  border-color: var(--accent);
-  color: var(--accent);
-}
-
-.btn-next {
-  flex: 1;
-  padding: 14px 28px;
-  background: var(--accent);
-  color: var(--white);
-  border: none;
-  border-radius: 8px;
-  font-family: 'Instrument Sans', sans-serif;
-  font-size: 13px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.2s;
-}
-
-.btn-next:hover {
-  background: #0935c9;
-  transform: translateY(-2px);
+  margin-top: 6px;
 }
 
 /* ── FOOTER ─────────────────────────────────────────── */
 .doc-footer {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 40px;
-  align-items: center;
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 48px 64px;
+  padding: 24px 20px;
   border-top: 1px solid var(--rule);
-  font-size: 13px;
+  font-size: 11px;
   color: var(--g4);
+  text-align: center;
 }
 
-.foot-brand { font-size: 14px; font-weight: 600; color: var(--black); margin-bottom: 4px; }
-.foot-tagline { font-size: 12px; color: var(--g3); }
-
-.foot-contact { text-align: right; }
-.foot-contact a { color: var(--accent); text-decoration: none; }
-.foot-contact a:hover { text-decoration: underline; }
-
-/* ── RESPONSIVE ────────────────────────────────────── */
-@media (max-width: 1024px) {
-  .topbar, .hero, .quiz-wrap, .doc-footer {
-    padding-left: 48px;
-    padding-right: 48px;
-  }
-
-  .quiz-grid {
-    grid-template-columns: 1fr;
-    gap: 40px;
-  }
-
-  .quiz-sidebar {
-    position: static;
-  }
-
-  .doc-footer {
-    grid-template-columns: 1fr;
-    text-align: left;
-  }
-
-  .foot-contact {
-    text-align: left;
-  }
-
-  .navigator-grid {
-    grid-template-columns: repeat(6, 1fr);
-  }
+.foot-brand { 
+  font-size: 11px; 
+  font-weight: 600; 
+  color: var(--black); 
+  margin-bottom: 4px; 
 }
 
-@media (max-width: 768px) {
-  .topbar, .hero, .quiz-wrap, .doc-footer {
-    padding-left: 32px;
-    padding-right: 32px;
-  }
+.foot-tagline { 
+  font-size: 10px; 
+  color: var(--g3); 
+  margin-bottom: 8px;
+}
 
+.foot-contact { 
+  font-size: 10px;
+}
+
+.foot-contact a { 
+  color: var(--accent); 
+  text-decoration: none; 
+}
+
+/* ── SAFE AREA (iPhone notch) ────────────────────── */
+@supports (padding: max(0px)) {
   .topbar {
-    flex-direction: column;
-    gap: 12px;
-    text-align: center;
+    padding-left: max(20px, env(safe-area-inset-left));
+    padding-right: max(20px, env(safe-area-inset-right));
   }
-
-  .hero {
-    padding: 48px 32px 40px;
-  }
-
-  .hero-title {
-    font-size: 36px;
-    margin-bottom: 12px;
-  }
-
-  .hero-body {
-    font-size: 14px;
-  }
-
-  .question-title {
-    font-size: 24px;
-    margin-bottom: 24px;
-  }
-
-  .review-title {
-    font-size: 36px;
-  }
-
-  .quiz-wrap {
-    padding: 40px 32px;
-  }
-
-  .quiz-grid {
-    gap: 30px;
-  }
-
+  
   .quiz-sidebar {
-    order: 2;
+    padding-left: max(20px, env(safe-area-inset-left));
+    padding-right: max(20px, env(safe-area-inset-right));
   }
-
-  .quiz-main {
-    order: 1;
+  
+  .quiz-main,
+  .quiz-review {
+    padding-left: max(20px, env(safe-area-inset-left));
+    padding-right: max(20px, env(safe-area-inset-right));
   }
-
-  .review-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .review-actions {
-    grid-template-columns: 1fr;
-  }
-
+  
   .quiz-controls {
-    flex-wrap: wrap;
-    gap: 10px;
+    padding-left: max(20px, env(safe-area-inset-left));
+    padding-right: max(20px, env(safe-area-inset-right));
   }
-
-  .btn-nav {
-    flex: 1;
-    min-width: 120px;
-  }
-
-  .btn-next {
-    width: 100%;
-  }
-
-  .navigator-grid {
-    grid-template-columns: repeat(8, 1fr);
-    gap: 5px;
-  }
-
-  .navigator-item {
-    min-width: 32px;
-    min-height: 32px;
-    font-size: 9px;
-  }
-
-  .quiz-navigator {
-    margin-top: 20px;
-    margin-bottom: 20px;
-    padding: 12px;
-  }
-
-  .quiz-estimated {
-    margin-top: 16px;
-    padding: 12px;
-  }
-
-  .estimated-time {
-    font-size: 14px;
-  }
-
-  .estimated-note {
-    font-size: 11px;
-  }
-}
-
-@media (max-width: 640px) {
-  .topbar, .hero, .quiz-wrap, .doc-footer {
-    padding-left: 20px;
-    padding-right: 20px;
-  }
-
-  .topbar {
-    padding: 16px 20px;
-  }
-
-  .topbar-brand {
-    font-size: 12px;
-  }
-
-  .topbar-meta {
-    font-size: 10px;
-  }
-
-  .hero {
-    padding: 40px 20px 32px;
-    border-bottom: none;
-  }
-
-  .hero-eyebrow {
-    margin-bottom: 12px;
-    font-size: 10px;
-  }
-
-  .hero-title {
-    font-size: 28px;
-    line-height: 1.1;
-    margin-bottom: 12px;
-  }
-
-  .hero-body {
-    font-size: 13px;
-    max-width: 100%;
-  }
-
-  .quiz-wrap {
-    padding: 32px 20px;
-    border-bottom: none;
-  }
-
-  .quiz-grid {
-    grid-template-columns: 1fr;
-    gap: 24px;
-  }
-
-  .quiz-sidebar {
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    background: var(--white);
-    border-bottom: 1px solid var(--rule);
-    padding-bottom: 20px;
-    margin-bottom: 20px;
-  }
-
-  .quiz-progress {
-    margin-bottom: 16px;
-  }
-
-  .progress-label {
-    font-size: 10px;
-  }
-
-  .progress-text {
-    font-size: 12px;
-  }
-
-  .quiz-section-badge {
-    margin-top: 12px;
-    margin-bottom: 12px;
-    font-size: 8px;
-    padding: 4px 8px;
-  }
-
-  .quiz-navigator {
-    margin-top: 12px;
-    margin-bottom: 12px;
-    padding: 10px;
-    background: var(--g1);
-  }
-
-  .navigator-header {
-    margin-bottom: 8px;
-  }
-
-  .navigator-label {
-    font-size: 9px;
-  }
-
-  .navigator-toggle {
-    width: 24px;
-    height: 24px;
-    font-size: 14px;
-  }
-
-  .navigator-grid {
-    grid-template-columns: repeat(8, 1fr);
-    gap: 4px;
-  }
-
-  .navigator-grid.collapsed {
-    max-height: 0;
-    opacity: 0;
-    gap: 0;
-  }
-
-  .navigator-item {
-    min-width: 28px;
-    min-height: 28px;
-    font-size: 8px;
-    border-radius: 3px;
-  }
-
-  .quiz-estimated {
-    margin-top: 12px;
-    padding: 10px;
-    background: var(--white);
-    border: 1px solid var(--rule);
-  }
-
-  .estimated-icon {
-    font-size: 9px;
-    margin-bottom: 4px;
-  }
-
-  .estimated-time {
-    font-size: 13px;
-  }
-
-  .estimated-note {
-    font-size: 10px;
-    margin-top: 2px;
-  }
-
-  .question-card {
-    margin-bottom: 24px;
-  }
-
-  .question-title {
-    font-size: 20px;
-    margin-bottom: 20px;
-  }
-
-  .options-hint {
-    font-size: 11px;
-    margin-bottom: 12px;
-  }
-
-  .options-group {
-    gap: 10px;
-    margin-bottom: 24px;
-  }
-
-  .option-label {
-    padding: 14px 16px;
-    gap: 12px;
-  }
-
-  .option-label input[type="checkbox"],
-  .option-label input[type="radio"] {
-    width: 18px;
-    height: 18px;
-  }
-
-  .option-text {
-    font-size: 14px;
-  }
-
-  .text-input-group textarea {
-    padding: 14px 16px;
-    font-size: 14px;
-    min-height: 100px;
-  }
-
-  .quiz-controls {
-    gap: 10px;
-    margin-top: 32px;
-  }
-
-  .btn-nav {
-    padding: 12px 16px;
-    font-size: 12px;
-  }
-
-  .btn-next {
-    padding: 12px 16px;
-    font-size: 12px;
-  }
-
-  .review-title {
-    font-size: 28px;
-    margin-bottom: 24px;
-  }
-
-  .review-section-title {
-    font-size: 13px;
-    margin-bottom: 16px;
-  }
-
-  .review-grid {
-    grid-template-columns: 1fr;
-    gap: 16px;
-    margin-bottom: 20px;
-  }
-
-  .review-card {
-    border-radius: 8px;
-    padding: 16px;
-  }
-
-  .review-card-label {
-    font-size: 10px;
-    margin-bottom: 8px;
-  }
-
-  .review-card-question {
-    font-size: 13px;
-    margin-bottom: 10px;
-  }
-
-  .review-card-answer {
-    font-size: 13px;
-  }
-
-  .review-actions {
-    grid-template-columns: 1fr;
-    gap: 12px;
-    margin-bottom: 20px;
-  }
-
-  .btn-copy,
-  .btn-download {
-    padding: 14px 16px;
-    font-size: 12px;
-  }
-
-  .completion-box {
-    padding: 20px 16px;
-  }
-
-  .completion-icon {
-    font-size: 28px;
-    margin-bottom: 10px;
-  }
-
-  .completion-text {
-    font-size: 14px;
-  }
-
-  .completion-subtext {
-    font-size: 12px;
-    margin-top: 6px;
-  }
-
+  
   .doc-footer {
-    padding: 32px 20px;
-    grid-template-columns: 1fr;
-    gap: 20px;
-    font-size: 12px;
-  }
-
-  .foot-brand {
-    font-size: 12px;
-  }
-
-  .foot-tagline {
-    font-size: 11px;
-  }
-
-  .foot-contact {
-    text-align: left;
-    font-size: 11px;
-  }
-}
-
-@media (max-width: 480px) {
-  .topbar, .hero, .quiz-wrap, .doc-footer {
-    padding-left: 16px;
-    padding-right: 16px;
-  }
-
-  .hero-title {
-    font-size: 24px;
-  }
-
-  .hero-body {
-    font-size: 12px;
-  }
-
-  .quiz-sidebar {
-    top: -20px;
-    padding: 0 -16px;
-    margin: 0 -16px 16px;
-  }
-
-  .navigator-grid {
-    grid-template-columns: repeat(7, 1fr);
-  }
-
-  .question-title {
-    font-size: 18px;
-    margin-bottom: 18px;
-  }
-
-  .option-label {
-    padding: 12px 14px;
-    gap: 10px;
-  }
-
-  .review-title {
-    font-size: 24px;
-  }
-
-  .quiz-wrap {
-    padding: 24px 16px;
-  }
-
-  .quiz-grid {
-    gap: 20px;
+    padding-left: max(20px, env(safe-area-inset-left));
+    padding-right: max(20px, env(safe-area-inset-right));
   }
 }
 </style>
@@ -1063,725 +663,173 @@ body {
 <!-- TOPBAR -->
 <div class="topbar">
   <div class="topbar-brand">Pragma Studio</div>
-  <div class="topbar-meta">Onboarding del proyecto</div>
+  <div class="topbar-meta">Onboarding</div>
 </div>
 
 <!-- HERO -->
 <div class="hero">
-  <div class="hero-eyebrow">Cuestionario de descubrimiento</div>
-  <h1 class="hero-title">Confirmemos los detalles <em>antes de arrancar</em></h1>
-  <p class="hero-body">Necesitamos validar todas las respuestas para asegurar que el sistema sea exactamente como lo necesitás. Usa el navegador de preguntas para ir donde quieras. Una vez completado, tendrás un resumen para compartir con el equipo.</p>
+  <div class="hero-eyebrow">Cuestionario</div>
+  <h1 class="hero-title">Descubrimiento <em>proyecto</em></h1>
+  <p class="hero-body">Completa el cuestionario para validar todos los detalles del proyecto.</p>
 </div>
 
 <!-- QUIZ -->
 <div class="quiz-wrap">
-  <div class="quiz-grid">
-    
-    <!-- SIDEBAR -->
-    <div class="quiz-sidebar">
-      <div class="quiz-progress">
-        <div class="progress-label">Progreso</div>
-        <div class="progress-bar-container">
-          <div class="progress-bar" id="progress-bar"></div>
-        </div>
-        <div class="progress-text"><span id="current-q">1</span> de <span id="total-q">56</span></div>
+  
+  <!-- SIDEBAR -->
+  <div class="quiz-sidebar">
+    <div class="quiz-progress">
+      <div class="progress-label">Progreso</div>
+      <div class="progress-bar-container">
+        <div class="progress-bar" id="progress-bar"></div>
       </div>
-
-      <div class="quiz-section-badge" id="section-badge">A · CRÍTICO</div>
-
-      <div class="quiz-navigator">
-        <div class="navigator-header">
-          <div class="navigator-label">📍 Navegación</div>
-          <button class="navigator-toggle" id="navigator-toggle" onclick="toggleNavigator()">−</button>
-        </div>
-        <div class="navigator-grid" id="navigator-grid"></div>
-      </div>
-
-      <div class="quiz-estimated">
-        <div class="estimated-icon">⏱</div>
-        <div class="estimated-time" id="estimated-time">15 min</div>
-        <div class="estimated-note">Tiempo estimado</div>
-      </div>
+      <div class="progress-text"><span id="current-q">1</span> / <span id="total-q">56</span></div>
     </div>
 
-    <!-- MAIN CONTENT -->
-    <div class="quiz-main active" id="quiz-main">
-      <div class="question-card">
-        <h2 class="question-title" id="q-title">¿En qué formato exporta?</h2>
-        
-        <div class="options-hint" id="options-hint"></div>
-        <div class="options-group" id="q-options"></div>
-        
-        <div class="text-input-group" id="q-text-input">
-          <textarea id="text-answer" placeholder="Escribí aquí tu respuesta..."></textarea>
-        </div>
-      </div>
+    <div class="quiz-section-badge" id="section-badge">A</div>
 
-      <div class="quiz-controls">
-        <button class="btn-nav" id="btn-prev" onclick="previousQuestion()">← Anterior</button>
-        <button class="btn-next" id="btn-next" onclick="nextQuestion()">Siguiente</button>
-        <button class="btn-next" id="btn-finish" onclick="finishQuiz()" style="display: none;">Ver respuestas →</button>
+    <div class="quiz-navigator">
+      <div class="navigator-header">
+        <div class="navigator-label">Nav</div>
+        <button class="navigator-toggle" id="navigator-toggle" onclick="toggleNavigator()">−</button>
       </div>
+      <div class="navigator-grid" id="navigator-grid"></div>
     </div>
 
-    <!-- REVIEW SCREEN -->
-    <div class="quiz-review" id="quiz-review">
-      <h2 class="review-title">Resumen de respuestas</h2>
-      
-      <div id="review-sections"></div>
-
-      <div class="review-actions">
-        <button class="btn-copy" onclick="copyAnswers()">
-          <span>📋</span> Copiar respuestas
-        </button>
-        <button class="btn-download" onclick="downloadAnswers()">
-          <span>⬇</span> Descargar HTML
-        </button>
-      </div>
-
-      <div class="completion-box">
-        <div class="completion-icon">✓</div>
-        <div class="completion-text">¡Cuestionario completado!</div>
-        <div class="completion-subtext">Tus respuestas están listas para compartir con el equipo de desarrollo</div>
-      </div>
+    <div class="quiz-estimated">
+      <div class="estimated-icon">⏱</div>
+      <div class="estimated-time" id="estimated-time">15m</div>
     </div>
-
   </div>
+
+  <!-- MAIN CONTENT -->
+  <div class="quiz-main active" id="quiz-main">
+    <h2 class="question-title" id="q-title">Pregunta</h2>
+    <div class="options-hint" id="options-hint"></div>
+    <div class="options-group" id="q-options"></div>
+    <div class="text-input-group" id="q-text-input">
+      <textarea id="text-answer" placeholder="Tu respuesta..."></textarea>
+    </div>
+    <div class="quiz-controls">
+      <button class="btn-nav" id="btn-prev" onclick="previousQuestion()">← Ant</button>
+      <button class="btn-next" id="btn-next" onclick="nextQuestion()">Sig →</button>
+      <button class="btn-next" id="btn-finish" onclick="finishQuiz()" style="display: none;">Finalizar</button>
+    </div>
+  </div>
+
+  <!-- REVIEW SCREEN -->
+  <div class="quiz-review" id="quiz-review">
+    <h2 class="review-title">Respuestas</h2>
+    <div id="review-sections"></div>
+    <div class="review-actions">
+      <button class="btn-copy" onclick="copyAnswers()">📋 Copiar</button>
+      <button class="btn-download" onclick="downloadAnswers()">⬇ HTML</button>
+    </div>
+    <div class="completion-box">
+      <div class="completion-icon">✓</div>
+      <div class="completion-text">¡Completado!</div>
+      <div class="completion-subtext">Listo para compartir</div>
+    </div>
+  </div>
+
 </div>
 
 <!-- FOOTER -->
 <div class="doc-footer">
-  <div>
-    <div class="foot-brand">Pragma Studio</div>
-    <div class="foot-tagline">Desarrollo de software a medida · Córdoba, Argentina</div>
-  </div>
+  <div class="foot-brand">Pragma Studio</div>
+  <div class="foot-tagline">Desarrollo de software a medida</div>
   <div class="foot-contact">
-    <a href="https://wa.me/5493513911596">+54 9 3513 91-1596</a> · pragmasolucionesdigitales@gmail.com
+    <a href="https://wa.me/5493513911596">+54 3513 91-1596</a>
   </div>
 </div>
 
 <script>
 const questions = [
-  // BLOQUE A - CRÍTICO
-  {
-    id: "A1-format",
-    section: "A",
-    title: "¿En qué formato exporta el sistema actual los datos?",
-    type: "multiple",
-    options: ["CSV", "Excel", "XML", "PDF", "Base de datos .mdb", "Otro"],
-    answered: false
-  },
-  {
-    id: "A1-cuandonos",
-    section: "A",
-    title: "¿Cuándo pueden enviar el export? (necesitamos el lunes a primera hora)",
-    type: "multiple",
-    options: ["Hoy", "Mañana", "Esta semana", "Próxima semana"],
-    answered: false
-  },
-  {
-    id: "A1-historico",
-    section: "A",
-    title: "¿Hay datos históricos de ventas que necesiten migrar?",
-    type: "multiple",
-    options: ["Solo catálogo y clientes", "Incluir histórico de ventas", "Incluir todo"],
-    answered: false
-  },
-  {
-    id: "A2-depositos",
-    section: "A",
-    title: "¿Hay un depósito central que abastece a los demás, o cada local recibe directo del proveedor?",
-    type: "text",
-    placeholder: "Describe la estructura actual...",
-    answered: false
-  },
-  {
-    id: "A2-responsables",
-    section: "A",
-    title: "¿Cada depósito tiene un responsable distinto? Si sí, ¿quiénes son?",
-    type: "text",
-    placeholder: "Nombres y depósitos asignados...",
-    answered: false
-  },
-  {
-    id: "A4-dominio",
-    section: "A",
-    title: "¿Ya tienen dominio para el e-commerce? ¿Cuál es?",
-    type: "text",
-    placeholder: "Dominio (ej: mistienda.com.ar) o escribir 'Necesita registrarse'",
-    answered: false
-  },
-  {
-    id: "A4-branding",
-    section: "A",
-    title: "¿Tienen logo en alta resolución y paleta de colores definida?",
-    type: "multiple",
-    options: [
-      "Sí, tenemos logo y colores",
-      "Tenemos logo pero no colores",
-      "No tenemos nada",
-      "Vamos a contratar diseño aparte",
-      "Usamos algo provisorio"
-    ],
-    answered: false
-  },
-
-  // BLOQUE B - MODELO DE DATOS
-  {
-    id: "B1-variantes",
-    section: "B",
-    title: "¿Cuántos productos aproximadamente tienen variantes (colores, tamaños, sabores)?",
-    type: "text",
-    placeholder: "Cantidad aproximada o 'No sabemos'",
-    answered: false
-  },
-  {
-    id: "B1-bultos",
-    section: "B",
-    title: "¿Algunos productos se venden solo por bulto y no por unidad suelta?",
-    type: "text",
-    placeholder: "Describa cuáles o escriba 'No sabemos'",
-    answered: false
-  },
-  {
-    id: "B1-campos",
-    section: "B",
-    title: "¿Qué campos adicionales necesitan por tipo de producto?",
-    type: "text",
-    placeholder: "Ej: Bazar (material), Belleza (ml), Tecnología (especificaciones)",
-    answered: false
-  },
-  {
-    id: "B2-stock",
-    section: "B",
-    title: "¿En el sistema actual el stock es uno solo o ya está separado por depósito?",
-    type: "multiple",
-    options: [
-      "Stock único consolidado",
-      "Stock separado por depósito",
-      "Parcialmente separado",
-      "No está claro"
-    ],
-    answered: false
-  },
-  {
-    id: "B2-distribucion",
-    section: "B",
-    title: "Si es stock único, ¿cómo quieren distribuirlo entre depósitos al migrar?",
-    type: "text",
-    placeholder: "¿Nos pasarán una planilla? ¿Distribuir equitativamente?",
-    answered: false
-  },
-  {
-    id: "B2-otro-deposito",
-    section: "B",
-    title: "¿Qué política usan cuando un local quiere vender algo que no tiene pero hay en otro?",
-    type: "multiple",
-    options: [
-      "Se le dice al cliente 'no tengo'",
-      "Se anota como pendiente y se pide al otro depósito",
-      "Se hace transferencia rápida y se vende"
-    ],
-    answered: false
-  },
-  {
-    id: "B2-mermas",
-    section: "B",
-    title: "¿Llevan registro de mermas, roturas y ajustes de inventario?",
-    type: "multiple",
-    options: ["Sí, llevamos registro", "No lo registramos", "A veces"],
-    answered: false
-  },
-  {
-    id: "B2-inventarios",
-    section: "B",
-    title: "¿Hacen inventarios físicos periódicos? ¿Con qué frecuencia?",
-    type: "text",
-    placeholder: "Diario, semanal, mensual, trimestral, otro...",
-    answered: false
-  },
-  {
-    id: "B3-datos-clientes",
-    section: "B",
-    title: "¿Qué datos guardan de cada cliente?",
-    type: "text",
-    placeholder: "Lista de campos que registran por cliente...",
-    answered: false
-  },
-  {
-    id: "B3-cuit",
-    section: "B",
-    title: "¿El CUIT es obligatorio para mayoristas, o se permite cargar sin él?",
-    type: "multiple",
-    options: ["Obligatorio", "Opcional", "Depende del cliente"],
-    answered: false
-  },
-  {
-    id: "B3-iva",
-    section: "B",
-    title: "¿Manejan condición frente al IVA del cliente? ¿Para qué?",
-    type: "text",
-    placeholder: "Responsable inscripto, No inscripto, Exento, etc.",
-    answered: false
-  },
-  {
-    id: "B3-tipos",
-    section: "B",
-    title: "¿Necesitan diferenciar clientes más allá de 'consumidor final' y 'mayorista'?",
-    type: "text",
-    placeholder: "Ej: distribuidor, mayorista premium, cliente especial, etc.",
-    answered: false
-  },
-  {
-    id: "B3-localidades",
-    section: "B",
-    title: "¿Manejan listado de localidades o provincias? ¿Para qué?",
-    type: "multiple",
-    options: [
-      "Para reportes",
-      "Para envíos",
-      "Solo registro",
-      "Varias razones",
-      "No manejamos"
-    ],
-    answered: false
-  },
-  {
-    id: "B3-suspension",
-    section: "B",
-    title: "¿Suspenden clientes con deuda u otra razón? ¿Cómo lo manejan?",
-    type: "text",
-    placeholder: "Describe el proceso actual...",
-    answered: false
-  },
-  {
-    id: "B4-listas",
-    section: "B",
-    title: "¿Cuántas listas de precios manejan? Listarlas.",
-    type: "text",
-    placeholder: "Ej: Minorista, Mayorista, Distribuidor, Especial, etc.",
-    answered: false
-  },
-  {
-    id: "B4-asignacion",
-    section: "B",
-    title: "¿Cómo se decide qué lista de precios corresponde a cada cliente?",
-    type: "text",
-    placeholder: "Por tipo de cliente, por volumen, manual, etc.",
-    answered: false
-  },
-
-  // BLOQUE C - OPERACIÓN
-  {
-    id: "C1-busqueda",
-    section: "C",
-    title: "¿Buscan productos por nombre, código interno, código de barras, o combinar?",
-    type: "multiple",
-    options: [
-      "Solo nombre",
-      "Solo código interno",
-      "Solo código de barras",
-      "Nombre y código",
-      "Todas las opciones"
-    ],
-    answered: false
-  },
-  {
-    id: "C1-descuento",
-    section: "C",
-    title: "¿Es común que el cajero modifique el precio? ¿Lo puede hacer cualquiera o necesita aprobación?",
-    type: "text",
-    placeholder: "Describe cuándo y quién puede hacerlo...",
-    answered: false
-  },
-  {
-    id: "C1-cliente",
-    section: "C",
-    title: "¿Manejan venta con cliente identificado (factura A/B) o casi siempre sin cliente?",
-    type: "multiple",
-    options: [
-      "Casi siempre sin cliente (ticket)",
-      "Mayormente con cliente",
-      "Mitad y mitad",
-      "Depende del local"
-    ],
-    answered: false
-  },
-  {
-    id: "C2-formas-pago",
-    section: "C",
-    title: "¿Qué formas de pago aceptan? (Seleccionar todas)",
-    type: "multiple",
-    options: [
-      "Efectivo",
-      "Transferencia bancaria",
-      "Débito",
-      "Crédito",
-      "QR",
-      "Criptomonedas",
-      "Cheques"
-    ],
-    answered: false
-  },
-  {
-    id: "C2-recargo",
-    section: "C",
-    title: "¿El recargo de tarjeta se cobra al cliente o lo absorben? ¿Cuál es el porcentaje?",
-    type: "text",
-    placeholder: "Ej: 'Se cobra al cliente, 2.5% por cuota'",
-    answered: false
-  },
-  {
-    id: "C3-cierre-info",
-    section: "C",
-    title: "¿Qué información necesitan ver en el cierre de caja?",
-    type: "multiple",
-    options: [
-      "Totales por forma de pago",
-      "Anulaciones",
-      "Descuentos aplicados",
-      "Diferencia con monto declarado",
-      "Detalles de movimientos"
-    ],
-    answered: false
-  },
-  {
-    id: "C4-comprobantes",
-    section: "C",
-    title: "¿Qué imprimen al vender? (Seleccionar todas)",
-    type: "multiple",
-    options: [
-      "Ticket",
-      "Factura A",
-      "Factura B",
-      "Presupuesto",
-      "Remito",
-      "Otro"
-    ],
-    answered: false
-  },
-  {
-    id: "C4-impresora",
-    section: "C",
-    title: "¿Modelo y marca de la impresora térmica? ¿58mm o 80mm de ancho?",
-    type: "text",
-    placeholder: "Ej: Epson TM-T20, 80mm",
-    answered: false
-  },
-  {
-    id: "C4-ticket-info",
-    section: "C",
-    title: "¿Qué información debe llevar el ticket?",
-    type: "multiple",
-    options: [
-      "Logo del negocio",
-      "Datos del negocio",
-      "Items vendidos",
-      "Totales",
-      "Leyendas legales",
-      "Agradecimiento",
-      "Datos del cajero"
-    ],
-    answered: false
-  },
-  {
-    id: "C5-anulacion",
-    section: "C",
-    title: "¿Permiten anular una venta después de cobrada? ¿Hasta cuándo después?",
-    type: "text",
-    placeholder: "Tiempo permitido para anular (mismo día, 24hs, etc.)",
-    answered: false
-  },
-  {
-    id: "C5-devoluciones",
-    section: "C",
-    title: "¿Hay devoluciones de productos? ¿Cómo se procesa?",
-    type: "multiple",
-    options: [
-      "Reintegro en efectivo",
-      "Nota de crédito",
-      "Cambio por otro producto",
-      "No aceptan devoluciones"
-    ],
-    answered: false
-  },
-  {
-    id: "C6-login",
-    section: "C",
-    title: "¿El visitante sin login puede ver productos y precios en el e-commerce?",
-    type: "multiple",
-    options: [
-      "Ver productos y precios sin login",
-      "Ver solo productos, precios con login",
-      "Todo requiere login",
-      "Por definir"
-    ],
-    answered: false
-  },
-  {
-    id: "C6-stock-visible",
-    section: "C",
-    title: "¿Cómo muestran el stock disponible al cliente?",
-    type: "multiple",
-    options: [
-      "Cantidad exacta ('hay 47 unidades')",
-      "Disponibilidad ('Hay' / 'Pocas' / 'Sin stock')",
-      "No muestran stock",
-      "Otro formato"
-    ],
-    answered: false
-  },
-  {
-    id: "C6-productos-ocultos",
-    section: "C",
-    title: "¿Hay productos en el sistema que NO deben aparecer en el e-commerce?",
-    type: "text",
-    placeholder: "Describa qué productos se ocultan y por qué...",
-    answered: false
-  },
-  {
-    id: "C7-minimo",
-    section: "C",
-    title: "¿Hay mínimo de compra para enviar pedido por WhatsApp?",
-    type: "text",
-    placeholder: "Por monto, cantidad de unidades, o ambos...",
-    answered: false
-  },
-  {
-    id: "C7-minimo-producto",
-    section: "C",
-    title: "¿Algún producto tiene mínimo propio (por ejemplo, solo por bulto)?",
-    type: "text",
-    placeholder: "Describa productos y sus mínimos...",
-    answered: false
-  },
-  {
-    id: "C7-observaciones",
-    section: "C",
-    title: "¿El cliente puede agregar observaciones al pedido?",
-    type: "multiple",
-    options: [
-      "Sí, forma de entrega, comentarios, urgencia",
-      "Solo comentarios",
-      "No permite observaciones",
-      "Otra opción"
-    ],
-    answered: false
-  },
-  {
-    id: "C7-opciones-entrega",
-    section: "C",
-    title: "¿Qué opciones de entrega ofrece el cliente?",
-    type: "multiple",
-    options: [
-      "Retira por el local",
-      "Envío local",
-      "Transporte externo",
-      "Se acuerda solo por WhatsApp"
-    ],
-    answered: false
-  },
-  {
-    id: "C8-whatsapp",
-    section: "C",
-    title: "¿Cómo quiere que se vea el mensaje de pedido en WhatsApp?",
-    type: "text",
-    placeholder: "Describa el formato deseado o especifique que sea 'Editable desde configuración'",
-    answered: false
-  },
-  {
-    id: "C9-roles",
-    section: "C",
-    title: "¿Qué roles necesitan en el sistema?",
-    type: "multiple",
-    options: [
-      "Admin (ve todo)",
-      "Vendedor (caja)",
-      "Encargado depósito (stock, precios, faltantes)",
-      "Gerente",
-      "Reportes (solo lectura)"
-    ],
-    answered: false
-  },
-
-  // BLOQUE D - REPORTES Y BRANDING
-  {
-    id: "D1-reportes",
-    section: "D",
-    title: "¿Cuáles son los reportes que más consultan?",
-    type: "multiple",
-    options: [
-      "Ingresos y egresos",
-      "Ventas por producto",
-      "Ventas por vendedor",
-      "Stock disponible",
-      "Clientes con deuda",
-      "Performance por local"
-    ],
-    answered: false
-  },
-  {
-    id: "D1-kpis",
-    section: "D",
-    title: "¿Qué KPIs quieren ver siempre?",
-    type: "text",
-    placeholder: "Lista de indicadores clave para el negocio...",
-    answered: false
-  },
-  {
-    id: "D1-dashboard",
-    section: "D",
-    title: "¿Quieren un dashboard que se actualice en tiempo real desde el celular?",
-    type: "multiple",
-    options: [
-      "Sí, dashboard en tiempo real",
-      "Sí, pero no necesita ser en tiempo real",
-      "No, los reportes son suficientes"
-    ],
-    answered: false
-  },
-  {
-    id: "D2-logo",
-    section: "D",
-    title: "¿Tienen logo en alta resolución (PNG y/o SVG)?",
-    type: "multiple",
-    options: [
-      "Sí, tenemos PNG",
-      "Sí, tenemos SVG",
-      "Sí, tenemos ambos",
-      "No, necesitamos hacerlo"
-    ],
-    answered: false
-  },
-  {
-    id: "D2-colores",
-    section: "D",
-    title: "¿Tienen paleta de colores definida? (códigos hex)",
-    type: "text",
-    placeholder: "Ej: Principal #FF5733, Secundario #33FF57, etc.",
-    answered: false
-  },
-  {
-    id: "D2-tipografia",
-    section: "D",
-    title: "¿Tipografía preferida o referencias visuales?",
-    type: "text",
-    placeholder: "Ej: Sans-serif moderna, Serif clásica, referencias a sitios...",
-    answered: false
-  },
-  {
-    id: "D2-tono",
-    section: "D",
-    title: "¿Tono de comunicación que quieren transmitir?",
-    type: "multiple",
-    options: [
-      "Formal y profesional",
-      "Cercano y amigable",
-      "Técnico y preciso",
-      "Lúdico y dinámico"
-    ],
-    answered: false
-  },
-  {
-    id: "D3-descripciones",
-    section: "D",
-    title: "¿Quién va a cargar las descripciones largas de productos?",
-    type: "multiple",
-    options: [
-      "Todos los usuarios",
-      "Solo admin",
-      "Encargado de contenido",
-      "A definir"
-    ],
-    answered: false
-  },
-  {
-    id: "D3-fotos",
-    section: "D",
-    title: "¿Quién va a sacar/cargar las fotos para el e-commerce?",
-    type: "multiple",
-    options: [
-      "Todos los usuarios",
-      "Solo admin",
-      "Fotografo/diseñador externo",
-      "A definir"
-    ],
-    answered: false
-  },
-  {
-    id: "D3-paginas",
-    section: "D",
-    title: "¿Necesitan páginas estáticas? (Quiénes somos, Contacto, etc.)",
-    type: "multiple",
-    options: [
-      "Quiénes somos",
-      "Contacto",
-      "Política de envíos",
-      "Términos y condiciones",
-      "Todas las anteriores"
-    ],
-    answered: false
-  },
-  {
-    id: "D4-contacto-principal",
-    section: "D",
-    title: "¿Quién es la persona de contacto principal para el UAT y feedback?",
-    type: "text",
-    placeholder: "Nombre, teléfono, email...",
-    answered: false
-  },
-  {
-    id: "D4-capacitacion",
-    section: "D",
-    title: "¿Cuántas personas hay que capacitar? ¿Cuándo y cómo prefieren?",
-    type: "text",
-    placeholder: "Cantidad de personas, presencial/video llamada/video grabado...",
-    answered: false
-  }
+  // BLOQUE A
+  { id: "A1-format", section: "A", title: "¿En qué formato exporta el sistema actual?", type: "multiple", options: ["CSV", "Excel", "XML", "PDF", ".mdb", "Otro"], answered: false },
+  { id: "A1-cuando", section: "A", title: "¿Cuándo pueden enviar el export?", type: "multiple", options: ["Hoy", "Mañana", "Esta semana", "Próxima semana"], answered: false },
+  { id: "A1-historico", section: "A", title: "¿Hay datos históricos de ventas?", type: "multiple", options: ["Solo catálogo", "Con histórico", "Todo"], answered: false },
+  { id: "A2-estructura", section: "A", title: "¿Depósito central o directo?", type: "text", placeholder: "Describe...", answered: false },
+  { id: "A2-responsables", section: "A", title: "¿Responsables por depósito?", type: "text", placeholder: "Nombres...", answered: false },
+  { id: "A4-dominio", section: "A", title: "¿Dominio para e-commerce?", type: "text", placeholder: "Dominio...", answered: false },
+  { id: "A4-branding", section: "A", title: "¿Tienen logo y colores?", type: "multiple", options: ["Sí, ambos", "Solo logo", "Nada", "Contratar diseño", "Provisorio"], answered: false },
+  
+  // BLOQUE B
+  { id: "B1-variantes", section: "B", title: "¿Productos con variantes?", type: "text", placeholder: "Cantidad...", answered: false },
+  { id: "B1-bultos", section: "B", title: "¿Venta solo por bulto?", type: "text", placeholder: "Cuáles...", answered: false },
+  { id: "B1-campos", section: "B", title: "¿Campos adicionales por tipo?", type: "text", placeholder: "Material, ml, etc...", answered: false },
+  { id: "B2-stock", section: "B", title: "¿Stock único o por depósito?", type: "multiple", options: ["Único", "Por depósito", "Parcial", "No claro"], answered: false },
+  { id: "B2-distribucion", section: "B", title: "¿Cómo distribuir stock?", type: "text", placeholder: "Planilla...", answered: false },
+  { id: "B2-otro-deposito", section: "B", title: "¿Política de otro depósito?", type: "multiple", options: ["No tengo", "Pendiente", "Transferencia rápida"], answered: false },
+  { id: "B2-mermas", section: "B", title: "¿Registro de mermas?", type: "multiple", options: ["Sí", "No", "A veces"], answered: false },
+  { id: "B2-inventarios", section: "B", title: "¿Inventarios periódicos?", type: "text", placeholder: "Frecuencia...", answered: false },
+  { id: "B3-datos", section: "B", title: "¿Qué datos de cliente?", type: "text", placeholder: "Nombre, mail, etc...", answered: false },
+  { id: "B3-cuit", section: "B", title: "¿CUIT obligatorio?", type: "multiple", options: ["Obligatorio", "Opcional", "Depende"], answered: false },
+  { id: "B3-iva", section: "B", title: "¿Condición IVA?", type: "text", placeholder: "Responsable, No inscripto...", answered: false },
+  { id: "B3-tipos", section: "B", title: "¿Tipos de cliente?", type: "text", placeholder: "Distribuidor, Premium...", answered: false },
+  { id: "B3-localidades", section: "B", title: "¿Listado de localidades?", type: "multiple", options: ["Reportes", "Envíos", "Registro", "Varias", "No"], answered: false },
+  { id: "B3-suspension", section: "B", title: "¿Suspender clientes?", type: "text", placeholder: "Proceso...", answered: false },
+  { id: "B4-listas", section: "B", title: "¿Listas de precios?", type: "text", placeholder: "Minorista, Mayorista...", answered: false },
+  { id: "B4-asignacion", section: "B", title: "¿Cómo asignar lista?", type: "text", placeholder: "Por tipo, volumen...", answered: false },
+  
+  // BLOQUE C
+  { id: "C1-busqueda", section: "C", title: "¿Buscar por qué?", type: "multiple", options: ["Nombre", "Código", "Barras", "Nombre+Código", "Todas"], answered: false },
+  { id: "C1-descuento", section: "C", title: "¿Modificar precio?", type: "text", placeholder: "Cuándo y quién...", answered: false },
+  { id: "C1-cliente", section: "C", title: "¿Venta con cliente?", type: "multiple", options: ["Sin cliente", "Con cliente", "Mitad y mitad", "Depende"], answered: false },
+  { id: "C2-formas-pago", section: "C", title: "¿Formas de pago?", type: "multiple", options: ["Efectivo", "Transferencia", "Débito", "Crédito", "QR", "Cripto", "Cheques"], answered: false },
+  { id: "C2-recargo", section: "C", title: "¿Recargo de tarjeta?", type: "text", placeholder: "Porcentaje...", answered: false },
+  { id: "C3-cierre", section: "C", title: "¿Info en cierre?", type: "multiple", options: ["Totales", "Anulaciones", "Descuentos", "Diferencia", "Detalles"], answered: false },
+  { id: "C4-comprobantes", section: "C", title: "¿Qué imprimen?", type: "multiple", options: ["Ticket", "Factura A", "Factura B", "Presupuesto", "Remito", "Otro"], answered: false },
+  { id: "C4-impresora", section: "C", title: "¿Impresora térmica?", type: "text", placeholder: "Marca, modelo, ancho...", answered: false },
+  { id: "C4-ticket", section: "C", title: "¿Info en ticket?", type: "multiple", options: ["Logo", "Datos", "Items", "Totales", "Leyendas", "Agradecimiento", "Cajero"], answered: false },
+  { id: "C5-anulacion", section: "C", title: "¿Anular venta?", type: "text", placeholder: "Tiempo...", answered: false },
+  { id: "C5-devoluciones", section: "C", title: "¿Devoluciones?", type: "multiple", options: ["Efectivo", "Nota crédito", "Cambio", "No"], answered: false },
+  { id: "C6-login", section: "C", title: "¿Ver sin login?", type: "multiple", options: ["Todo", "Solo productos", "Precios con login", "Por definir"], answered: false },
+  { id: "C6-stock-visible", section: "C", title: "¿Stock disponible?", type: "multiple", options: ["Cantidad exacta", "Hay/Pocas/Sin stock", "No muestran", "Otro"], answered: false },
+  { id: "C6-productos", section: "C", title: "¿Productos ocultos?", type: "text", placeholder: "Cuáles...", answered: false },
+  { id: "C7-minimo", section: "C", title: "¿Mínimo de compra?", type: "text", placeholder: "Monto/cantidad...", answered: false },
+  { id: "C7-minimo-producto", section: "C", title: "¿Mínimo por producto?", type: "text", placeholder: "Productos...", answered: false },
+  { id: "C7-observaciones", section: "C", title: "¿Observaciones?", type: "multiple", options: ["Sí, completas", "Solo comentarios", "No", "Otro"], answered: false },
+  { id: "C7-entrega", section: "C", title: "¿Opciones entrega?", type: "multiple", options: ["Retira local", "Envío local", "Transporte", "Solo WhatsApp"], answered: false },
+  { id: "C8-whatsapp", section: "C", title: "¿Formato WhatsApp?", type: "text", placeholder: "Formato...", answered: false },
+  { id: "C9-roles", section: "C", title: "¿Roles?", type: "multiple", options: ["Admin", "Vendedor", "Depósito", "Gerente", "Reportes"], answered: false },
+  
+  // BLOQUE D
+  { id: "D1-reportes", section: "D", title: "¿Reportes más usados?", type: "multiple", options: ["Ingresos", "Ventas producto", "Ventas vendedor", "Stock", "Deudas", "Performance"], answered: false },
+  { id: "D1-kpis", section: "D", title: "¿KPIs importantes?", type: "text", placeholder: "Ventas, stock, deudas...", answered: false },
+  { id: "D1-dashboard", section: "D", title: "¿Dashboard tiempo real?", type: "multiple", options: ["Sí, tiempo real", "Sí, no debe serlo", "No, reportes"], answered: false },
+  { id: "D2-logo", section: "D", title: "¿Tienes logo?", type: "multiple", options: ["PNG", "SVG", "Ambos", "No"], answered: false },
+  { id: "D2-colores", section: "D", title: "¿Paleta de colores?", type: "text", placeholder: "Códigos hex...", answered: false },
+  { id: "D2-tipografia", section: "D", title: "¿Tipografía?", type: "text", placeholder: "Referencias...", answered: false },
+  { id: "D2-tono", section: "D", title: "¿Tono de comunicación?", type: "multiple", options: ["Formal", "Amigable", "Técnico", "Lúdico"], answered: false },
+  { id: "D3-descripciones", section: "D", title: "¿Quién carga descripciones?", type: "multiple", options: ["Todos", "Admin", "Especialista", "Por definir"], answered: false },
+  { id: "D3-fotos", section: "D", title: "¿Quién carga fotos?", type: "multiple", options: ["Todos", "Admin", "Fotógrafo", "Por definir"], answered: false },
+  { id: "D3-paginas", section: "D", title: "¿Páginas estáticas?", type: "multiple", options: ["Quiénes somos", "Contacto", "Envíos", "T&C", "Todas"], answered: false },
+  { id: "D4-contacto", section: "D", title: "¿Contacto principal?", type: "text", placeholder: "Nombre, teléfono...", answered: false }
 ];
 
 let currentQuestion = 0;
 const answers = {};
 
-function getSectionName(section) {
-  switch(section) {
-    case 'A': return 'A · Bloque crítico';
-    case 'B': return 'B · Modelo de datos';
-    case 'C': return 'C · Operación';
-    case 'D': return 'D · Reportes y branding';
-    default: return section;
-  }
+function getSectionName(s) {
+  const map = { A: "A", B: "B", C: "C", D: "D" };
+  return map[s] || s;
 }
 
-// Initialize
 document.getElementById('total-q').textContent = questions.length;
 
 function buildNavigatorGrid() {
   const grid = document.getElementById('navigator-grid');
   grid.innerHTML = '';
-  
-  questions.forEach((q, index) => {
+  questions.forEach((q, i) => {
     const item = document.createElement('button');
     item.className = 'navigator-item';
-    item.textContent = index + 1;
-    item.id = 'nav-' + index;
+    item.textContent = i + 1;
     item.type = 'button';
-    
-    if (q.answered) {
-      item.classList.add('answered');
-    }
-    
-    if (index === currentQuestion) {
-      item.classList.add('current');
-    }
-    
-    item.onclick = (e) => {
-      e.preventDefault();
-      showQuestion(index);
-    };
-    
-    item.title = `P${index + 1}: ${q.title.substring(0, 50)}`;
-    
+    if (q.answered) item.classList.add('answered');
+    if (i === currentQuestion) item.classList.add('current');
+    item.onclick = (e) => { e.preventDefault(); showQuestion(i); };
+    item.title = `P${i + 1}`;
     grid.appendChild(item);
   });
 }
@@ -1789,300 +837,193 @@ function buildNavigatorGrid() {
 function toggleNavigator() {
   const grid = document.getElementById('navigator-grid');
   const btn = document.getElementById('navigator-toggle');
-  
   grid.classList.toggle('collapsed');
-  
-  if (grid.classList.contains('collapsed')) {
-    btn.textContent = '+';
-  } else {
-    btn.textContent = '−';
-  }
+  btn.textContent = grid.classList.contains('collapsed') ? '+' : '−';
 }
 
-function showQuestion(index) {
-  currentQuestion = index;
-  const q = questions[index];
+function showQuestion(i) {
+  currentQuestion = i;
+  const q = questions[i];
   
   document.getElementById('q-title').textContent = q.title;
-  document.getElementById('current-q').textContent = index + 1;
+  document.getElementById('current-q').textContent = i + 1;
   document.getElementById('section-badge').textContent = getSectionName(q.section);
   
-  const progressPercent = ((index + 1) / questions.length) * 100;
-  document.getElementById('progress-bar').style.width = progressPercent + '%';
+  const pct = ((i + 1) / questions.length) * 100;
+  document.getElementById('progress-bar').style.width = pct + '%';
   
-  const remainingQuestions = questions.length - index - 1;
-  const estimatedMinutes = Math.ceil(remainingQuestions * 0.5);
-  document.getElementById('estimated-time').textContent = (estimatedMinutes > 0 ? estimatedMinutes + ' min' : 'Listo!');
+  const remain = Math.ceil((questions.length - i - 1) * 0.5);
+  document.getElementById('estimated-time').textContent = (remain > 0 ? remain + 'm' : 'Listo');
   
-  const optionsDiv = document.getElementById('q-options');
-  const hintDiv = document.getElementById('options-hint');
-  optionsDiv.innerHTML = '';
-  
+  const opts = document.getElementById('q-options');
+  const hint = document.getElementById('options-hint');
+  opts.innerHTML = '';
   document.getElementById('q-text-input').classList.remove('active');
   
   if (q.type === 'multiple') {
-    hintDiv.textContent = '👇 Podés seleccionar una o más opciones';
-    hintDiv.style.display = 'block';
-    
-    q.options.forEach((opt, optIndex) => {
+    hint.textContent = 'Selecciona una o más';
+    hint.style.display = 'block';
+    q.options.forEach((opt) => {
       const label = document.createElement('label');
       label.className = 'option-label';
-      
       const input = document.createElement('input');
       input.type = 'checkbox';
-      input.name = 'option-' + index + '-' + optIndex;
-      input.value = opt;
-      
-      if (!answers[q.id]) {
-        answers[q.id] = [];
-      }
+      if (!answers[q.id]) answers[q.id] = [];
       input.checked = answers[q.id].includes(opt);
-      
       input.onchange = (e) => {
         if (e.target.checked) {
-          if (!answers[q.id].includes(opt)) {
-            answers[q.id].push(opt);
-          }
+          if (!answers[q.id].includes(opt)) answers[q.id].push(opt);
         } else {
           answers[q.id] = answers[q.id].filter(a => a !== opt);
         }
-        questions[index].answered = answers[q.id].length > 0;
+        questions[i].answered = answers[q.id].length > 0;
         buildNavigatorGrid();
       };
-      
       const span = document.createElement('span');
       span.className = 'option-text';
       span.textContent = opt;
-      
       label.appendChild(input);
       label.appendChild(span);
-      optionsDiv.appendChild(label);
+      opts.appendChild(label);
     });
   } else {
-    hintDiv.style.display = 'none';
+    hint.style.display = 'none';
     document.getElementById('q-text-input').classList.add('active');
     const textarea = document.getElementById('text-answer');
     textarea.value = answers[q.id] || '';
-    textarea.placeholder = q.placeholder || 'Escribí aquí tu respuesta...';
+    textarea.placeholder = q.placeholder;
     textarea.oninput = (e) => {
       answers[q.id] = e.target.value;
-      questions[index].answered = e.target.value.trim().length > 0;
+      questions[i].answered = e.target.value.trim().length > 0;
       buildNavigatorGrid();
     };
   }
   
-  document.getElementById('btn-prev').classList.toggle('visible', index > 0);
-  document.getElementById('btn-next').style.display = index < questions.length - 1 ? 'block' : 'none';
-  document.getElementById('btn-finish').style.display = index === questions.length - 1 ? 'block' : 'none';
-  
+  document.getElementById('btn-prev').classList.toggle('visible', i > 0);
+  document.getElementById('btn-next').style.display = i < questions.length - 1 ? 'block' : 'none';
+  document.getElementById('btn-finish').style.display = i === questions.length - 1 ? 'block' : 'none';
   buildNavigatorGrid();
 }
 
 function nextQuestion() {
-  if (currentQuestion < questions.length - 1) {
-    showQuestion(currentQuestion + 1);
-  }
+  if (currentQuestion < questions.length - 1) showQuestion(currentQuestion + 1);
 }
 
 function previousQuestion() {
-  if (currentQuestion > 0) {
-    showQuestion(currentQuestion - 1);
-  }
+  if (currentQuestion > 0) showQuestion(currentQuestion - 1);
 }
 
 function finishQuiz() {
   document.getElementById('quiz-main').classList.remove('active');
   document.getElementById('quiz-review').classList.add('active');
-  
-  const reviewSectionsDiv = document.getElementById('review-sections');
-  reviewSectionsDiv.innerHTML = '';
-  
-  const groupedBySection = {};
+  const sec = document.getElementById('review-sections');
+  sec.innerHTML = '';
+  const grouped = {};
   questions.forEach(q => {
-    const answer = answers[q.id];
-    if (answer && ((Array.isArray(answer) && answer.length > 0) || (!Array.isArray(answer) && answer.trim()))) {
-      if (!groupedBySection[q.section]) {
-        groupedBySection[q.section] = [];
-      }
-      groupedBySection[q.section].push(q);
+    const ans = answers[q.id];
+    if (ans && ((Array.isArray(ans) && ans.length > 0) || (!Array.isArray(ans) && ans.trim()))) {
+      if (!grouped[q.section]) grouped[q.section] = [];
+      grouped[q.section].push(q);
     }
   });
-  
-  Object.keys(groupedBySection).sort().forEach(section => {
-    const sectionDiv = document.createElement('div');
-    sectionDiv.className = 'review-section';
-    
-    const sectionTitle = document.createElement('div');
-    sectionTitle.className = 'review-section-title';
-    sectionTitle.textContent = getSectionName(section);
-    sectionDiv.appendChild(sectionTitle);
-    
-    const gridDiv = document.createElement('div');
-    gridDiv.className = 'review-grid';
-    
-    groupedBySection[section].forEach(q => {
-      const answer = answers[q.id];
+  Object.keys(grouped).sort().forEach(s => {
+    const div = document.createElement('div');
+    div.className = 'review-section';
+    const title = document.createElement('div');
+    title.className = 'review-section-title';
+    title.textContent = 'Bloque ' + getSectionName(s);
+    div.appendChild(title);
+    const grid = document.createElement('div');
+    grid.className = 'review-grid';
+    grouped[s].forEach(q => {
+      const ans = answers[q.id];
       const card = document.createElement('div');
       card.className = 'review-card';
-      
-      const label = document.createElement('div');
-      label.className = 'review-card-label';
-      label.textContent = q.type === 'multiple' ? 'Opción(es) seleccionada(s)' : 'Respuesta libre';
-      
-      const question = document.createElement('div');
-      question.className = 'review-card-question';
-      question.textContent = q.title;
-      
-      const answerDiv = document.createElement('div');
-      answerDiv.className = 'review-card-answer';
-      
-      if (Array.isArray(answer)) {
-        answerDiv.innerHTML = answer.map(a => `<div style="margin-bottom: 8px;">✓ ${a}</div>`).join('');
+      const lbl = document.createElement('div');
+      lbl.className = 'review-card-label';
+      lbl.textContent = Array.isArray(ans) ? 'Selección' : 'Respuesta';
+      const qtitle = document.createElement('div');
+      qtitle.className = 'review-card-question';
+      qtitle.textContent = q.title;
+      const aDiv = document.createElement('div');
+      aDiv.className = 'review-card-answer';
+      if (Array.isArray(ans)) {
+        aDiv.innerHTML = ans.map(a => `<div>✓ ${a}</div>`).join('');
       } else {
-        answerDiv.textContent = answer;
+        aDiv.textContent = ans;
       }
-      
-      card.appendChild(label);
-      card.appendChild(question);
-      card.appendChild(answerDiv);
-      gridDiv.appendChild(card);
+      card.appendChild(lbl);
+      card.appendChild(qtitle);
+      card.appendChild(aDiv);
+      grid.appendChild(card);
     });
-    
-    sectionDiv.appendChild(gridDiv);
-    reviewSectionsDiv.appendChild(sectionDiv);
+    div.appendChild(grid);
+    sec.appendChild(div);
   });
 }
 
 function copyAnswers() {
-  let text = 'RESPUESTAS DEL CUESTIONARIO ONBOARDING\n';
-  text += '='.repeat(60) + '\n\n';
-  text += 'Pragma Studio - Cuestionario de descubrimiento\n';
-  text += 'Fecha: ' + new Date().toLocaleDateString('es-AR') + '\n';
-  text += 'Preguntas respondidas: ' + Object.keys(answers).length + ' de ' + questions.length + '\n\n';
-  text += '='.repeat(60) + '\n\n';
-  
-  let currentSection = '';
+  let txt = 'RESPUESTAS ONBOARDING\n' + '='.repeat(40) + '\n\n';
+  let sec = '';
   questions.forEach(q => {
-    const answer = answers[q.id];
-    if (answer && ((Array.isArray(answer) && answer.length > 0) || (!Array.isArray(answer) && answer.trim()))) {
-      if (currentSection !== q.section) {
-        currentSection = q.section;
-        text += '\n' + getSectionName(q.section) + '\n';
-        text += '-'.repeat(50) + '\n\n';
+    const ans = answers[q.id];
+    if (ans && ((Array.isArray(ans) && ans.length > 0) || (!Array.isArray(ans) && ans.trim()))) {
+      if (sec !== q.section) {
+        sec = q.section;
+        txt += '\nBloque ' + getSectionName(sec) + '\n' + '-'.repeat(40) + '\n\n';
       }
-      text += '• ' + q.title + '\n';
-      if (Array.isArray(answer)) {
-        answer.forEach(a => {
-          text += '  ✓ ' + a + '\n';
-        });
+      txt += '• ' + q.title + '\n';
+      if (Array.isArray(ans)) {
+        ans.forEach(a => { txt += '  ✓ ' + a + '\n'; });
       } else {
-        text += '  ' + answer + '\n';
+        txt += '  ' + ans + '\n';
       }
-      text += '\n';
+      txt += '\n';
     }
   });
-  
-  navigator.clipboard.writeText(text).then(() => {
+  navigator.clipboard.writeText(txt).then(() => {
     const btn = event.target;
-    const originalText = btn.innerHTML;
-    btn.innerHTML = '<span>✓</span> ¡Copiado!';
-    btn.style.background = '#22c55e';
-    setTimeout(() => {
-      btn.innerHTML = originalText;
-      btn.style.background = '';
-    }, 2000);
+    btn.textContent = '✓ Copiado!';
+    setTimeout(() => { btn.textContent = '📋 Copiar'; }, 1500);
   });
 }
 
 function downloadAnswers() {
-  let html = `<!DOCTYPE html>
-<html lang="es">
-<head>
-<meta charset="UTF-8">
-<title>Respuestas Onboarding - Pragma Studio</title>
-<style>
-body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; padding: 40px; background: #f9f9f9; }
-.container { max-width: 900px; margin: 0 auto; background: white; padding: 40px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
-h1 { color: #1847F0; font-size: 28px; margin-bottom: 8px; }
-.meta { color: #999; font-size: 12px; margin-bottom: 32px; }
-.section { margin-bottom: 40px; }
-.section-title { color: #1847F0; font-size: 16px; font-weight: bold; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 1px solid #e0e0e0; }
-.question { margin-bottom: 24px; page-break-inside: avoid; }
-.q-text { font-weight: 600; color: #111; margin: 8px 0; }
-.q-ans { background: #f5f3f0; padding: 12px 16px; border-radius: 8px; color: #555; border-left: 3px solid #1847F0; }
-.q-ans ul { margin: 0; padding-left: 20px; }
-.q-ans li { margin: 4px 0; }
-footer { margin-top: 40px; padding-top: 20px; border-top: 1px solid #e0e0e0; font-size: 12px; color: #999; }
-</style>
-</head>
-<body>
-<div class="container">
-<h1>Respuestas del Cuestionario de Descubrimiento</h1>
-<div class="meta">
-Pragma Studio · ${new Date().toLocaleDateString('es-AR')} · ${new Date().toLocaleTimeString('es-AR')}
-</div>
-`;
-
-  let currentSection = '';
+  let html = '<style>body{font-family:sans-serif;padding:20px}h1{color:#1847F0}h2{color:#1847F0;font-size:14px;margin-top:20px}.card{border:1px solid #eee;padding:10px;margin:10px 0;border-radius:5px}.q{font-weight:bold;margin:5px 0}.a{color:#666}</style>';
+  html += '<h1>Respuestas Cuestionario</h1>';
+  let sec = '';
   questions.forEach(q => {
-    const answer = answers[q.id];
-    if (answer && ((Array.isArray(answer) && answer.length > 0) || (!Array.isArray(answer) && answer.trim()))) {
-      if (currentSection !== q.section) {
-        if (currentSection !== '') {
-          html += `</div>`;
-        }
-        currentSection = q.section;
-        html += `<div class="section"><div class="section-title">${getSectionName(q.section)}</div>`;
+    const ans = answers[q.id];
+    if (ans && ((Array.isArray(ans) && ans.length > 0) || (!Array.isArray(ans) && ans.trim()))) {
+      if (sec !== q.section) {
+        sec = q.section;
+        html += '<h2>Bloque ' + getSectionName(sec) + '</h2>';
       }
-      
-      html += `<div class="question">
-<p class="q-text">${q.title}</p>
-<div class="q-ans">`;
-      
-      if (Array.isArray(answer)) {
-        html += '<ul>';
-        answer.forEach(a => {
-          html += `<li>${a}</li>`;
-        });
-        html += '</ul>';
+      html += '<div class="card"><div class="q">' + q.title + '</div><div class="a">';
+      if (Array.isArray(ans)) {
+        html += ans.map(a => '✓ ' + a).join('<br>');
       } else {
-        html += answer;
+        html += ans;
       }
-      
-      html += `</div>
-</div>`;
+      html += '</div></div>';
     }
   });
-
-  html += `</div>
-<footer>
-<strong>Pragma Studio</strong> · Desarrollo de software a medida · Córdoba, Argentina<br>
-<a href="https://wa.me/5493513911596">+54 9 3513 91-1596</a> · pragmasolucionesdigitales@gmail.com
-</footer>
-</div>
-</body>
-</html>`;
-
   const blob = new Blob([html], { type: 'text/html' });
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
   a.href = url;
-  a.download = 'onboarding-respuestas-' + new Date().toISOString().split('T')[0] + '.html';
+  a.download = 'respuestas.html';
   a.click();
 }
 
-// Start
 showQuestion(0);
-
-// Detectar si está abierto en WhatsApp
 const isWhatsApp = /WhatsApp/i.test(navigator.userAgent);
 if (isWhatsApp) {
-  document.body.style.maxWidth = '100%';
-  document.body.style.width = '100%';
-  // Forzar viewport en WhatsApp
-  document.querySelector('meta[name="viewport"]').setAttribute('content', 'width=device-width, initial-scale=1.0, user-scalable=yes');
+  document.body.style.maxWidth = '100vw';
 }
+// Comprimir navegador por defecto
+document.getElementById('navigator-grid').classList.add('collapsed');
+document.getElementById('navigator-toggle').textContent = '+';
 </script>
-
 </body>
 </html>
