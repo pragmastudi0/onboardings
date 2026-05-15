@@ -1,0 +1,72 @@
+🚀 GUÍA RÁPIDA - DESPLEGAR EN VERCEL
+════════════════════════════════════════
+
+⏱️ TIEMPO: 2 minutos
+
+PASO 1: Descarga Vercel CLI
+═══════════════════════════
+En tu terminal:
+
+npm install -g vercel
+
+(Si no tienes Node.js, descárgalo desde nodejs.org)
+
+
+PASO 2: Crea una cuenta en Vercel
+═════════════════════════════════
+- Ve a https://vercel.com/signup
+- Usa tu email o GitHub/Google
+
+
+PASO 3: Despliega el proyecto
+══════════════════════════════
+En tu terminal:
+
+cd /ruta/a/la/carpeta
+vercel login
+vercel
+
+(Sigue las instrucciones - presiona Enter para aceptar defaults)
+
+
+PASO 4: ¡Listo! 🎉
+═════════════════
+Tu URL será algo como:
+👉 https://onboarding-quiz.vercel.app
+
+Copia ese link y comparte por WhatsApp
+
+
+════════════════════════════════════════
+
+¿PROBLEMAS?
+
+❌ "vercel command not found"
+→ Reinicia tu terminal después de instalar
+
+❌ "No se abre el navegador automáticamente"
+→ Copia manualmente el link que te muestra
+
+❌ "Error de conexión a GitHub"
+→ Usa email en lugar de GitHub para la cuenta
+
+❌ Vercel dice "Build failed"
+→ No importa, en este caso el build es automático
+
+════════════════════════════════════════
+
+ALTERNATIVA: Sin CLI
+
+1. Ve a https://vercel.com/import
+2. Arrastra y suelta la carpeta
+3. Listo en 10 segundos
+
+════════════════════════════════════════
+
+¿MÁS INFORMACIÓN?
+
+Docs: https://vercel.com/docs
+Soporte: https://vercel.com/support
+Email: pragmasolucionesdigitales@gmail.com
+
+¡Éxito! 🚀

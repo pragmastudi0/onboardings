@@ -1,0 +1,8 @@
+{
+  "name": "onboarding-quiz",
+  "version": "1.0.0",
+  "description": "Cuestionario de descubrimiento - Pragma Studio",
+  "main": "index.html",
+  "author": "Pragma Studio",
+  "license": "MIT"
+}
