@@ -974,6 +974,117 @@ body {
   text-decoration: none; 
 }
 </style>
+<script>
+const questions = [
+  // BLOQUE A
+  { id: "A1-format", section: "A", title: "¿En qué formato exporta el sistema actual los datos?", type: "multiple", options: ["CSV", "Excel", "XML", "PDF", "Base de datos .mdb", "Otro"], answered: false },
+  { id: "A1-cuando", section: "A", title: "¿Cuándo pueden enviar el export? (necesitamos el lunes a primera hora)", type: "multiple", options: ["Hoy", "Mañana", "Esta semana", "Próxima semana"], answered: false },
+  { id: "A1-historico", section: "A", title: "¿Hay datos históricos de ventas que necesiten migrar?", type: "multiple", options: ["Solo catálogo y clientes", "Incluir histórico de ventas", "Incluir todo"], answered: false },
+  { id: "A2-estructura", section: "A", title: "¿Hay un depósito central que abastece a los demás, o cada local recibe directo del proveedor?", type: "text", placeholder: "Describe la estructura actual...", answered: false },
+  { id: "A2-responsables", section: "A", title: "¿Cada depósito tiene un responsable distinto? Si sí, ¿quiénes son?", type: "text", placeholder: "Nombres y depósitos asignados...", answered: false },
+  { id: "A4-dominio", section: "A", title: "¿Ya tienen dominio para el e-commerce? ¿Cuál es?", type: "text", placeholder: "Dominio (ej: mistienda.com.ar) o escribir 'Necesita registrarse'", answered: false },
+  { id: "A4-branding", section: "A", title: "¿Tienen logo en alta resolución y paleta de colores definida?", type: "multiple", options: ["Sí, tenemos logo y colores", "Tenemos logo pero no colores", "No tenemos nada", "Vamos a contratar diseño aparte", "Usamos algo provisorio"], answered: false },
+  
+  // BLOQUE B
+  { id: "B1-variantes", section: "B", title: "¿Cuántos productos aproximadamente tienen variantes (colores, tamaños, sabores)?", type: "text", placeholder: "Cantidad aproximada o 'No sabemos'", answered: false },
+  { id: "B1-bultos", section: "B", title: "¿Algunos productos se venden solo por bulto y no por unidad suelta?", type: "text", placeholder: "Describa cuáles o escriba 'No sabemos'", answered: false },
+  { id: "B1-campos", section: "B", title: "¿Qué campos adicionales necesitan por tipo de producto?", type: "text", placeholder: "Ej: Bazar (material), Belleza (ml), Tecnología (especificaciones)", answered: false },
+  { id: "B2-stock", section: "B", title: "¿En el sistema actual el stock es uno solo o ya está separado por depósito?", type: "multiple", options: ["Stock único consolidado", "Stock separado por depósito", "Parcialmente separado", "No está claro"], answered: false },
+  { id: "B2-distribucion", section: "B", title: "Si es stock único, ¿cómo quieren distribuirlo entre depósitos al migrar?", type: "text", placeholder: "¿Nos pasarán una planilla? ¿Distribuir equitativamente?", answered: false },
+  { id: "B2-otro-deposito", section: "B", title: "¿Qué política usan cuando un local quiere vender algo que no tiene pero hay en otro?", type: "multiple", options: ["Se le dice al cliente 'no tengo'", "Se anota como pendiente y se pide al otro depósito", "Se hace transferencia rápida y se vende"], answered: false },
+  { id: "B2-mermas", section: "B", title: "¿Llevan registro de mermas, roturas y ajustes de inventario?", type: "multiple", options: ["Sí, llevamos registro", "No lo registramos", "A veces"], answered: false },
+  { id: "B2-inventarios", section: "B", title: "¿Hacen inventarios físicos periódicos? ¿Con qué frecuencia?", type: "text", placeholder: "Diario, semanal, mensual, trimestral, otro...", answered: false },
+  { id: "B3-datos", section: "B", title: "¿Qué datos guardan de cada cliente?", type: "text", placeholder: "Lista de campos que registran por cliente...", answered: false },
+  { id: "B3-cuit", section: "B", title: "¿El CUIT es obligatorio para mayoristas, o se permite cargar sin él?", type: "multiple", options: ["Obligatorio", "Opcional", "Depende del cliente"], answered: false },
+  { id: "B3-iva", section: "B", title: "¿Manejan condición frente al IVA del cliente? ¿Para qué?", type: "text", placeholder: "Responsable inscripto, No inscripto, Exento, etc.", answered: false },
+  { id: "B3-tipos", section: "B", title: "¿Necesitan diferenciar clientes más allá de 'consumidor final' y 'mayorista'?", type: "text", placeholder: "Ej: distribuidor, mayorista premium, cliente especial, etc.", answered: false },
+  { id: "B3-localidades", section: "B", title: "¿Manejan listado de localidades o provincias? ¿Para qué?", type: "multiple", options: ["Para reportes", "Para envíos", "Solo registro", "Varias razones", "No manejamos"], answered: false },
+  { id: "B3-suspension", section: "B", title: "¿Suspenden clientes con deuda u otra razón? ¿Cómo lo manejan?", type: "text", placeholder: "Describe el proceso actual...", answered: false },
+  { id: "B4-listas", section: "B", title: "¿Cuántas listas de precios manejan? Listarlas.", type: "text", placeholder: "Ej: Minorista, Mayorista, Distribuidor, Especial, etc.", answered: false },
+  { id: "B4-asignacion", section: "B", title: "¿Cómo se decide qué lista de precios corresponde a cada cliente?", type: "text", placeholder: "Por tipo de cliente, por volumen, manual, etc.", answered: false },
+  
+  // BLOQUE C
+  { id: "C1-busqueda", section: "C", title: "¿Buscan productos por nombre, código interno, código de barras, o las tres?", type: "multiple", options: ["Solo nombre", "Solo código interno", "Solo código de barras", "Nombre y código", "Todas las opciones"], answered: false },
+  { id: "C1-descuento", section: "C", title: "¿Es común que el cajero modifique el precio al momento de cobrar? ¿Lo puede hacer cualquier cajero o necesita aprobación?", type: "text", placeholder: "Describe cuándo y quién puede hacerlo...", answered: false },
+  { id: "C1-cliente", section: "C", title: "¿Manejan venta con cliente identificado (factura A/B) o casi siempre sin cliente?", type: "multiple", options: ["Casi siempre sin cliente (ticket)", "Mayormente con cliente", "Mitad y mitad", "Depende del local"], answered: false },
+  { id: "C2-formas-pago", section: "C", title: "¿Qué formas de pago aceptan? (Seleccionar todas)", type: "multiple", options: ["Efectivo", "Transferencia bancaria", "Débito", "Crédito", "QR", "Criptomonedas", "Cheques"], answered: false },
+  { id: "C2-recargo", section: "C", title: "¿El recargo de tarjeta se cobra al cliente o lo absorben? ¿Cuál es el porcentaje?", type: "text", placeholder: "Ej: 'Se cobra al cliente, 2.5% por cuota'", answered: false },
+  { id: "C3-cierre", section: "C", title: "¿Qué información necesitan ver en el cierre de caja?", type: "multiple", options: ["Totales por forma de pago", "Anulaciones", "Descuentos aplicados", "Diferencia con monto declarado", "Detalles de movimientos"], answered: false },
+  { id: "C4-comprobantes", section: "C", title: "¿Qué imprimen al vender? (Seleccionar todas)", type: "multiple", options: ["Ticket", "Factura A", "Factura B", "Presupuesto", "Remito", "Otro"], answered: false },
+  { id: "C4-impresora", section: "C", title: "¿Modelo y marca de la impresora térmica? ¿58mm o 80mm de ancho?", type: "text", placeholder: "Ej: Epson TM-T20, 80mm", answered: false },
+  { id: "C4-ticket", section: "C", title: "¿Qué información debe llevar el ticket?", type: "multiple", options: ["Logo del negocio", "Datos del negocio", "Items vendidos", "Totales", "Leyendas legales", "Agradecimiento", "Datos del cajero"], answered: false },
+  { id: "C5-anulacion", section: "C", title: "¿Permiten anular una venta después de cobrada? ¿Hasta cuándo después?", type: "text", placeholder: "Tiempo permitido para anular (mismo día, 24hs, etc.)", answered: false },
+  { id: "C5-devoluciones", section: "C", title: "¿Hay devoluciones de productos? ¿Cómo se procesa?", type: "multiple", options: ["Reintegro en efectivo", "Nota de crédito", "Cambio por otro producto", "No aceptan devoluciones"], answered: false },
+  { id: "C6-login", section: "C", title: "¿El visitante sin login puede ver productos y precios en el e-commerce?", type: "multiple", options: ["Ver productos y precios sin login", "Ver solo productos, precios con login", "Todo requiere login", "Por definir"], answered: false },
+  { id: "C6-stock-visible", section: "C", title: "¿Cómo muestran el stock disponible al cliente?", type: "multiple", options: ["Cantidad exacta ('hay 47 unidades')", "Disponibilidad ('Hay' / 'Pocas' / 'Sin stock')", "No muestran stock", "Otro formato"], answered: false },
+  { id: "C6-productos", section: "C", title: "¿Hay productos en el sistema que NO deben aparecer en el e-commerce?", type: "text", placeholder: "Describa qué productos se ocultan y por qué...", answered: false },
+  { id: "C7-minimo", section: "C", title: "¿Hay mínimo de compra para enviar el pedido por WhatsApp?", type: "text", placeholder: "Por monto, cantidad de unidades, o ambos...", answered: false },
+  { id: "C7-minimo-producto", section: "C", title: "¿Algún producto tiene mínimo propio (por ejemplo, solo por bulto)?", type: "text", placeholder: "Describa productos y sus mínimos...", answered: false },
+  { id: "C7-observaciones", section: "C", title: "¿El cliente puede agregar observaciones al pedido?", type: "multiple", options: ["Sí, forma de entrega, comentarios, urgencia", "Solo comentarios", "No permite observaciones", "Otra opción"], answered: false },
+  { id: "C7-entrega", section: "C", title: "¿Qué opciones de entrega ofrece el cliente?", type: "multiple", options: ["Retira por el local", "Envío local", "Transporte externo", "Se acuerda solo por WhatsApp"], answered: false },
+  { id: "C8-whatsapp", section: "C", title: "¿Cómo quiere que se vea el mensaje de pedido en WhatsApp?", type: "text", placeholder: "Describa el formato deseado o especifique que sea 'Editable desde configuración'", answered: false },
+  { id: "C9-roles", section: "C", title: "¿Qué roles necesitan en el sistema?", type: "multiple", options: ["Admin (ve todo)", "Vendedor (caja)", "Encargado depósito (stock, precios, faltantes)", "Gerente", "Reportes (solo lectura)"], answered: false },
+  
+  // BLOQUE D
+  { id: "D1-reportes", section: "D", title: "¿Cuáles son los reportes que más consultan?", type: "multiple", options: ["Ingresos y egresos", "Ventas por producto", "Ventas por vendedor", "Stock disponible", "Clientes con deuda", "Performance por local"], answered: false },
+  { id: "D1-kpis", section: "D", title: "¿Qué KPIs quieren ver siempre?", type: "text", placeholder: "Lista de indicadores clave para el negocio...", answered: false },
+  { id: "D1-dashboard", section: "D", title: "¿Quieren un dashboard que se actualice en tiempo real desde el celular?", type: "multiple", options: ["Sí, dashboard en tiempo real", "Sí, pero no necesita ser en tiempo real", "No, los reportes son suficientes"], answered: false },
+  { id: "D2-logo", section: "D", title: "¿Tienen logo en alta resolución (PNG y/o SVG)?", type: "multiple", options: ["Sí, tenemos PNG", "Sí, tenemos SVG", "Sí, tenemos ambos", "No, necesitamos hacerlo"], answered: false },
+  { id: "D2-colores", section: "D", title: "¿Tienen paleta de colores definida? (códigos hex)", type: "text", placeholder: "Ej: Principal #FF5733, Secundario #33FF57, etc.", answered: false },
+  { id: "D2-tipografia", section: "D", title: "¿Tipografía preferida o referencias visuales?", type: "text", placeholder: "Ej: Sans-serif moderna, Serif clásica, referencias a sitios...", answered: false },
+  { id: "D2-tono", section: "D", title: "¿Tono de comunicación que quieren transmitir?", type: "multiple", options: ["Formal y profesional", "Cercano y amigable", "Técnico y preciso", "Lúdico y dinámico"], answered: false },
+  { id: "D3-descripciones", section: "D", title: "¿Quién va a cargar las descripciones largas de productos?", type: "multiple", options: ["Todos los usuarios", "Solo admin", "Encargado de contenido", "A definir"], answered: false },
+  { id: "D3-fotos", section: "D", title: "¿Quién va a sacar/cargar las fotos para el e-commerce?", type: "multiple", options: ["Todos los usuarios", "Solo admin", "Fotografo/diseñador externo", "A definir"], answered: false },
+  { id: "D3-paginas", section: "D", title: "¿Necesitan páginas estáticas? (Quiénes somos, Contacto, Política de envíos, Términos y condiciones)", type: "multiple", options: ["Quiénes somos", "Contacto", "Política de envíos", "Términos y condiciones", "Todas las anteriores"], answered: false },
+  { id: "D4-contacto", section: "D", title: "¿Quién es la persona de contacto principal para el UAT y feedback?", type: "text", placeholder: "Nombre, teléfono, email...", answered: false },
+  { id: "D4-capacitacion", section: "D", title: "¿Cuántas personas hay que capacitar? ¿Cuándo y cómo prefieren?", type: "text", placeholder: "Cantidad de personas, presencial/video llamada/video grabado...", answered: false }
+];
+
+let currentQuestion = 0;
+const answers = {};
+
+function getSectionName(s) {
+  const map = { A: "A", B: "B", C: "C", D: "D" };
+  return map[s] || s;
+}
+
+function switchScreen(screenId) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(screenId).classList.add('active');
+  
+  if (screenId === 'screen-quiz') {
+    document.getElementById('topbar-meta').textContent = 'Onboarding en progreso';
+  } else if (screenId === 'screen-confirmed') {
+    document.getElementById('topbar-meta').textContent = 'Validación de información';
+  } else {
+    document.getElementById('topbar-meta').textContent = 'Próximos pasos';
+  }
+  window.scrollTo(0, 0);
+}
+
+function startValidation() {
+  switchScreen('screen-confirmed');
+}
+
+function startOnboarding() {
+  switchScreen('screen-quiz');
+  showQuestion(0);
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  const totalQEl = document.getElementById('total-q');
+  if (totalQEl) {
+    totalQEl.textContent = questions.length;
+  }
+  
+  const navGrid = document.getElementById('navigator-grid');
+  const navToggle = document.getElementById('navigator-toggle');
+  if (navGrid && navToggle) {
+    navGrid.classList.add('collapsed');
+    navToggle.textContent = '+';
+  }
+});
+</script>
 </head>
 <body>
 
@@ -1407,421 +1518,5 @@ body {
   </div>
 </div>
 
-<script>
-const questions = [
-  // BLOQUE A - CRÍTICO
-  { id: "A1-1", section: "A", title: "¿Pueden generarnos un export completo del sistema actual?", type: "multiple", options: ["Sí", "No", "Parcialmente"], answered: false },
-  { id: "A1-2", section: "A", title: "¿En qué formato lo exporta el sistema?", type: "multiple", options: ["CSV", "Excel", "XML", ".mdb", "Otro"], answered: false },
-  { id: "A1-3", section: "A", title: "¿Cuándo nos lo pueden enviar?", type: "multiple", options: ["Hoy", "Mañana", "Esta semana", "Próxima semana"], answered: false },
-  { id: "A1-4", section: "A", title: "¿Hay datos históricos de ventas que necesiten migrar?", type: "multiple", options: ["Solo catálogo y clientes", "Incluir histórico de ventas", "Incluir todo"], answered: false },
-  { id: "A2-1", section: "A", title: "¿Cuántos depósitos físicos tienen?", type: "text", placeholder: "Cantidad y nombres...", answered: false },
-  { id: "A2-2", section: "A", title: "¿Cuál depósito vende por internet?", type: "text", placeholder: "Especifique...", answered: false },
-  { id: "A2-3", section: "A", title: "¿Hay un depósito central?", type: "text", placeholder: "Describe estructura...", answered: false },
-  { id: "A2-4", section: "A", title: "¿Cada depósito tiene responsable?", type: "text", placeholder: "Nombres...", answered: false },
-  { id: "A3-1", section: "A", title: "¿Cuántos locales con caja activa?", type: "text", placeholder: "Cantidad...", answered: false },
-  { id: "A3-2", section: "A", title: "¿Cuántos cajeros/vendedores por local?", type: "text", placeholder: "Cantidad promedio...", answered: false },
-  { id: "A3-3", section: "A", title: "¿Caja atada a local o múltiples?", type: "text", placeholder: "Describe modelo...", answered: false },
-  { id: "A4-1", section: "A", title: "¿Dominio para e-commerce?", type: "text", placeholder: "Dominio o 'Necesita registrarse'", answered: false },
-  { id: "A4-2", section: "A", title: "¿Logo y paleta de colores?", type: "text", placeholder: "Sí/No...", answered: false },
-  { id: "A4-3", section: "A", title: "¿WhatsApp Business para pedidos?", type: "text", placeholder: "Número...", answered: false },
-  { id: "A4-4", section: "A", title: "¿Quién atiende WhatsApp?", type: "text", placeholder: "Rol...", answered: false },
-  { id: "A5-1", section: "A", title: "¿E-commerce mayorista (B2B), consumidor (B2C) o ambos?", type: "text", placeholder: "Especifique...", answered: false },
-  { id: "A5-2", section: "A", title: "¿Registro automático o con aprobación?", type: "text", placeholder: "Describe...", answered: false },
-  { id: "A5-3", section: "A", title: "¿Quién aprueba clientes mayoristas?", type: "text", placeholder: "Rol...", answered: false },
-  
-  // BLOQUE B - PRIMERA SEMANA
-  { id: "B1-1", section: "B", title: "¿Cuántos productos activos?", type: "text", placeholder: "Cantidad...", answered: false },
-  { id: "B1-2", section: "B", title: "¿Organizados en categorías?", type: "text", placeholder: "Sí/No...", answered: false },
-  { id: "B1-3", section: "B", title: "¿Marca como dato separado?", type: "multiple", options: ["Sí", "No"], answered: false },
-  { id: "B1-4", section: "B", title: "¿Productos con variantes?", type: "text", placeholder: "Sí/No y cantidad...", answered: false },
-  { id: "B1-5", section: "B", title: "¿Código de barras?", type: "text", placeholder: "Sí/No, ¿en todos?...", answered: false },
-  { id: "B1-6", section: "B", title: "¿Código interno propio?", type: "text", placeholder: "Formato...", answered: false },
-  { id: "B1-7", section: "B", title: "¿Productos solo por bulto?", type: "text", placeholder: "Sí/No...", answered: false },
-  { id: "B1-8", section: "B", title: "¿Peso variable (productos que se pesan)?", type: "multiple", options: ["Sí", "No"], answered: false },
-  { id: "B1-9", section: "B", title: "¿Campos adicionales por tipo?", type: "text", placeholder: "Material, ml, especificaciones...", answered: false },
-  { id: "B2-1", section: "B", title: "¿Stock consolidado o por depósito?", type: "text", placeholder: "Describe...", answered: false },
-  { id: "B2-2", section: "B", title: "¿Quién mueve stock entre depósitos?", type: "text", placeholder: "Rol...", answered: false },
-  { id: "B2-3", section: "B", title: "¿Qué pasa si falta stock en un local?", type: "text", placeholder: "Opción...", answered: false },
-  { id: "B2-4", section: "B", title: "¿Registro de mermas y ajustes?", type: "multiple", options: ["Sí", "No", "A veces"], answered: false },
-  { id: "B2-5", section: "B", title: "¿Inventarios físicos periódicos?", type: "text", placeholder: "Frecuencia...", answered: false },
-  { id: "B3-1", section: "B", title: "¿Qué datos de cada cliente?", type: "text", placeholder: "Campos...", answered: false },
-  { id: "B3-2", section: "B", title: "¿CUIT obligatorio?", type: "multiple", options: ["Obligatorio", "Opcional", "Depende"], answered: false },
-  { id: "B3-3", section: "B", title: "¿Condición IVA del cliente?", type: "text", placeholder: "Sí/No...", answered: false },
-  { id: "B3-4", section: "B", title: "¿Tipos de cliente? (premium, especial)", type: "text", placeholder: "Sí/No y tipos...", answered: false },
-  { id: "B3-5", section: "B", title: "¿Localidades o provincias?", type: "text", placeholder: "Para qué...", answered: false },
-  { id: "B3-6", section: "B", title: "¿Suspenden clientes con deuda?", type: "text", placeholder: "Sí/No...", answered: false },
-  { id: "B4-1", section: "B", title: "¿Cuántas listas de precios?", type: "text", placeholder: "Cantidad y nombres...", answered: false },
-  { id: "B4-2", section: "B", title: "¿Cómo se asigna lista a cliente?", type: "text", placeholder: "Criterio...", answered: false },
-  { id: "B4-3", section: "B", title: "¿Precios por cantidad (escalas)?", type: "text", placeholder: "Ej: 1-11 a $X...", answered: false },
-  { id: "B4-4", section: "B", title: "¿Precios diferenciales por pago?", type: "text", placeholder: "Ej: efectivo off...", answered: false },
-  { id: "B4-5", section: "B", title: "¿Quién modifica precios?", type: "text", placeholder: "Rol...", answered: false },
-  
-  // BLOQUE C - SEMANAS 2-3
-  { id: "C1-1", section: "C", title: "Describe una venta típica en caja (paso a paso)", type: "text", placeholder: "Flujo completo...", answered: false },
-  { id: "C1-2", section: "C", title: "¿Buscan por nombre, código interno o barras?", type: "text", placeholder: "Cuál/es...", answered: false },
-  { id: "C1-3", section: "C", title: "¿Cajero puede modificar precio? ¿Aprobación?", type: "text", placeholder: "Sí/No y condiciones...", answered: false },
-  { id: "C1-4", section: "C", title: "¿Venta con cliente o ticket sin cliente?", type: "text", placeholder: "Describe...", answered: false },
-  { id: "C1-5", section: "C", title: "¿Productos que requieren confirmación?", type: "multiple", options: ["Sí", "No"], answered: false },
-  { id: "C2-1", section: "C", title: "¿Formas de pago aceptadas?", type: "text", placeholder: "Lista completa...", answered: false },
-  { id: "C2-2", section: "C", title: "¿Recargo de tarjeta al cliente o absorben?", type: "text", placeholder: "Describe y %...", answered: false },
-  { id: "C2-3", section: "C", title: "¿Pago mixto (efectivo + tarjeta)?", type: "multiple", options: ["Sí", "No"], answered: false },
-  { id: "C2-4", section: "C", title: "¿Manejan cuenta corriente?", type: "multiple", options: ["Sí", "No"], answered: false },
-  { id: "C3-1", section: "C", title: "¿Apertura y cierre de caja diaria?", type: "multiple", options: ["Sí", "No"], answered: false },
-  { id: "C3-2", section: "C", title: "¿Qué info en cierre? (totales, anulaciones, descuentos)", type: "text", placeholder: "Describe...", answered: false },
-  { id: "C3-3", section: "C", title: "¿Arqueo físico o confían en sistema?", type: "text", placeholder: "Describe...", answered: false },
-  { id: "C3-4", section: "C", title: "¿Quién cierra caja?", type: "text", placeholder: "Rol...", answered: false },
-  { id: "C4-1", section: "C", title: "¿Qué imprimen? (ticket, factura, presupuesto)", type: "text", placeholder: "Qué...", answered: false },
-  { id: "C4-2", section: "C", title: "¿Impresora térmica marca/modelo?", type: "text", placeholder: "Marca, modelo, ancho...", answered: false },
-  { id: "C4-3", section: "C", title: "¿Qué info lleva el ticket?", type: "text", placeholder: "Logo, items, totales, legales...", answered: false },
-  { id: "C5-1", section: "C", title: "¿Anular venta después de cobrada?", type: "text", placeholder: "Sí/No y plazo...", answered: false },
-  { id: "C5-2", section: "C", title: "¿Devoluciones? ¿Cómo?", type: "text", placeholder: "Reintegro, nota, cambio...", answered: false },
-  { id: "C5-3", section: "C", title: "¿Autorización para anular/devolver?", type: "multiple", options: ["Sí", "No"], answered: false },
-  { id: "C6-1", section: "C", title: "¿Visitante sin login ve productos?", type: "multiple", options: ["Sí", "No"], answered: false },
-  { id: "C6-2", section: "C", title: "¿Puede ver precios sin login?", type: "multiple", options: ["Sí", "No"], answered: false },
-  { id: "C6-3", section: "C", title: "¿Muestra stock disponible?", type: "text", placeholder: "Cantidad, disponibilidad o nada...", answered: false },
-  { id: "C6-4", section: "C", title: "¿Productos que NO aparecen en e-commerce?", type: "text", placeholder: "Cuáles...", answered: false },
-  { id: "C6-5", section: "C", title: "¿Productos recomendados?", type: "multiple", options: ["Sí", "No"], answered: false },
-  { id: "C6-6", section: "C", title: "¿Categorías destacadas o promociones?", type: "multiple", options: ["Sí", "No"], answered: false },
-  { id: "C7-1", section: "C", title: "¿Mínimo de compra?", type: "text", placeholder: "Monto, unidades o ambos...", answered: false },
-  { id: "C7-2", section: "C", title: "¿Productos con mínimo propio?", type: "text", placeholder: "Sí/No y ejemplos...", answered: false },
-  { id: "C7-3", section: "C", title: "¿Observaciones en el pedido?", type: "text", placeholder: "Tipos...", answered: false },
-  { id: "C7-4", section: "C", title: "¿Opciones de entrega?", type: "text", placeholder: "Retira, envío local, transporte...", answered: false },
-  { id: "C8-1", section: "C", title: "¿Cómo se ve el mensaje en WhatsApp?", type: "text", placeholder: "Formato...", answered: false },
-  { id: "C8-2", section: "C", title: "¿Copia del pedido por mail?", type: "multiple", options: ["Sí", "No"], answered: false },
-  { id: "C9-1", section: "C", title: "¿Roles necesarios?", type: "text", placeholder: "Admin, Vendedor, Encargado depósito...", answered: false },
-  { id: "C9-2", section: "C", title: "¿Log por usuario (auditoría)?", type: "text", placeholder: "Sí/No y detalles...", answered: false },
-  
-  // BLOQUE D - SEMANAS 3-4
-  { id: "D1-1", section: "D", title: "¿Reportes que más consultan?", type: "text", placeholder: "Ingresos, ventas, stock...", answered: false },
-  { id: "D1-2", section: "D", title: "¿Cada cuánto?", type: "multiple", options: ["Diario", "Semanal", "Mensual"], answered: false },
-  { id: "D1-3", section: "D", title: "¿Exportar a Excel?", type: "multiple", options: ["Sí", "No"], answered: false },
-  { id: "D1-4", section: "D", title: "¿Consolidado o por local?", type: "multiple", options: ["Consolidado", "Por local", "Ambos"], answered: false },
-  { id: "D1-5", section: "D", title: "¿KPIs del negocio?", type: "text", placeholder: "Ventas, stock, deudas...", answered: false },
-  { id: "D1-6", section: "D", title: "¿Dashboard tiempo real desde celular?", type: "text", placeholder: "Sí/No...", answered: false },
-  { id: "D2-1", section: "D", title: "¿Logo PNG y SVG?", type: "text", placeholder: "Sí/No...", answered: false },
-  { id: "D2-2", section: "D", title: "¿Paleta de colores (hex)?", type: "text", placeholder: "Códigos...", answered: false },
-  { id: "D2-3", section: "D", title: "¿Tipografía preferida?", type: "text", placeholder: "Fuente o referencias...", answered: false },
-  { id: "D2-4", section: "D", title: "¿Tono de comunicación?", type: "text", placeholder: "Formal, amigable, técnico...", answered: false },
-  { id: "D3-1", section: "D", title: "¿Quién carga descripciones de productos?", type: "text", placeholder: "Rol...", answered: false },
-  { id: "D3-2", section: "D", title: "¿Quién carga fotos?", type: "text", placeholder: "Rol...", answered: false },
-  { id: "D3-3", section: "D", title: "¿Páginas estáticas? (Quiénes somos, Contacto, etc)", type: "text", placeholder: "Cuáles...", answered: false },
-  { id: "D3-4", section: "D", title: "¿Formulario de contacto?", type: "multiple", options: ["Sí", "No"], answered: false },
-  { id: "D4-1", section: "D", title: "¿Día para arrancar en producción?", type: "text", placeholder: "Fecha o 'Ya'...", answered: false },
-  { id: "D4-2", section: "D", title: "¿Fechas críticas a evitar?", type: "text", placeholder: "Cierre, temporada, eventos...", answered: false },
-  { id: "D4-3", section: "D", title: "¿Cómo avisan a clientes mayoristas?", type: "text", placeholder: "Mail, WhatsApp...", answered: false },
-  { id: "D4-4", section: "D", title: "¿Persona de contacto principal para UAT?", type: "text", placeholder: "Nombre...", answered: false },
-  { id: "D4-5", section: "D", title: "¿Cuántas personas a capacitar y cómo?", type: "text", placeholder: "Cantidad, presencial/video...", answered: false }
-];
-  // BLOQUE A
-  { id: "A1-format", section: "A", title: "¿En qué formato exporta el sistema actual los datos?", type: "multiple", options: ["CSV", "Excel", "XML", "PDF", "Base de datos .mdb", "Otro"], answered: false },
-  { id: "A1-cuando", section: "A", title: "¿Cuándo pueden enviar el export? (necesitamos el lunes a primera hora)", type: "multiple", options: ["Hoy", "Mañana", "Esta semana", "Próxima semana"], answered: false },
-  { id: "A1-historico", section: "A", title: "¿Hay datos históricos de ventas que necesiten migrar?", type: "multiple", options: ["Solo catálogo y clientes", "Incluir histórico de ventas", "Incluir todo"], answered: false },
-  { id: "A2-estructura", section: "A", title: "¿Hay un depósito central que abastece a los demás, o cada local recibe directo del proveedor?", type: "text", placeholder: "Describe la estructura actual...", answered: false },
-  { id: "A2-responsables", section: "A", title: "¿Cada depósito tiene un responsable distinto? Si sí, ¿quiénes son?", type: "text", placeholder: "Nombres y depósitos asignados...", answered: false },
-  { id: "A4-dominio", section: "A", title: "¿Ya tienen dominio para el e-commerce? ¿Cuál es?", type: "text", placeholder: "Dominio (ej: mistienda.com.ar) o escribir 'Necesita registrarse'", answered: false },
-  { id: "A4-branding", section: "A", title: "¿Tienen logo en alta resolución y paleta de colores definida?", type: "multiple", options: ["Sí, tenemos logo y colores", "Tenemos logo pero no colores", "No tenemos nada", "Vamos a contratar diseño aparte", "Usamos algo provisorio"], answered: false },
-  
-  // BLOQUE B
-  { id: "B1-variantes", section: "B", title: "¿Cuántos productos aproximadamente tienen variantes (colores, tamaños, sabores)?", type: "text", placeholder: "Cantidad aproximada o 'No sabemos'", answered: false },
-  { id: "B1-bultos", section: "B", title: "¿Algunos productos se venden solo por bulto y no por unidad suelta?", type: "text", placeholder: "Describa cuáles o escriba 'No sabemos'", answered: false },
-  { id: "B1-campos", section: "B", title: "¿Qué campos adicionales necesitan por tipo de producto?", type: "text", placeholder: "Ej: Bazar (material), Belleza (ml), Tecnología (especificaciones)", answered: false },
-  { id: "B2-stock", section: "B", title: "¿En el sistema actual el stock es uno solo o ya está separado por depósito?", type: "multiple", options: ["Stock único consolidado", "Stock separado por depósito", "Parcialmente separado", "No está claro"], answered: false },
-  { id: "B2-distribucion", section: "B", title: "Si es stock único, ¿cómo quieren distribuirlo entre depósitos al migrar?", type: "text", placeholder: "¿Nos pasarán una planilla? ¿Distribuir equitativamente?", answered: false },
-  { id: "B2-otro-deposito", section: "B", title: "¿Qué política usan cuando un local quiere vender algo que no tiene pero hay en otro?", type: "multiple", options: ["Se le dice al cliente 'no tengo'", "Se anota como pendiente y se pide al otro depósito", "Se hace transferencia rápida y se vende"], answered: false },
-  { id: "B2-mermas", section: "B", title: "¿Llevan registro de mermas, roturas y ajustes de inventario?", type: "multiple", options: ["Sí, llevamos registro", "No lo registramos", "A veces"], answered: false },
-  { id: "B2-inventarios", section: "B", title: "¿Hacen inventarios físicos periódicos? ¿Con qué frecuencia?", type: "text", placeholder: "Diario, semanal, mensual, trimestral, otro...", answered: false },
-  { id: "B3-datos", section: "B", title: "¿Qué datos guardan de cada cliente?", type: "text", placeholder: "Lista de campos que registran por cliente...", answered: false },
-  { id: "B3-cuit", section: "B", title: "¿El CUIT es obligatorio para mayoristas, o se permite cargar sin él?", type: "multiple", options: ["Obligatorio", "Opcional", "Depende del cliente"], answered: false },
-  { id: "B3-iva", section: "B", title: "¿Manejan condición frente al IVA del cliente? ¿Para qué?", type: "text", placeholder: "Responsable inscripto, No inscripto, Exento, etc.", answered: false },
-  { id: "B3-tipos", section: "B", title: "¿Necesitan diferenciar clientes más allá de 'consumidor final' y 'mayorista'?", type: "text", placeholder: "Ej: distribuidor, mayorista premium, cliente especial, etc.", answered: false },
-  { id: "B3-localidades", section: "B", title: "¿Manejan listado de localidades o provincias? ¿Para qué?", type: "multiple", options: ["Para reportes", "Para envíos", "Solo registro", "Varias razones", "No manejamos"], answered: false },
-  { id: "B3-suspension", section: "B", title: "¿Suspenden clientes con deuda u otra razón? ¿Cómo lo manejan?", type: "text", placeholder: "Describe el proceso actual...", answered: false },
-  { id: "B4-listas", section: "B", title: "¿Cuántas listas de precios manejan? Listarlas.", type: "text", placeholder: "Ej: Minorista, Mayorista, Distribuidor, Especial, etc.", answered: false },
-  { id: "B4-asignacion", section: "B", title: "¿Cómo se decide qué lista de precios corresponde a cada cliente?", type: "text", placeholder: "Por tipo de cliente, por volumen, manual, etc.", answered: false },
-  
-  // BLOQUE C
-  { id: "C1-busqueda", section: "C", title: "¿Buscan productos por nombre, código interno, código de barras, o las tres?", type: "multiple", options: ["Solo nombre", "Solo código interno", "Solo código de barras", "Nombre y código", "Todas las opciones"], answered: false },
-  { id: "C1-descuento", section: "C", title: "¿Es común que el cajero modifique el precio al momento de cobrar? ¿Lo puede hacer cualquier cajero o necesita aprobación?", type: "text", placeholder: "Describe cuándo y quién puede hacerlo...", answered: false },
-  { id: "C1-cliente", section: "C", title: "¿Manejan venta con cliente identificado (factura A/B) o casi siempre sin cliente?", type: "multiple", options: ["Casi siempre sin cliente (ticket)", "Mayormente con cliente", "Mitad y mitad", "Depende del local"], answered: false },
-  { id: "C2-formas-pago", section: "C", title: "¿Qué formas de pago aceptan? (Seleccionar todas)", type: "multiple", options: ["Efectivo", "Transferencia bancaria", "Débito", "Crédito", "QR", "Criptomonedas", "Cheques"], answered: false },
-  { id: "C2-recargo", section: "C", title: "¿El recargo de tarjeta se cobra al cliente o lo absorben? ¿Cuál es el porcentaje?", type: "text", placeholder: "Ej: 'Se cobra al cliente, 2.5% por cuota'", answered: false },
-  { id: "C3-cierre", section: "C", title: "¿Qué información necesitan ver en el cierre de caja?", type: "multiple", options: ["Totales por forma de pago", "Anulaciones", "Descuentos aplicados", "Diferencia con monto declarado", "Detalles de movimientos"], answered: false },
-  { id: "C4-comprobantes", section: "C", title: "¿Qué imprimen al vender? (Seleccionar todas)", type: "multiple", options: ["Ticket", "Factura A", "Factura B", "Presupuesto", "Remito", "Otro"], answered: false },
-  { id: "C4-impresora", section: "C", title: "¿Modelo y marca de la impresora térmica? ¿58mm o 80mm de ancho?", type: "text", placeholder: "Ej: Epson TM-T20, 80mm", answered: false },
-  { id: "C4-ticket", section: "C", title: "¿Qué información debe llevar el ticket?", type: "multiple", options: ["Logo del negocio", "Datos del negocio", "Items vendidos", "Totales", "Leyendas legales", "Agradecimiento", "Datos del cajero"], answered: false },
-  { id: "C5-anulacion", section: "C", title: "¿Permiten anular una venta después de cobrada? ¿Hasta cuándo después?", type: "text", placeholder: "Tiempo permitido para anular (mismo día, 24hs, etc.)", answered: false },
-  { id: "C5-devoluciones", section: "C", title: "¿Hay devoluciones de productos? ¿Cómo se procesa?", type: "multiple", options: ["Reintegro en efectivo", "Nota de crédito", "Cambio por otro producto", "No aceptan devoluciones"], answered: false },
-  { id: "C6-login", section: "C", title: "¿El visitante sin login puede ver productos y precios en el e-commerce?", type: "multiple", options: ["Ver productos y precios sin login", "Ver solo productos, precios con login", "Todo requiere login", "Por definir"], answered: false },
-  { id: "C6-stock-visible", section: "C", title: "¿Cómo muestran el stock disponible al cliente?", type: "multiple", options: ["Cantidad exacta ('hay 47 unidades')", "Disponibilidad ('Hay' / 'Pocas' / 'Sin stock')", "No muestran stock", "Otro formato"], answered: false },
-  { id: "C6-productos", section: "C", title: "¿Hay productos en el sistema que NO deben aparecer en el e-commerce?", type: "text", placeholder: "Describa qué productos se ocultan y por qué...", answered: false },
-  { id: "C7-minimo", section: "C", title: "¿Hay mínimo de compra para enviar el pedido por WhatsApp?", type: "text", placeholder: "Por monto, cantidad de unidades, o ambos...", answered: false },
-  { id: "C7-minimo-producto", section: "C", title: "¿Algún producto tiene mínimo propio (por ejemplo, solo por bulto)?", type: "text", placeholder: "Describa productos y sus mínimos...", answered: false },
-  { id: "C7-observaciones", section: "C", title: "¿El cliente puede agregar observaciones al pedido?", type: "multiple", options: ["Sí, forma de entrega, comentarios, urgencia", "Solo comentarios", "No permite observaciones", "Otra opción"], answered: false },
-  { id: "C7-entrega", section: "C", title: "¿Qué opciones de entrega ofrece el cliente?", type: "multiple", options: ["Retira por el local", "Envío local", "Transporte externo", "Se acuerda solo por WhatsApp"], answered: false },
-  { id: "C8-whatsapp", section: "C", title: "¿Cómo quiere que se vea el mensaje de pedido en WhatsApp?", type: "text", placeholder: "Describa el formato deseado o especifique que sea 'Editable desde configuración'", answered: false },
-  { id: "C9-roles", section: "C", title: "¿Qué roles necesitan en el sistema?", type: "multiple", options: ["Admin (ve todo)", "Vendedor (caja)", "Encargado depósito (stock, precios, faltantes)", "Gerente", "Reportes (solo lectura)"], answered: false },
-  
-  // BLOQUE D
-  { id: "D1-reportes", section: "D", title: "¿Cuáles son los reportes que más consultan?", type: "multiple", options: ["Ingresos y egresos", "Ventas por producto", "Ventas por vendedor", "Stock disponible", "Clientes con deuda", "Performance por local"], answered: false },
-  { id: "D1-kpis", section: "D", title: "¿Qué KPIs quieren ver siempre?", type: "text", placeholder: "Lista de indicadores clave para el negocio...", answered: false },
-  { id: "D1-dashboard", section: "D", title: "¿Quieren un dashboard que se actualice en tiempo real desde el celular?", type: "multiple", options: ["Sí, dashboard en tiempo real", "Sí, pero no necesita ser en tiempo real", "No, los reportes son suficientes"], answered: false },
-  { id: "D2-logo", section: "D", title: "¿Tienen logo en alta resolución (PNG y/o SVG)?", type: "multiple", options: ["Sí, tenemos PNG", "Sí, tenemos SVG", "Sí, tenemos ambos", "No, necesitamos hacerlo"], answered: false },
-  { id: "D2-colores", section: "D", title: "¿Tienen paleta de colores definida? (códigos hex)", type: "text", placeholder: "Ej: Principal #FF5733, Secundario #33FF57, etc.", answered: false },
-  { id: "D2-tipografia", section: "D", title: "¿Tipografía preferida o referencias visuales?", type: "text", placeholder: "Ej: Sans-serif moderna, Serif clásica, referencias a sitios...", answered: false },
-  { id: "D2-tono", section: "D", title: "¿Tono de comunicación que quieren transmitir?", type: "multiple", options: ["Formal y profesional", "Cercano y amigable", "Técnico y preciso", "Lúdico y dinámico"], answered: false },
-  { id: "D3-descripciones", section: "D", title: "¿Quién va a cargar las descripciones largas de productos?", type: "multiple", options: ["Todos los usuarios", "Solo admin", "Encargado de contenido", "A definir"], answered: false },
-  { id: "D3-fotos", section: "D", title: "¿Quién va a sacar/cargar las fotos para el e-commerce?", type: "multiple", options: ["Todos los usuarios", "Solo admin", "Fotografo/diseñador externo", "A definir"], answered: false },
-  { id: "D3-paginas", section: "D", title: "¿Necesitan páginas estáticas? (Quiénes somos, Contacto, Política de envíos, Términos y condiciones)", type: "multiple", options: ["Quiénes somos", "Contacto", "Política de envíos", "Términos y condiciones", "Todas las anteriores"], answered: false },
-  { id: "D4-contacto", section: "D", title: "¿Quién es la persona de contacto principal para el UAT y feedback?", type: "text", placeholder: "Nombre, teléfono, email...", answered: false },
-  { id: "D4-capacitacion", section: "D", title: "¿Cuántas personas hay que capacitar? ¿Cuándo y cómo prefieren?", type: "text", placeholder: "Cantidad de personas, presencial/video llamada/video grabado...", answered: false }
-];
-
-let currentQuestion = 0;
-const answers = {};
-
-function getSectionName(s) {
-  const map = { A: "A", B: "B", C: "C", D: "D" };
-  return map[s] || s;
-}
-
-function switchScreen(screenId) {
-  console.log('Cambiando a pantalla:', screenId);
-  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-  document.getElementById(screenId).classList.add('active');
-  
-  if (screenId === 'screen-quiz') {
-    document.getElementById('topbar-meta').textContent = 'Onboarding en progreso';
-  } else if (screenId === 'screen-confirmed') {
-    document.getElementById('topbar-meta').textContent = 'Validación de información';
-  } else {
-    document.getElementById('topbar-meta').textContent = 'Próximos pasos';
-  }
-  window.scrollTo(0, 0);
-}
-
-function startValidation() {
-  switchScreen('screen-confirmed');
-}
-
-function startOnboarding() {
-  switchScreen('screen-quiz');
-  showQuestion(0);
-}
-
-// Inicializar cuando el DOM esté listo
-document.addEventListener('DOMContentLoaded', function() {
-  const totalQEl = document.getElementById('total-q');
-  if (totalQEl) {
-    totalQEl.textContent = questions.length;
-  }
-  
-  // Comprimir navegador por defecto
-  const navGrid = document.getElementById('navigator-grid');
-  const navToggle = document.getElementById('navigator-toggle');
-  if (navGrid && navToggle) {
-    navGrid.classList.add('collapsed');
-    navToggle.textContent = '+';
-  }
-});
-
-function buildNavigatorGrid() {
-  const grid = document.getElementById('navigator-grid');
-  grid.innerHTML = '';
-  questions.forEach((q, i) => {
-    const item = document.createElement('button');
-    item.className = 'navigator-item';
-    item.textContent = i + 1;
-    item.type = 'button';
-    if (q.answered) item.classList.add('answered');
-    if (i === currentQuestion) item.classList.add('current');
-    item.onclick = (e) => { e.preventDefault(); showQuestion(i); };
-    item.title = `P${i + 1}`;
-    grid.appendChild(item);
-  });
-}
-
-function toggleNavigator() {
-  const grid = document.getElementById('navigator-grid');
-  const btn = document.getElementById('navigator-toggle');
-  grid.classList.toggle('collapsed');
-  btn.textContent = grid.classList.contains('collapsed') ? '+' : '−';
-}
-
-function showQuestion(i) {
-  currentQuestion = i;
-  const q = questions[i];
-  
-  document.getElementById('q-title').textContent = q.title;
-  document.getElementById('current-q').textContent = i + 1;
-  document.getElementById('section-badge').textContent = getSectionName(q.section);
-  
-  const pct = ((i + 1) / questions.length) * 100;
-  document.getElementById('progress-bar').style.width = pct + '%';
-  
-  const remain = Math.ceil((questions.length - i - 1) * 0.5);
-  document.getElementById('estimated-time').textContent = (remain > 0 ? remain + 'm' : 'Listo');
-  
-  const opts = document.getElementById('q-options');
-  const hint = document.getElementById('options-hint');
-  opts.innerHTML = '';
-  document.getElementById('q-text-input').classList.remove('active');
-  
-  if (q.type === 'multiple') {
-    hint.textContent = 'Selecciona una o más';
-    hint.style.display = 'block';
-    q.options.forEach((opt) => {
-      const label = document.createElement('label');
-      label.className = 'option-label';
-      const input = document.createElement('input');
-      input.type = 'checkbox';
-      if (!answers[q.id]) answers[q.id] = [];
-      input.checked = answers[q.id].includes(opt);
-      input.onchange = (e) => {
-        if (e.target.checked) {
-          if (!answers[q.id].includes(opt)) answers[q.id].push(opt);
-        } else {
-          answers[q.id] = answers[q.id].filter(a => a !== opt);
-        }
-        questions[i].answered = answers[q.id].length > 0;
-        buildNavigatorGrid();
-      };
-      const span = document.createElement('span');
-      span.className = 'option-text';
-      span.textContent = opt;
-      label.appendChild(input);
-      label.appendChild(span);
-      opts.appendChild(label);
-    });
-  } else {
-    hint.style.display = 'none';
-    document.getElementById('q-text-input').classList.add('active');
-    const textarea = document.getElementById('text-answer');
-    textarea.value = answers[q.id] || '';
-    textarea.placeholder = q.placeholder;
-    textarea.oninput = (e) => {
-      answers[q.id] = e.target.value;
-      questions[i].answered = e.target.value.trim().length > 0;
-      buildNavigatorGrid();
-    };
-  }
-  
-  document.getElementById('btn-prev').classList.toggle('visible', i > 0);
-  document.getElementById('btn-next').style.display = i < questions.length - 1 ? 'block' : 'none';
-  document.getElementById('btn-finish').style.display = i === questions.length - 1 ? 'block' : 'none';
-  buildNavigatorGrid();
-}
-
-function nextQuestion() {
-  if (currentQuestion < questions.length - 1) showQuestion(currentQuestion + 1);
-}
-
-function previousQuestion() {
-  if (currentQuestion > 0) showQuestion(currentQuestion - 1);
-}
-
-function finishQuiz() {
-  document.getElementById('quiz-main').style.display = 'none';
-  document.getElementById('quiz-review').classList.remove('hidden');
-  
-  const sec = document.getElementById('review-sections');
-  sec.innerHTML = '';
-  const grouped = {};
-  questions.forEach(q => {
-    const ans = answers[q.id];
-    if (ans && ((Array.isArray(ans) && ans.length > 0) || (!Array.isArray(ans) && ans.trim()))) {
-      if (!grouped[q.section]) grouped[q.section] = [];
-      grouped[q.section].push(q);
-    }
-  });
-  Object.keys(grouped).sort().forEach(s => {
-    const div = document.createElement('div');
-    div.className = 'review-section';
-    const title = document.createElement('div');
-    title.className = 'review-section-title';
-    title.textContent = 'Bloque ' + getSectionName(s);
-    div.appendChild(title);
-    const grid = document.createElement('div');
-    grid.className = 'review-grid';
-    grouped[s].forEach(q => {
-      const ans = answers[q.id];
-      const card = document.createElement('div');
-      card.className = 'review-card';
-      const lbl = document.createElement('div');
-      lbl.className = 'review-card-label';
-      lbl.textContent = Array.isArray(ans) ? 'Selección' : 'Respuesta';
-      const qtitle = document.createElement('div');
-      qtitle.className = 'review-card-question';
-      qtitle.textContent = q.title;
-      const aDiv = document.createElement('div');
-      aDiv.className = 'review-card-answer';
-      if (Array.isArray(ans)) {
-        aDiv.innerHTML = ans.map(a => `<div>✓ ${a}</div>`).join('');
-      } else {
-        aDiv.textContent = ans;
-      }
-      card.appendChild(lbl);
-      card.appendChild(qtitle);
-      card.appendChild(aDiv);
-      grid.appendChild(card);
-    });
-    div.appendChild(grid);
-    sec.appendChild(div);
-  });
-}
-
-function copyAnswers() {
-  let txt = 'RESPUESTAS ONBOARDING\n' + '='.repeat(40) + '\n\n';
-  let sec = '';
-  questions.forEach(q => {
-    const ans = answers[q.id];
-    if (ans && ((Array.isArray(ans) && ans.length > 0) || (!Array.isArray(ans) && ans.trim()))) {
-      if (sec !== q.section) {
-        sec = q.section;
-        txt += '\nBloque ' + getSectionName(sec) + '\n' + '-'.repeat(40) + '\n\n';
-      }
-      txt += '• ' + q.title + '\n';
-      if (Array.isArray(ans)) {
-        ans.forEach(a => { txt += '  ✓ ' + a + '\n'; });
-      } else {
-        txt += '  ' + ans + '\n';
-      }
-      txt += '\n';
-    }
-  });
-  navigator.clipboard.writeText(txt).then(() => {
-    const btn = event.target;
-    btn.textContent = '✓ Copiado!';
-    setTimeout(() => { btn.textContent = '📋 Copiar'; }, 1500);
-  });
-}
-
-function downloadAnswers() {
-  let html = '<style>body{font-family:sans-serif;padding:20px}h1{color:#1847F0}h2{color:#1847F0;font-size:14px;margin-top:20px}.card{border:1px solid #eee;padding:10px;margin:10px 0;border-radius:5px}.q{font-weight:bold;margin:5px 0}.a{color:#666}</style>';
-  html += '<h1>Respuestas Cuestionario</h1>';
-  let sec = '';
-  questions.forEach(q => {
-    const ans = answers[q.id];
-    if (ans && ((Array.isArray(ans) && ans.length > 0) || (!Array.isArray(ans) && ans.trim()))) {
-      if (sec !== q.section) {
-        sec = q.section;
-        html += '<h2>Bloque ' + getSectionName(sec) + '</h2>';
-      }
-      html += '<div class="card"><div class="q">' + q.title + '</div><div class="a">';
-      if (Array.isArray(ans)) {
-        html += ans.map(a => '✓ ' + a).join('<br>');
-      } else {
-        html += ans;
-      }
-      html += '</div></div>';
-    }
-  });
-  const blob = new Blob([html], { type: 'text/html' });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url;
-  a.download = 'respuestas.html';
-  a.click();
-}
-</script>
 </body>
 </html>
