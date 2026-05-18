@@ -1584,22 +1584,6 @@ function getSectionName(s) {
   return map[s] || s;
 }
 
-// Inicializar cuando el DOM esté listo
-document.addEventListener('DOMContentLoaded', function() {
-  const totalQEl = document.getElementById('total-q');
-  if (totalQEl) {
-    totalQEl.textContent = questions.length;
-  }
-  
-  // Comprimir navegador por defecto
-  const navGrid = document.getElementById('navigator-grid');
-  const navToggle = document.getElementById('navigator-toggle');
-  if (navGrid && navToggle) {
-    navGrid.classList.add('collapsed');
-    navToggle.textContent = '+';
-  }
-});
-
 function switchScreen(screenId) {
   console.log('Cambiando a pantalla:', screenId);
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
@@ -1623,6 +1607,22 @@ function startOnboarding() {
   switchScreen('screen-quiz');
   showQuestion(0);
 }
+
+// Inicializar cuando el DOM esté listo
+document.addEventListener('DOMContentLoaded', function() {
+  const totalQEl = document.getElementById('total-q');
+  if (totalQEl) {
+    totalQEl.textContent = questions.length;
+  }
+  
+  // Comprimir navegador por defecto
+  const navGrid = document.getElementById('navigator-grid');
+  const navToggle = document.getElementById('navigator-toggle');
+  if (navGrid && navToggle) {
+    navGrid.classList.add('collapsed');
+    navToggle.textContent = '+';
+  }
+});
 
 function buildNavigatorGrid() {
   const grid = document.getElementById('navigator-grid');
