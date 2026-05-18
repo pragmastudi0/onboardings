@@ -307,7 +307,148 @@ body {
   transform: scale(0.98);
 }
 
-/* ── SCREEN 2: ONBOARDING ───────────────────────────── */
+/* ── SCREEN 2: VALIDACIÓN ───────────────────────────── */
+#screen-confirmed {
+  flex-direction: column;
+}
+
+.confirmed-container {
+  flex: 1;
+  padding: 0;
+  overflow-y: auto;
+}
+
+.confirmed-header {
+  padding: 40px 20px 30px;
+  border-bottom: 1px solid var(--rule);
+  background: var(--white);
+}
+
+.confirmed-header-eyebrow {
+  font-size: 10px; 
+  font-weight: 600;
+  letter-spacing: 0.12em; 
+  text-transform: uppercase;
+  color: var(--accent); 
+  margin-bottom: 12px;
+}
+
+.confirmed-header-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 28px;
+  line-height: 1.1;
+  margin-bottom: 12px;
+}
+
+.confirmed-header-body {
+  font-size: 13px; 
+  color: var(--g4);
+  line-height: 1.6;
+}
+
+.confirmed-content {
+  padding: 20px;
+}
+
+.confirmed-info {
+  background: var(--g1);
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  padding: 16px;
+  margin-bottom: 24px;
+}
+
+.confirmed-info-text {
+  font-size: 13px;
+  color: var(--g4);
+  line-height: 1.6;
+}
+
+.confirmed-info-text strong {
+  color: var(--black);
+}
+
+.confirmed-section {
+  margin-bottom: 32px;
+}
+
+.confirmed-section-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--rule);
+}
+
+.confirmed-card {
+  background: var(--white);
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  padding: 14px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.confirmed-card:hover {
+  border-color: var(--accent);
+  background: var(--g1);
+}
+
+.confirmed-q {
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: var(--black);
+}
+
+.confirmed-a {
+  font-size: 12px;
+  color: var(--g4);
+}
+
+.confirmed-cta {
+  background: linear-gradient(135deg, var(--accent) 0%, #0935c9 100%);
+  color: var(--white);
+  padding: 32px 20px;
+  border-radius: 8px;
+  margin-top: 32px;
+  text-align: center;
+}
+
+.confirmed-cta-title {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.confirmed-cta-desc {
+  font-size: 13px;
+  line-height: 1.6;
+  margin-bottom: 20px;
+  opacity: 0.95;
+}
+
+.confirmed-cta-btn {
+  background: var(--white);
+  color: var(--accent);
+  padding: 12px 24px;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 13px;
+  border: none;
+  transition: all 0.15s;
+}
+
+.confirmed-cta-btn:active {
+  transform: scale(0.98);
+}
+
+/* ── SCREEN 3: ONBOARDING ───────────────────────────── */
 #screen-quiz {
   flex-direction: column;
 }
@@ -737,7 +878,7 @@ body {
 
 .review-actions {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: 1fr 1fr;
   gap: 10px;
   margin-bottom: 20px;
 }
@@ -855,6 +996,23 @@ body {
       <!-- FASE 1 -->
       <div class="phase-card">
         <div class="phase-number">1</div>
+        <h2 class="phase-title">Validación</h2>
+        <div class="phase-duration">⏱ 5 minutos</div>
+        <p class="phase-description">Confirma que la información que ya conocemos es correcta y actualizada.</p>
+        <div class="phase-checkpoints">
+          <div class="checkpoint">Revisar respuestas previas</div>
+          <div class="checkpoint">Editar si es necesario</div>
+          <div class="checkpoint">Confirmar cambios</div>
+        </div>
+        <div class="phase-highlight">
+          <strong>📌 Lo que necesitamos:</strong>
+          Revisión rápida de los datos que ya tenemos registrados.
+        </div>
+      </div>
+
+      <!-- FASE 2 -->
+      <div class="phase-card">
+        <div class="phase-number">2</div>
         <h2 class="phase-title">Onboarding</h2>
         <div class="phase-duration">⏱ 20-30 minutos</div>
         <p class="phase-description">Cuestionario interactivo de descubrimiento para entender tu operación en detalle.</p>
@@ -870,9 +1028,9 @@ body {
         </div>
       </div>
 
-      <!-- FASE 2 -->
+      <!-- FASE 3 -->
       <div class="phase-card">
-        <div class="phase-number">2</div>
+        <div class="phase-number">3</div>
         <h2 class="phase-title">Confirmación y Acuerdo</h2>
         <div class="phase-duration">⏱ 3-5 días</div>
         <p class="phase-description">Análisis de respuestas y establecimiento formal de términos del proyecto.</p>
@@ -888,45 +1046,24 @@ body {
         </div>
       </div>
 
-      <!-- FASE 3 -->
-      <div class="phase-card">
-        <div class="phase-number">3</div>
-        <h2 class="phase-title">Desarrollo, Instalación y Migración</h2>
-        <div class="phase-duration">⏱ 2-4 semanas</div>
-        <p class="phase-description">Desarrollo integral del sistema con migración de datos y capacitación.</p>
-        <div class="phase-checkpoints">
-          <div class="checkpoint">Desarrollo del PoS (Punto de Venta)</div>
-          <div class="checkpoint">Panel administrativo completo</div>
-          <div class="checkpoint">E-commerce mayorista con portal</div>
-          <div class="checkpoint">Migración de datos del sistema actual</div>
-          <div class="checkpoint">Pruebas integrales y UAT</div>
-          <div class="checkpoint">Capacitación de tu equipo</div>
-          <div class="checkpoint">Go-live en producción</div>
-        </div>
-        <div class="phase-highlight">
-          <strong>🔄 Durante esta fase:</strong>
-          Actualizaciones semanales, pruebas continuas, ajustes por feedback, soporte dedicado.
-        </div>
-      </div>
-
       <!-- TIMELINE -->
       <div class="timeline-box">
         <div class="timeline-title">📅 Cronograma Estimado</div>
         <div class="timeline-item">
-          <div class="timeline-label">Fase 1 (Onboarding)</div>
+          <div class="timeline-label">Fase 1 (Validación)</div>
+          <div class="timeline-value">Ahora</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-label">Fase 2 (Onboarding)</div>
           <div class="timeline-value">3-5 días</div>
         </div>
         <div class="timeline-item">
-          <div class="timeline-label">Fase 2 (Confirmación)</div>
+          <div class="timeline-label">Fase 3 (Confirmación)</div>
           <div class="timeline-value">3-5 días</div>
-        </div>
-        <div class="timeline-item">
-          <div class="timeline-label">Fase 3 (Desarrollo)</div>
-          <div class="timeline-value">14-28 días</div>
         </div>
         <div class="timeline-item">
           <div class="timeline-label"><strong>TOTAL</strong></div>
-          <div class="timeline-value"><strong>4-6 semanas</strong></div>
+          <div class="timeline-value"><strong>2-3 semanas</strong></div>
         </div>
       </div>
 
@@ -937,22 +1074,22 @@ body {
         <div class="cta-steps">
           <div class="cta-step">
             <span class="cta-step-number">1️⃣</span>
-            Confirma que estás listo
+            Validar información
           </div>
           <div class="cta-step">
             <span class="cta-step-number">2️⃣</span>
-            Abrí el cuestionario
+            Responder cuestionario
           </div>
           <div class="cta-step">
             <span class="cta-step-number">3️⃣</span>
-            Respondé con detalle
+            Copiar respuestas
           </div>
           <div class="cta-step">
             <span class="cta-step-number">4️⃣</span>
-            Enviá respuestas
+            Enviar datos
           </div>
         </div>
-        <button class="btn-start-quiz" onclick="startQuiz()">Comenzar Onboarding →</button>
+        <button class="btn-start-quiz" onclick="startValidation()">Comenzar Validación →</button>
       </div>
     </div>
   </div>
@@ -966,7 +1103,244 @@ body {
   </div>
 </div>
 
-<!-- SCREEN 2: ONBOARDING -->
+<!-- SCREEN 2: VALIDACIÓN -->
+<div class="screen" id="screen-confirmed">
+  <div class="confirmed-container">
+    <div class="confirmed-header">
+      <div class="confirmed-header-eyebrow">✓ Validar información</div>
+      <h1 class="confirmed-header-title">Respuestas que ya conocemos</h1>
+      <p class="confirmed-header-body">Estos datos están confirmados en nuestras conversaciones anteriores. Revisalos y confirma que todo está correcto antes de continuar.</p>
+    </div>
+
+    <div class="confirmed-content">
+      <div class="confirmed-info">
+        <div class="confirmed-info-text">
+          <strong>💡 Tip:</strong> Podés hacer click en cualquier tarjeta para editar la respuesta si es necesario.
+        </div>
+      </div>
+
+      <div class="confirmed-section">
+        <div class="confirmed-section-title">A · Bloque Crítico</div>
+        <div class="confirmed-card">
+          <div class="confirmed-q">A1 - ¿Pueden generarnos un export completo del sistema actual?</div>
+          <div class="confirmed-a">✓ SÍ</div>
+        </div>
+        <div class="confirmed-card">
+          <div class="confirmed-q">A1 - ¿En qué formato exporta el sistema?</div>
+          <div class="confirmed-a">✓ Por definir</div>
+        </div>
+        <div class="confirmed-card">
+          <div class="confirmed-q">A1 - ¿Cuándo nos lo pueden enviar?</div>
+          <div class="confirmed-a">✓ HOY</div>
+        </div>
+        <div class="confirmed-card">
+          <div class="confirmed-q">A2 - ¿Cuántos depósitos físicos tienen?</div>
+          <div class="confirmed-a">✓ 2 DEPÓSITOS Y 2 LOCALES</div>
+        </div>
+        <div class="confirmed-card">
+          <div class="confirmed-q">A2 - ¿Cuál depósito abastece el e-commerce?</div>
+          <div class="confirmed-a">✓ VA A TENER UNO PROPIO (Nº3)</div>
+        </div>
+        <div class="confirmed-card">
+          <div class="confirmed-q">A3 - ¿Cuántos locales con caja activa?</div>
+          <div class="confirmed-a">✓ 2</div>
+        </div>
+        <div class="confirmed-card">
+          <div class="confirmed-q">A3 - ¿Cuántos cajeros/vendedores por local?</div>
+          <div class="confirmed-a">✓ ENTRE 6 Y 12 DEPENDIENDO DE LA ÉPOCA</div>
+        </div>
+        <div class="confirmed-card">
+          <div class="confirmed-q">A4 - ¿Ya tienen dominio para el e-commerce?</div>
+          <div class="confirmed-a">✓ NO - NECESITA REGISTRARSE</div>
+        </div>
+        <div class="confirmed-card">
+          <div class="confirmed-q">A4 - ¿Tienen logo y paleta de colores?</div>
+          <div class="confirmed-a">✓ NO</div>
+        </div>
+        <div class="confirmed-card">
+          <div class="confirmed-q">A4 - ¿WhatsApp exclusivo del comercio?</div>
+          <div class="confirmed-a">✓ SÍ - LO ATIENDEN DUEÑO/VENDEDOR</div>
+        </div>
+        <div class="confirmed-card">
+          <div class="confirmed-q">A5 - ¿E-commerce mayorista o mayorista+minorista?</div>
+          <div class="confirmed-a">✓ MAYORISTA SOLAMENTE (de momento)</div>
+        </div>
+        <div class="confirmed-card">
+          <div class="confirmed-q">A5 - ¿Quién aprueba nuevos clientes mayoristas?</div>
+          <div class="confirmed-a">✓ DUEÑO</div>
+        </div>
+      </div>
+
+      <div class="confirmed-section">
+        <div class="confirmed-section-title">B · Modelo de Datos</div>
+        <div class="confirmed-card">
+          <div class="confirmed-q">B1 - ¿Cuántos productos activos aproximadamente?</div>
+          <div class="confirmed-a">✓ +1000 APROX</div>
+        </div>
+        <div class="confirmed-card">
+          <div class="confirmed-q">B1 - ¿Ya están organizados en categorías?</div>
+          <div class="confirmed-a">✓ SÍ, HAY CATEGORÍAS</div>
+        </div>
+        <div class="confirmed-card">
+          <div class="confirmed-q">B1 - ¿Productos con variantes (colores, tamaños)?</div>
+          <div class="confirmed-a">✓ SÍ - CANTIDAD A DEFINIR</div>
+        </div>
+        <div class="confirmed-card">
+          <div class="confirmed-q">B1 - ¿Manejan código interno propio?</div>
+          <div class="confirmed-a">✓ SÍ - NUMÉRICO, EN TODOS LOS PRODUCTOS</div>
+        </div>
+        <div class="confirmed-card">
+          <div class="confirmed-q">B1 - ¿Necesitan campos adicionales por tipo de producto?</div>
+          <div class="confirmed-a">✓ SÍ</div>
+        </div>
+        <div class="confirmed-card">
+          <div class="confirmed-q">B2 - ¿Quién está autorizado a mover stock entre depósitos?</div>
+          <div class="confirmed-a">✓ DUEÑO</div>
+        </div>
+        <div class="confirmed-card">
+          <div class="confirmed-q">B4 - ¿Manejan escalas de precio por cantidad?</div>
+          <div class="confirmed-a">✓ SÍ</div>
+        </div>
+        <div class="confirmed-card">
+          <div class="confirmed-q">B4 - ¿Hay precios diferenciales por forma de pago?</div>
+          <div class="confirmed-a">✓ SÍ</div>
+        </div>
+        <div class="confirmed-card">
+          <div class="confirmed-q">B4 - ¿Quién está autorizado a modificar precios?</div>
+          <div class="confirmed-a">✓ TODOS</div>
+        </div>
+        <div class="confirmed-card">
+          <div class="confirmed-q">B4 - ¿Cómo manejan aumentos de precio?</div>
+          <div class="confirmed-a">✓ MASIVO O UNO POR UNO</div>
+        </div>
+      </div>
+
+      <div class="confirmed-section">
+        <div class="confirmed-section-title">C · Operación PoS y E-commerce</div>
+        <div class="confirmed-card">
+          <div class="confirmed-q">C1 - ¿Buscan productos por nombre, código, o ambos?</div>
+          <div class="confirmed-a">✓ NOMBRE Y CÓDIGO INTERNO</div>
+        </div>
+        <div class="confirmed-card">
+          <div class="confirmed-q">C1 - ¿Los cajeros pueden hacer descuentos manuales?</div>
+          <div class="confirmed-a">✓ SÍ - POR PROMOCIONES DE LA TIENDA</div>
+        </div>
+        <div class="confirmed-card">
+          <div class="confirmed-q">C1 - ¿Manejan venta con cliente identificado?</div>
+          <div class="confirmed-a">✓ EN GENERAL CONSUMIDOR FINAL</div>
+        </div>
+        <div class="confirmed-card">
+          <div class="confirmed-q">C2 - ¿Formas de pago aceptadas?</div>
+          <div class="confirmed-a">✓ EFECTIVO, TRANSFERENCIA, DÉBITO, CRÉDITO, QR</div>
+        </div>
+        <div class="confirmed-card">
+          <div class="confirmed-q">C2 - ¿Recargo de tarjeta al cliente?</div>
+          <div class="confirmed-a">✓ SÍ - EDITABLE POR CANTIDAD DE CUOTAS</div>
+        </div>
+        <div class="confirmed-card">
+          <div class="confirmed-q">C2 - ¿Aceptan pago mixto (efectivo + tarjeta)?</div>
+          <div class="confirmed-a">✓ SÍ</div>
+        </div>
+        <div class="confirmed-card">
+          <div class="confirmed-q">C2 - ¿Manejan cuenta corriente?</div>
+          <div class="confirmed-a">✓ SÍ</div>
+        </div>
+        <div class="confirmed-card">
+          <div class="confirmed-q">C3 - ¿Hacen cierre de caja diaria?</div>
+          <div class="confirmed-a">✓ SÍ</div>
+        </div>
+        <div class="confirmed-card">
+          <div class="confirmed-q">C3 - ¿Quién está autorizado a cerrar caja?</div>
+          <div class="confirmed-a">✓ LOS EMPLEADOS</div>
+        </div>
+        <div class="confirmed-card">
+          <div class="confirmed-q">C6 - ¿El e-commerce muestra solo stock del depósito nº3?</div>
+          <div class="confirmed-a">✓ SÍ - NO EL DE LOS LOCALES</div>
+        </div>
+        <div class="confirmed-card">
+          <div class="confirmed-q">C7 - ¿Hay mínimo de compra para WhatsApp?</div>
+          <div class="confirmed-a">✓ SÍ</div>
+        </div>
+        <div class="confirmed-card">
+          <div class="confirmed-q">C7 - ¿Hay productos con mínimo propio?</div>
+          <div class="confirmed-a">✓ SÍ</div>
+        </div>
+        <div class="confirmed-card">
+          <div class="confirmed-q">C7 - ¿Cliente puede agregar observaciones al pedido?</div>
+          <div class="confirmed-a">✓ SÍ</div>
+        </div>
+        <div class="confirmed-card">
+          <div class="confirmed-q">C7 - ¿Opciones de entrega?</div>
+          <div class="confirmed-a">✓ SÍ - RETIRA, ENVÍO LOCAL O TRANSPORTE</div>
+        </div>
+        <div class="confirmed-card">
+          <div class="confirmed-q">C8 - ¿Mensaje WhatsApp editable desde configuración?</div>
+          <div class="confirmed-a">✓ SÍ</div>
+        </div>
+        <div class="confirmed-card">
+          <div class="confirmed-q">C9 - ¿Necesitan log de auditoría por usuario?</div>
+          <div class="confirmed-a">✓ SÍ - VER CAJAS CON NOMBRE DE VENDEDOR</div>
+        </div>
+      </div>
+
+      <div class="confirmed-section">
+        <div class="confirmed-section-title">D · Reportes y Branding</div>
+        <div class="confirmed-card">
+          <div class="confirmed-q">D1 - ¿Reportes que más consultan?</div>
+          <div class="confirmed-a">✓ INGRESOS Y EGRESOS</div>
+        </div>
+        <div class="confirmed-card">
+          <div class="confirmed-q">D1 - ¿Cada cuánto los miran?</div>
+          <div class="confirmed-a">✓ SEMANAL</div>
+        </div>
+        <div class="confirmed-card">
+          <div class="confirmed-q">D1 - ¿KPIs deseados?</div>
+          <div class="confirmed-a">✓ VENTAS, INGRESOS, PRODUCTOS SIN STOCK, DEUDAS</div>
+        </div>
+        <div class="confirmed-card">
+          <div class="confirmed-q">D1 - ¿Dashboard en tiempo real desde celular?</div>
+          <div class="confirmed-a">✓ SÍ</div>
+        </div>
+        <div class="confirmed-card">
+          <div class="confirmed-q">D2 - ¿Tono de comunicación?</div>
+          <div class="confirmed-a">✓ CERCANO Y AMIGABLE PERO FORMAL</div>
+        </div>
+        <div class="confirmed-card">
+          <div class="confirmed-q">D3 - ¿Quién carga descripciones de productos?</div>
+          <div class="confirmed-a">✓ TODOS</div>
+        </div>
+        <div class="confirmed-card">
+          <div class="confirmed-q">D3 - ¿Quién carga fotos para e-commerce?</div>
+          <div class="confirmed-a">✓ TODOS</div>
+        </div>
+        <div class="confirmed-card">
+          <div class="confirmed-q">D3 - ¿Páginas estáticas requeridas?</div>
+          <div class="confirmed-a">✓ QUIÉNES SOMOS, CONTACTO, POLÍTICA, T&C, FORMULARIO</div>
+        </div>
+        <div class="confirmed-card">
+          <div class="confirmed-q">D4 - ¿Estrategia para capacitación?</div>
+          <div class="confirmed-a">✓ CLONAR EL POS ORIGINAL - UBICACIÓN SIMILAR, ACTUALIZADO VISUALMENTE</div>
+        </div>
+      </div>
+
+      <div class="confirmed-cta">
+        <div class="confirmed-cta-title">¿Todo está correcto?</div>
+        <p class="confirmed-cta-desc">Si hay algo que cambiar, avisanos ahora. Si todo está bien, pasamos al cuestionario de onboarding.</p>
+        <button class="confirmed-cta-btn" onclick="startOnboarding()">Continuar al Onboarding →</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="foot-brand">Pragma Studio</div>
+    <div class="foot-tagline">Desarrollo de software a medida | Córdoba, Argentina</div>
+    <div class="foot-contact">
+      <a href="https://wa.me/5493513911596">WhatsApp: +54 3513 91-1596</a>
+    </div>
+  </div>
+</div>
+
+<!-- SCREEN 3: ONBOARDING -->
 <div class="screen" id="screen-quiz">
   <div class="quiz-header">
     <div class="quiz-header-eyebrow">Cuestionario de descubrimiento</div>
@@ -1020,7 +1394,7 @@ body {
     <div class="completion-box">
       <div class="completion-icon">✓</div>
       <div class="completion-text">¡Completado!</div>
-      <div class="completion-subtext">Listo para compartir</div>
+      <div class="completion-subtext">Listo para compartir por WhatsApp</div>
     </div>
   </div>
 
@@ -1035,6 +1409,109 @@ body {
 
 <script>
 const questions = [
+  // BLOQUE A - CRÍTICO
+  { id: "A1-1", section: "A", title: "¿Pueden generarnos un export completo del sistema actual?", type: "multiple", options: ["Sí", "No", "Parcialmente"], answered: false },
+  { id: "A1-2", section: "A", title: "¿En qué formato lo exporta el sistema?", type: "multiple", options: ["CSV", "Excel", "XML", ".mdb", "Otro"], answered: false },
+  { id: "A1-3", section: "A", title: "¿Cuándo nos lo pueden enviar?", type: "multiple", options: ["Hoy", "Mañana", "Esta semana", "Próxima semana"], answered: false },
+  { id: "A1-4", section: "A", title: "¿Hay datos históricos de ventas que necesiten migrar?", type: "multiple", options: ["Solo catálogo y clientes", "Incluir histórico de ventas", "Incluir todo"], answered: false },
+  { id: "A2-1", section: "A", title: "¿Cuántos depósitos físicos tienen?", type: "text", placeholder: "Cantidad y nombres...", answered: false },
+  { id: "A2-2", section: "A", title: "¿Cuál depósito vende por internet?", type: "text", placeholder: "Especifique...", answered: false },
+  { id: "A2-3", section: "A", title: "¿Hay un depósito central?", type: "text", placeholder: "Describe estructura...", answered: false },
+  { id: "A2-4", section: "A", title: "¿Cada depósito tiene responsable?", type: "text", placeholder: "Nombres...", answered: false },
+  { id: "A3-1", section: "A", title: "¿Cuántos locales con caja activa?", type: "text", placeholder: "Cantidad...", answered: false },
+  { id: "A3-2", section: "A", title: "¿Cuántos cajeros/vendedores por local?", type: "text", placeholder: "Cantidad promedio...", answered: false },
+  { id: "A3-3", section: "A", title: "¿Caja atada a local o múltiples?", type: "text", placeholder: "Describe modelo...", answered: false },
+  { id: "A4-1", section: "A", title: "¿Dominio para e-commerce?", type: "text", placeholder: "Dominio o 'Necesita registrarse'", answered: false },
+  { id: "A4-2", section: "A", title: "¿Logo y paleta de colores?", type: "text", placeholder: "Sí/No...", answered: false },
+  { id: "A4-3", section: "A", title: "¿WhatsApp Business para pedidos?", type: "text", placeholder: "Número...", answered: false },
+  { id: "A4-4", section: "A", title: "¿Quién atiende WhatsApp?", type: "text", placeholder: "Rol...", answered: false },
+  { id: "A5-1", section: "A", title: "¿E-commerce mayorista (B2B), consumidor (B2C) o ambos?", type: "text", placeholder: "Especifique...", answered: false },
+  { id: "A5-2", section: "A", title: "¿Registro automático o con aprobación?", type: "text", placeholder: "Describe...", answered: false },
+  { id: "A5-3", section: "A", title: "¿Quién aprueba clientes mayoristas?", type: "text", placeholder: "Rol...", answered: false },
+  
+  // BLOQUE B - PRIMERA SEMANA
+  { id: "B1-1", section: "B", title: "¿Cuántos productos activos?", type: "text", placeholder: "Cantidad...", answered: false },
+  { id: "B1-2", section: "B", title: "¿Organizados en categorías?", type: "text", placeholder: "Sí/No...", answered: false },
+  { id: "B1-3", section: "B", title: "¿Marca como dato separado?", type: "multiple", options: ["Sí", "No"], answered: false },
+  { id: "B1-4", section: "B", title: "¿Productos con variantes?", type: "text", placeholder: "Sí/No y cantidad...", answered: false },
+  { id: "B1-5", section: "B", title: "¿Código de barras?", type: "text", placeholder: "Sí/No, ¿en todos?...", answered: false },
+  { id: "B1-6", section: "B", title: "¿Código interno propio?", type: "text", placeholder: "Formato...", answered: false },
+  { id: "B1-7", section: "B", title: "¿Productos solo por bulto?", type: "text", placeholder: "Sí/No...", answered: false },
+  { id: "B1-8", section: "B", title: "¿Peso variable (productos que se pesan)?", type: "multiple", options: ["Sí", "No"], answered: false },
+  { id: "B1-9", section: "B", title: "¿Campos adicionales por tipo?", type: "text", placeholder: "Material, ml, especificaciones...", answered: false },
+  { id: "B2-1", section: "B", title: "¿Stock consolidado o por depósito?", type: "text", placeholder: "Describe...", answered: false },
+  { id: "B2-2", section: "B", title: "¿Quién mueve stock entre depósitos?", type: "text", placeholder: "Rol...", answered: false },
+  { id: "B2-3", section: "B", title: "¿Qué pasa si falta stock en un local?", type: "text", placeholder: "Opción...", answered: false },
+  { id: "B2-4", section: "B", title: "¿Registro de mermas y ajustes?", type: "multiple", options: ["Sí", "No", "A veces"], answered: false },
+  { id: "B2-5", section: "B", title: "¿Inventarios físicos periódicos?", type: "text", placeholder: "Frecuencia...", answered: false },
+  { id: "B3-1", section: "B", title: "¿Qué datos de cada cliente?", type: "text", placeholder: "Campos...", answered: false },
+  { id: "B3-2", section: "B", title: "¿CUIT obligatorio?", type: "multiple", options: ["Obligatorio", "Opcional", "Depende"], answered: false },
+  { id: "B3-3", section: "B", title: "¿Condición IVA del cliente?", type: "text", placeholder: "Sí/No...", answered: false },
+  { id: "B3-4", section: "B", title: "¿Tipos de cliente? (premium, especial)", type: "text", placeholder: "Sí/No y tipos...", answered: false },
+  { id: "B3-5", section: "B", title: "¿Localidades o provincias?", type: "text", placeholder: "Para qué...", answered: false },
+  { id: "B3-6", section: "B", title: "¿Suspenden clientes con deuda?", type: "text", placeholder: "Sí/No...", answered: false },
+  { id: "B4-1", section: "B", title: "¿Cuántas listas de precios?", type: "text", placeholder: "Cantidad y nombres...", answered: false },
+  { id: "B4-2", section: "B", title: "¿Cómo se asigna lista a cliente?", type: "text", placeholder: "Criterio...", answered: false },
+  { id: "B4-3", section: "B", title: "¿Precios por cantidad (escalas)?", type: "text", placeholder: "Ej: 1-11 a $X...", answered: false },
+  { id: "B4-4", section: "B", title: "¿Precios diferenciales por pago?", type: "text", placeholder: "Ej: efectivo off...", answered: false },
+  { id: "B4-5", section: "B", title: "¿Quién modifica precios?", type: "text", placeholder: "Rol...", answered: false },
+  
+  // BLOQUE C - SEMANAS 2-3
+  { id: "C1-1", section: "C", title: "Describe una venta típica en caja (paso a paso)", type: "text", placeholder: "Flujo completo...", answered: false },
+  { id: "C1-2", section: "C", title: "¿Buscan por nombre, código interno o barras?", type: "text", placeholder: "Cuál/es...", answered: false },
+  { id: "C1-3", section: "C", title: "¿Cajero puede modificar precio? ¿Aprobación?", type: "text", placeholder: "Sí/No y condiciones...", answered: false },
+  { id: "C1-4", section: "C", title: "¿Venta con cliente o ticket sin cliente?", type: "text", placeholder: "Describe...", answered: false },
+  { id: "C1-5", section: "C", title: "¿Productos que requieren confirmación?", type: "multiple", options: ["Sí", "No"], answered: false },
+  { id: "C2-1", section: "C", title: "¿Formas de pago aceptadas?", type: "text", placeholder: "Lista completa...", answered: false },
+  { id: "C2-2", section: "C", title: "¿Recargo de tarjeta al cliente o absorben?", type: "text", placeholder: "Describe y %...", answered: false },
+  { id: "C2-3", section: "C", title: "¿Pago mixto (efectivo + tarjeta)?", type: "multiple", options: ["Sí", "No"], answered: false },
+  { id: "C2-4", section: "C", title: "¿Manejan cuenta corriente?", type: "multiple", options: ["Sí", "No"], answered: false },
+  { id: "C3-1", section: "C", title: "¿Apertura y cierre de caja diaria?", type: "multiple", options: ["Sí", "No"], answered: false },
+  { id: "C3-2", section: "C", title: "¿Qué info en cierre? (totales, anulaciones, descuentos)", type: "text", placeholder: "Describe...", answered: false },
+  { id: "C3-3", section: "C", title: "¿Arqueo físico o confían en sistema?", type: "text", placeholder: "Describe...", answered: false },
+  { id: "C3-4", section: "C", title: "¿Quién cierra caja?", type: "text", placeholder: "Rol...", answered: false },
+  { id: "C4-1", section: "C", title: "¿Qué imprimen? (ticket, factura, presupuesto)", type: "text", placeholder: "Qué...", answered: false },
+  { id: "C4-2", section: "C", title: "¿Impresora térmica marca/modelo?", type: "text", placeholder: "Marca, modelo, ancho...", answered: false },
+  { id: "C4-3", section: "C", title: "¿Qué info lleva el ticket?", type: "text", placeholder: "Logo, items, totales, legales...", answered: false },
+  { id: "C5-1", section: "C", title: "¿Anular venta después de cobrada?", type: "text", placeholder: "Sí/No y plazo...", answered: false },
+  { id: "C5-2", section: "C", title: "¿Devoluciones? ¿Cómo?", type: "text", placeholder: "Reintegro, nota, cambio...", answered: false },
+  { id: "C5-3", section: "C", title: "¿Autorización para anular/devolver?", type: "multiple", options: ["Sí", "No"], answered: false },
+  { id: "C6-1", section: "C", title: "¿Visitante sin login ve productos?", type: "multiple", options: ["Sí", "No"], answered: false },
+  { id: "C6-2", section: "C", title: "¿Puede ver precios sin login?", type: "multiple", options: ["Sí", "No"], answered: false },
+  { id: "C6-3", section: "C", title: "¿Muestra stock disponible?", type: "text", placeholder: "Cantidad, disponibilidad o nada...", answered: false },
+  { id: "C6-4", section: "C", title: "¿Productos que NO aparecen en e-commerce?", type: "text", placeholder: "Cuáles...", answered: false },
+  { id: "C6-5", section: "C", title: "¿Productos recomendados?", type: "multiple", options: ["Sí", "No"], answered: false },
+  { id: "C6-6", section: "C", title: "¿Categorías destacadas o promociones?", type: "multiple", options: ["Sí", "No"], answered: false },
+  { id: "C7-1", section: "C", title: "¿Mínimo de compra?", type: "text", placeholder: "Monto, unidades o ambos...", answered: false },
+  { id: "C7-2", section: "C", title: "¿Productos con mínimo propio?", type: "text", placeholder: "Sí/No y ejemplos...", answered: false },
+  { id: "C7-3", section: "C", title: "¿Observaciones en el pedido?", type: "text", placeholder: "Tipos...", answered: false },
+  { id: "C7-4", section: "C", title: "¿Opciones de entrega?", type: "text", placeholder: "Retira, envío local, transporte...", answered: false },
+  { id: "C8-1", section: "C", title: "¿Cómo se ve el mensaje en WhatsApp?", type: "text", placeholder: "Formato...", answered: false },
+  { id: "C8-2", section: "C", title: "¿Copia del pedido por mail?", type: "multiple", options: ["Sí", "No"], answered: false },
+  { id: "C9-1", section: "C", title: "¿Roles necesarios?", type: "text", placeholder: "Admin, Vendedor, Encargado depósito...", answered: false },
+  { id: "C9-2", section: "C", title: "¿Log por usuario (auditoría)?", type: "text", placeholder: "Sí/No y detalles...", answered: false },
+  
+  // BLOQUE D - SEMANAS 3-4
+  { id: "D1-1", section: "D", title: "¿Reportes que más consultan?", type: "text", placeholder: "Ingresos, ventas, stock...", answered: false },
+  { id: "D1-2", section: "D", title: "¿Cada cuánto?", type: "multiple", options: ["Diario", "Semanal", "Mensual"], answered: false },
+  { id: "D1-3", section: "D", title: "¿Exportar a Excel?", type: "multiple", options: ["Sí", "No"], answered: false },
+  { id: "D1-4", section: "D", title: "¿Consolidado o por local?", type: "multiple", options: ["Consolidado", "Por local", "Ambos"], answered: false },
+  { id: "D1-5", section: "D", title: "¿KPIs del negocio?", type: "text", placeholder: "Ventas, stock, deudas...", answered: false },
+  { id: "D1-6", section: "D", title: "¿Dashboard tiempo real desde celular?", type: "text", placeholder: "Sí/No...", answered: false },
+  { id: "D2-1", section: "D", title: "¿Logo PNG y SVG?", type: "text", placeholder: "Sí/No...", answered: false },
+  { id: "D2-2", section: "D", title: "¿Paleta de colores (hex)?", type: "text", placeholder: "Códigos...", answered: false },
+  { id: "D2-3", section: "D", title: "¿Tipografía preferida?", type: "text", placeholder: "Fuente o referencias...", answered: false },
+  { id: "D2-4", section: "D", title: "¿Tono de comunicación?", type: "text", placeholder: "Formal, amigable, técnico...", answered: false },
+  { id: "D3-1", section: "D", title: "¿Quién carga descripciones de productos?", type: "text", placeholder: "Rol...", answered: false },
+  { id: "D3-2", section: "D", title: "¿Quién carga fotos?", type: "text", placeholder: "Rol...", answered: false },
+  { id: "D3-3", section: "D", title: "¿Páginas estáticas? (Quiénes somos, Contacto, etc)", type: "text", placeholder: "Cuáles...", answered: false },
+  { id: "D3-4", section: "D", title: "¿Formulario de contacto?", type: "multiple", options: ["Sí", "No"], answered: false },
+  { id: "D4-1", section: "D", title: "¿Día para arrancar en producción?", type: "text", placeholder: "Fecha o 'Ya'...", answered: false },
+  { id: "D4-2", section: "D", title: "¿Fechas críticas a evitar?", type: "text", placeholder: "Cierre, temporada, eventos...", answered: false },
+  { id: "D4-3", section: "D", title: "¿Cómo avisan a clientes mayoristas?", type: "text", placeholder: "Mail, WhatsApp...", answered: false },
+  { id: "D4-4", section: "D", title: "¿Persona de contacto principal para UAT?", type: "text", placeholder: "Nombre...", answered: false },
+  { id: "D4-5", section: "D", title: "¿Cuántas personas a capacitar y cómo?", type: "text", placeholder: "Cantidad, presencial/video...", answered: false }
+];
   // BLOQUE A
   { id: "A1-format", section: "A", title: "¿En qué formato exporta el sistema actual los datos?", type: "multiple", options: ["CSV", "Excel", "XML", "PDF", "Base de datos .mdb", "Otro"], answered: false },
   { id: "A1-cuando", section: "A", title: "¿Cuándo pueden enviar el export? (necesitamos el lunes a primera hora)", type: "multiple", options: ["Hoy", "Mañana", "Esta semana", "Próxima semana"], answered: false },
@@ -1107,20 +1584,42 @@ function getSectionName(s) {
   return map[s] || s;
 }
 
-document.getElementById('total-q').textContent = questions.length;
+// Inicializar cuando el DOM esté listo
+document.addEventListener('DOMContentLoaded', function() {
+  const totalQEl = document.getElementById('total-q');
+  if (totalQEl) {
+    totalQEl.textContent = questions.length;
+  }
+  
+  // Comprimir navegador por defecto
+  const navGrid = document.getElementById('navigator-grid');
+  const navToggle = document.getElementById('navigator-toggle');
+  if (navGrid && navToggle) {
+    navGrid.classList.add('collapsed');
+    navToggle.textContent = '+';
+  }
+});
 
 function switchScreen(screenId) {
+  console.log('Cambiando a pantalla:', screenId);
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
   document.getElementById(screenId).classList.add('active');
   
   if (screenId === 'screen-quiz') {
     document.getElementById('topbar-meta').textContent = 'Onboarding en progreso';
+  } else if (screenId === 'screen-confirmed') {
+    document.getElementById('topbar-meta').textContent = 'Validación de información';
   } else {
     document.getElementById('topbar-meta').textContent = 'Próximos pasos';
   }
+  window.scrollTo(0, 0);
 }
 
-function startQuiz() {
+function startValidation() {
+  switchScreen('screen-confirmed');
+}
+
+function startOnboarding() {
   switchScreen('screen-quiz');
   showQuestion(0);
 }
@@ -1323,10 +1822,6 @@ function downloadAnswers() {
   a.download = 'respuestas.html';
   a.click();
 }
-
-// Comprimir navegador por defecto
-document.getElementById('navigator-grid').classList.add('collapsed');
-document.getElementById('navigator-toggle').textContent = '+';
 </script>
 </body>
 </html>
