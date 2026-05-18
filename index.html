@@ -2,36 +2,20 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=5">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Onboarding — Pragma Studio</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Instrument+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-* { 
-  margin: 0; 
-  padding: 0; 
-  box-sizing: border-box;
-  -webkit-tap-highlight-color: transparent;
-}
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
 :root {
   --black:  #111110;
   --white:  #FFFFFF;
   --g1:     #F5F3F0;
-  --g2:     #E8E5E0;
   --g3:     #9A9590;
-  --g4:     #6B6762;
   --accent: #1847F0;
   --rule:   #E2DED9;
   --green:  #22c55e;
-  --success: #22c55e;
-}
-
-html { 
-  font-size: 16px; 
-  -webkit-font-smoothing: antialiased;
-  -webkit-touch-callout: none;
 }
 
 body {
@@ -39,86 +23,49 @@ body {
   background: var(--white);
   color: var(--black);
   line-height: 1.6;
-  overflow-x: hidden;
-  width: 100%;
-  max-width: 100%;
 }
 
-/* ── TOPBAR ─────────────────────────────────────────── */
 .topbar {
   border-bottom: 1px solid var(--rule);
   padding: 16px 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 100%;
 }
 
-.topbar-brand { 
-  font-size: 12px; 
-  font-weight: 600; 
-  letter-spacing: 0.04em; 
-}
+.topbar-brand { font-size: 12px; font-weight: 600; }
+.topbar-meta { font-size: 10px; color: var(--g3); }
 
-.topbar-meta  { 
-  font-size: 10px; 
-  color: var(--g3); 
-}
+.screen { display: none; width: 100%; min-height: 100vh; flex-direction: column; }
+.screen.active { display: flex; }
 
-/* ── SCREENS ────────────────────────────────────────── */
-.screen {
-  display: none;
-  width: 100%;
-}
-
-.screen.active {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
-
-/* ── SCREEN 1: PROXIMO PASOS ────────────────────────── */
-#screen-steps {
-  flex-direction: column;
-}
-
-.steps-container {
+.container {
   flex: 1;
   padding: 0;
   overflow-y: auto;
 }
 
-.steps-header {
+.header {
   padding: 40px 20px 30px;
   border-bottom: 1px solid var(--rule);
   background: var(--white);
 }
 
-.steps-header-eyebrow {
-  font-size: 10px; 
-  font-weight: 600;
-  letter-spacing: 0.12em; 
-  text-transform: uppercase;
-  color: var(--accent); 
-  margin-bottom: 12px;
+.header-eyebrow {
+  font-size: 10px; font-weight: 600; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 12px;
 }
 
-.steps-header-title {
+.header-title {
   font-family: 'Playfair Display', serif;
-  font-size: 28px;
-  line-height: 1.1;
-  margin-bottom: 12px;
+  font-size: 28px; line-height: 1.1; margin-bottom: 12px;
 }
 
-.steps-header-body {
-  font-size: 13px; 
-  color: var(--g4);
-  line-height: 1.6;
+.header-body {
+  font-size: 13px; color: #6B6762; line-height: 1.6;
 }
 
-.steps-content {
-  padding: 20px;
-}
+.content { padding: 20px; }
 
 .phase-card {
   border-left: 4px solid var(--accent);
@@ -126,7 +73,6 @@ body {
   background: var(--g1);
   border-radius: 6px;
   margin-bottom: 20px;
-  transition: all 0.3s;
 }
 
 .phase-number {
@@ -148,22 +94,19 @@ body {
   font-size: 18px;
   font-weight: 600;
   margin-bottom: 6px;
-  color: var(--black);
 }
 
 .phase-duration {
   font-size: 10px;
   color: var(--accent);
   font-weight: 600;
-  letter-spacing: 0.08em;
   text-transform: uppercase;
   margin-bottom: 12px;
 }
 
 .phase-description {
   font-size: 13px;
-  color: var(--g4);
-  line-height: 1.6;
+  color: #6B6762;
   margin-bottom: 12px;
 }
 
@@ -175,7 +118,6 @@ body {
 
 .checkpoint {
   font-size: 12px;
-  color: var(--black);
   padding-left: 20px;
   position: relative;
 }
@@ -186,7 +128,6 @@ body {
   left: 0;
   color: var(--green);
   font-weight: 700;
-  font-size: 14px;
 }
 
 .phase-highlight {
@@ -195,8 +136,7 @@ body {
   border-radius: 6px;
   padding: 12px;
   font-size: 11px;
-  color: var(--g4);
-  line-height: 1.6;
+  color: #6B6762;
 }
 
 .phase-highlight strong {
@@ -205,50 +145,89 @@ body {
   color: var(--black);
 }
 
-.timeline-box {
+.card {
   background: var(--white);
   border: 1px solid var(--rule);
   border-radius: 6px;
-  padding: 20px;
-  margin-bottom: 20px;
+  padding: 16px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  transition: all 0.2s;
 }
 
-.timeline-title {
-  font-size: 14px;
+.card:hover {
+  border-color: var(--accent);
+  background: var(--g1);
+}
+
+.card-question {
+  font-size: 13px;
   font-weight: 600;
-  margin-bottom: 16px;
-  text-align: center;
+  margin-bottom: 8px;
   color: var(--black);
 }
 
-.timeline-item {
-  display: grid;
-  grid-template-columns: 120px 1fr;
-  gap: 12px;
-  padding: 10px 0;
-  border-bottom: 1px solid var(--rule);
+.card-answer {
   font-size: 12px;
+  color: var(--g3);
 }
 
-.timeline-item:last-child {
-  border-bottom: none;
+.card-input {
+  display: none;
+  margin-top: 12px;
 }
 
-.timeline-label {
+.card-input.active {
+  display: block;
+}
+
+.card-input input,
+.card-input textarea {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  font-family: inherit;
+  margin-bottom: 8px;
+}
+
+.card-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.btn {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  font-family: inherit;
+  font-size: 12px;
   font-weight: 600;
-  color: var(--accent);
+  cursor: pointer;
+  transition: all 0.2s;
 }
 
-.timeline-value {
-  color: var(--g4);
+.btn-save {
+  background: var(--accent);
+  color: var(--white);
 }
+
+.btn-save:hover { background: #0935c9; }
+
+.btn-cancel {
+  background: var(--g1);
+  color: var(--black);
+  border: 1px solid var(--rule);
+}
+
+.btn-cancel:hover { background: #E8E5E0; }
 
 .cta-box {
   background: linear-gradient(135deg, var(--accent) 0%, #0935c9 100%);
   color: var(--white);
   padding: 32px 20px;
   border-radius: 8px;
-  margin-bottom: 20px;
+  margin-top: 32px;
   text-align: center;
 }
 
@@ -288,822 +267,60 @@ body {
   margin-bottom: 4px;
 }
 
-.btn-start-quiz {
-  background: var(--white);
-  color: var(--accent);
-  border: none;
-  padding: 14px 24px;
-  border-radius: 6px;
-  font-family: 'Instrument Sans', sans-serif;
-  font-size: 13px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.15s;
-  display: inline-block;
-  margin-top: 16px;
-}
-
-.btn-start-quiz:active {
-  transform: scale(0.98);
-}
-
-/* ── SCREEN 2: VALIDACIÓN ───────────────────────────── */
-#screen-confirmed {
-  flex-direction: column;
-}
-
-.confirmed-container {
-  flex: 1;
-  padding: 0;
-  overflow-y: auto;
-}
-
-.confirmed-header {
-  padding: 40px 20px 30px;
-  border-bottom: 1px solid var(--rule);
-  background: var(--white);
-}
-
-.confirmed-header-eyebrow {
-  font-size: 10px; 
-  font-weight: 600;
-  letter-spacing: 0.12em; 
-  text-transform: uppercase;
-  color: var(--accent); 
-  margin-bottom: 12px;
-}
-
-.confirmed-header-title {
-  font-family: 'Playfair Display', serif;
-  font-size: 28px;
-  line-height: 1.1;
-  margin-bottom: 12px;
-}
-
-.confirmed-header-body {
-  font-size: 13px; 
-  color: var(--g4);
-  line-height: 1.6;
-}
-
-.confirmed-content {
-  padding: 20px;
-}
-
-.confirmed-info {
-  background: var(--g1);
-  border: 1px solid var(--rule);
-  border-radius: 6px;
-  padding: 16px;
-  margin-bottom: 24px;
-}
-
-.confirmed-info-text {
-  font-size: 13px;
-  color: var(--g4);
-  line-height: 1.6;
-}
-
-.confirmed-info-text strong {
-  color: var(--black);
-}
-
-.confirmed-section {
-  margin-bottom: 32px;
-}
-
-.confirmed-section-title {
-  font-size: 14px;
-  font-weight: 600;
-  color: var(--accent);
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  margin-bottom: 16px;
-  padding-bottom: 12px;
-  border-bottom: 1px solid var(--rule);
-}
-
-.confirmed-card {
-  background: var(--white);
-  border: 1px solid var(--rule);
-  border-radius: 6px;
-  padding: 14px;
-  margin-bottom: 12px;
-  cursor: pointer;
-  transition: all 0.2s;
-}
-
-.confirmed-card:hover {
-  border-color: var(--accent);
-  background: var(--g1);
-}
-
-.confirmed-q {
-  font-size: 13px;
-  font-weight: 600;
-  margin-bottom: 8px;
-  color: var(--black);
-}
-
-.confirmed-a {
-  font-size: 12px;
-  color: var(--g4);
-}
-
-.confirmed-cta {
-  background: linear-gradient(135deg, var(--accent) 0%, #0935c9 100%);
-  color: var(--white);
-  padding: 32px 20px;
-  border-radius: 8px;
-  margin-top: 32px;
-  text-align: center;
-}
-
-.confirmed-cta-title {
-  font-size: 18px;
-  font-weight: 600;
-  margin-bottom: 12px;
-}
-
-.confirmed-cta-desc {
-  font-size: 13px;
-  line-height: 1.6;
-  margin-bottom: 20px;
-  opacity: 0.95;
-}
-
-.confirmed-cta-btn {
+.btn-cta {
   background: var(--white);
   color: var(--accent);
   padding: 12px 24px;
-  border-radius: 6px;
-  font-weight: 600;
-  cursor: pointer;
-  font-size: 13px;
+  margin-top: 16px;
   border: none;
-  transition: all 0.15s;
-}
-
-.confirmed-cta-btn:active {
-  transform: scale(0.98);
-}
-
-/* ── SCREEN 3: ONBOARDING ───────────────────────────── */
-#screen-quiz {
-  flex-direction: column;
-}
-
-.quiz-header {
-  padding: 40px 20px 30px;
-  border-bottom: 1px solid var(--rule);
-  background: var(--white);
-}
-
-.quiz-header-eyebrow {
-  font-size: 10px; 
-  font-weight: 600;
-  letter-spacing: 0.12em; 
-  text-transform: uppercase;
-  color: var(--accent); 
-  margin-bottom: 12px;
-}
-
-.quiz-header-title {
-  font-family: 'Playfair Display', serif;
-  font-size: 28px;
-  line-height: 1.1;
-  margin-bottom: 12px;
-}
-
-.quiz-header-title em {
-  font-style: italic;
-  color: var(--g3);
-}
-
-.quiz-header-body {
-  font-size: 13px; 
-  color: var(--g4);
-  line-height: 1.6;
-}
-
-.quiz-sidebar {
-  padding: 16px 20px;
-  background: var(--g1);
-  border-bottom: 1px solid var(--rule);
-  width: 100%;
-}
-
-.quiz-progress {
-  margin-bottom: 12px;
-}
-
-.progress-label {
-  font-size: 10px; 
-  font-weight: 600;
-  letter-spacing: 0.12em; 
-  text-transform: uppercase;
-  color: var(--accent); 
-  margin-bottom: 8px;
-}
-
-.progress-bar-container {
-  height: 6px;
-  background: var(--white);
-  border-radius: 3px;
-  overflow: hidden;
-  margin-bottom: 8px;
-}
-
-.progress-bar {
-  height: 100%;
-  background: var(--accent);
-  transition: width 0.3s ease;
-}
-
-.progress-text {
-  font-size: 11px; 
-  color: var(--g4); 
-  font-weight: 500;
-}
-
-.quiz-section-badge {
-  display: inline-block;
-  background: var(--white);
-  color: var(--accent);
-  font-size: 8px;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  padding: 4px 8px;
-  border-radius: 3px;
-  margin-top: 12px;
-  margin-bottom: 0;
-}
-
-.quiz-navigator {
-  margin-top: 12px;
-  padding: 10px;
-  background: var(--white);
-  border: 1px solid var(--rule);
   border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: inherit;
 }
 
-.navigator-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 8px;
-}
+.btn-cta:hover { background: #f0f0f0; }
 
-.navigator-label {
-  font-size: 9px;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+.footer {
+  border-top: 1px solid var(--rule);
+  padding: 24px 20px;
+  font-size: 11px;
   color: var(--g3);
-}
-
-.navigator-toggle {
-  background: var(--accent);
-  border: none;
-  color: var(--white);
-  width: 24px;
-  height: 24px;
-  border-radius: 3px;
-  cursor: pointer;
-  font-size: 12px;
-  font-weight: bold;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0;
-  transition: all 0.2s;
-}
-
-.navigator-toggle:active {
-  transform: scale(0.95);
-}
-
-.navigator-grid {
-  display: grid;
-  grid-template-columns: repeat(8, 1fr);
-  gap: 4px;
-  transition: all 0.3s ease;
-}
-
-.navigator-grid.collapsed {
-  max-height: 0;
-  opacity: 0;
-  overflow: hidden;
-  gap: 0;
-}
-
-.navigator-item {
-  aspect-ratio: 1;
-  border: 1px solid var(--rule);
-  border-radius: 3px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 7px;
-  font-weight: 700;
-  cursor: pointer;
-  background: var(--white);
-  color: var(--g4);
-  transition: all 0.15s;
-  padding: 0;
-  min-height: 28px;
-  -webkit-user-select: none;
-  user-select: none;
-}
-
-.navigator-item:active {
-  transform: scale(0.95);
-}
-
-.navigator-item.answered {
-  background: rgba(34, 197, 94, 0.15);
-  border-color: var(--green);
-  color: #16a34a;
-}
-
-.navigator-item.current {
-  border-color: var(--accent);
-  background: var(--accent);
-  color: var(--white);
-  font-weight: 700;
-}
-
-.quiz-estimated {
-  margin-top: 12px;
-  padding: 10px;
-  background: var(--white);
-  border: 1px solid var(--rule);
-  border-radius: 6px;
   text-align: center;
-}
-
-.estimated-icon {
-  font-size: 9px; 
-  font-weight: 600;
-  letter-spacing: 0.1em; 
-  text-transform: uppercase;
-  color: var(--g3); 
-  margin-bottom: 4px;
-}
-
-.estimated-time {
-  font-size: 13px; 
-  font-weight: 600; 
-  color: var(--black);
-}
-
-.quiz-main {
-  flex: 1;
-  padding: 20px;
-  overflow-y: auto;
-}
-
-.question-title {
-  font-family: 'Playfair Display', serif;
-  font-size: 20px;
-  line-height: 1.2;
-  margin-bottom: 20px;
-  color: var(--black);
-}
-
-.options-hint {
-  font-size: 11px;
-  color: var(--g3);
-  margin-bottom: 12px;
-  font-style: italic;
-}
-
-.options-group {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  margin-bottom: 24px;
-}
-
-.option-label {
-  display: flex;
-  align-items: flex-start;
-  gap: 12px;
-  padding: 12px 14px;
-  border: 1px solid var(--rule);
-  border-radius: 6px;
-  cursor: pointer;
-  background: var(--white);
-  transition: all 0.15s;
-  -webkit-user-select: none;
-  user-select: none;
-}
-
-.option-label:active {
-  background: var(--g1);
-}
-
-.option-label input[type="checkbox"],
-.option-label input[type="radio"] {
-  margin-top: 3px;
-  cursor: pointer;
-  accent-color: var(--accent);
-  width: 18px;
-  height: 18px;
-  flex-shrink: 0;
-}
-
-.option-label input:checked + .option-text {
-  font-weight: 600;
-  color: var(--accent);
-}
-
-.option-text {
-  font-size: 13px;
-  color: var(--black);
-  line-height: 1.4;
-  flex: 1;
-}
-
-.text-input-group {
-  display: none;
-  margin-bottom: 24px;
-}
-
-.text-input-group.active {
-  display: block;
-}
-
-.text-input-group textarea {
-  width: 100%;
-  padding: 12px 14px;
-  font-size: 14px;
-  font-family: 'Instrument Sans', sans-serif;
-  border: 1px solid var(--rule);
-  border-radius: 6px;
-  resize: vertical;
-  min-height: 100px;
-  color: var(--black);
-  -webkit-appearance: none;
-  appearance: none;
-}
-
-.text-input-group textarea:focus {
-  outline: none;
-  border-color: var(--accent);
-  background: var(--g1);
-}
-
-.text-input-group textarea::placeholder {
-  color: var(--g3);
-}
-
-.quiz-controls {
-  display: flex;
-  gap: 10px;
-  margin-top: 20px;
-  margin-bottom: 20px;
-}
-
-.btn-nav {
-  padding: 12px 14px;
-  border: 1px solid var(--rule);
-  background: var(--white);
-  color: var(--black);
-  border-radius: 6px;
-  font-family: 'Instrument Sans', sans-serif;
-  font-size: 11px;
-  font-weight: 600;
-  cursor: pointer;
-  display: none;
-  transition: all 0.15s;
-}
-
-.btn-nav.visible {
-  display: block;
-}
-
-.btn-nav:active {
-  background: var(--g1);
-}
-
-.btn-next {
-  flex: 1;
-  padding: 12px 14px;
-  background: var(--accent);
-  color: var(--white);
-  border: none;
-  border-radius: 6px;
-  font-family: 'Instrument Sans', sans-serif;
-  font-size: 11px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.15s;
-}
-
-.btn-next:active {
-  background: #0935c9;
-  transform: scale(0.98);
-}
-
-.quiz-review {
-  flex: 1;
-  padding: 20px;
-  overflow-y: auto;
-}
-
-.quiz-review.hidden {
-  display: none;
-}
-
-.review-title {
-  font-family: 'Playfair Display', serif;
-  font-size: 24px;
-  line-height: 1.1;
-  margin-bottom: 24px;
-  color: var(--black);
-}
-
-.review-section {
-  margin-bottom: 32px;
-}
-
-.review-section-title {
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--accent);
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  margin-bottom: 16px;
-  padding-bottom: 8px;
-  border-bottom: 1px solid var(--rule);
-}
-
-.review-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 12px;
-  margin-bottom: 20px;
-}
-
-.review-card {
-  border: 1px solid var(--rule);
-  border-radius: 6px;
-  padding: 12px;
-  background: var(--white);
-}
-
-.review-card-label {
-  font-size: 9px; 
-  font-weight: 600;
-  letter-spacing: 0.1em; 
-  text-transform: uppercase;
-  color: var(--accent); 
-  margin-bottom: 6px;
-}
-
-.review-card-question {
-  font-size: 12px; 
-  font-weight: 600;
-  color: var(--black); 
-  margin-bottom: 8px;
-}
-
-.review-card-answer {
-  font-size: 12px;
-  color: var(--g4);
-  line-height: 1.5;
-}
-
-.review-actions {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
-  margin-bottom: 20px;
-}
-
-.btn-copy,
-.btn-download {
-  padding: 12px 14px;
-  border: none;
-  border-radius: 6px;
-  font-family: 'Instrument Sans', sans-serif;
-  font-size: 11px;
-  font-weight: 600;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  transition: all 0.15s;
 }
 
 .btn-copy {
   background: var(--accent);
   color: var(--white);
-}
-
-.btn-copy:active {
-  background: #0935c9;
-}
-
-.btn-download {
-  background: var(--white);
-  color: var(--accent);
-  border: 1px solid var(--accent);
-}
-
-.btn-download:active {
-  background: var(--g1);
-}
-
-.completion-box {
-  border: 1px solid var(--rule);
+  padding: 12px 24px;
+  margin-top: 20px;
+  border: none;
   border-radius: 6px;
-  padding: 16px 12px;
-  text-align: center;
-  background: var(--g1);
-}
-
-.completion-icon {
-  font-size: 28px;
-  margin-bottom: 8px;
-}
-
-.completion-text {
-  font-size: 13px; 
   font-weight: 600;
-  color: var(--black);
+  cursor: pointer;
+  font-family: inherit;
 }
 
-.completion-subtext {
-  font-size: 11px;
-  color: var(--g4);
-  margin-top: 6px;
-}
-
-/* ── FOOTER ─────────────────────────────────────────── */
-.footer {
-  border-top: 1px solid var(--rule);
-  padding: 24px 20px;
-  font-size: 11px;
-  color: var(--g4);
-  text-align: center;
-}
-
-.foot-brand { 
-  font-size: 11px; 
-  font-weight: 600; 
-  color: var(--black); 
-  margin-bottom: 4px; 
-}
-
-.foot-tagline { 
-  font-size: 10px; 
-  color: var(--g3); 
-  margin-bottom: 8px;
-}
-
-.foot-contact { 
-  font-size: 10px;
-}
-
-.foot-contact a { 
-  color: var(--accent); 
-  text-decoration: none; 
-}
+.btn-copy:hover { background: #0935c9; }
 </style>
-<script>
-const questions = [
-  // BLOQUE A
-  { id: "A1-format", section: "A", title: "¿En qué formato exporta el sistema actual los datos?", type: "multiple", options: ["CSV", "Excel", "XML", "PDF", "Base de datos .mdb", "Otro"], answered: false },
-  { id: "A1-cuando", section: "A", title: "¿Cuándo pueden enviar el export? (necesitamos el lunes a primera hora)", type: "multiple", options: ["Hoy", "Mañana", "Esta semana", "Próxima semana"], answered: false },
-  { id: "A1-historico", section: "A", title: "¿Hay datos históricos de ventas que necesiten migrar?", type: "multiple", options: ["Solo catálogo y clientes", "Incluir histórico de ventas", "Incluir todo"], answered: false },
-  { id: "A2-estructura", section: "A", title: "¿Hay un depósito central que abastece a los demás, o cada local recibe directo del proveedor?", type: "text", placeholder: "Describe la estructura actual...", answered: false },
-  { id: "A2-responsables", section: "A", title: "¿Cada depósito tiene un responsable distinto? Si sí, ¿quiénes son?", type: "text", placeholder: "Nombres y depósitos asignados...", answered: false },
-  { id: "A4-dominio", section: "A", title: "¿Ya tienen dominio para el e-commerce? ¿Cuál es?", type: "text", placeholder: "Dominio (ej: mistienda.com.ar) o escribir 'Necesita registrarse'", answered: false },
-  { id: "A4-branding", section: "A", title: "¿Tienen logo en alta resolución y paleta de colores definida?", type: "multiple", options: ["Sí, tenemos logo y colores", "Tenemos logo pero no colores", "No tenemos nada", "Vamos a contratar diseño aparte", "Usamos algo provisorio"], answered: false },
-  
-  // BLOQUE B
-  { id: "B1-variantes", section: "B", title: "¿Cuántos productos aproximadamente tienen variantes (colores, tamaños, sabores)?", type: "text", placeholder: "Cantidad aproximada o 'No sabemos'", answered: false },
-  { id: "B1-bultos", section: "B", title: "¿Algunos productos se venden solo por bulto y no por unidad suelta?", type: "text", placeholder: "Describa cuáles o escriba 'No sabemos'", answered: false },
-  { id: "B1-campos", section: "B", title: "¿Qué campos adicionales necesitan por tipo de producto?", type: "text", placeholder: "Ej: Bazar (material), Belleza (ml), Tecnología (especificaciones)", answered: false },
-  { id: "B2-stock", section: "B", title: "¿En el sistema actual el stock es uno solo o ya está separado por depósito?", type: "multiple", options: ["Stock único consolidado", "Stock separado por depósito", "Parcialmente separado", "No está claro"], answered: false },
-  { id: "B2-distribucion", section: "B", title: "Si es stock único, ¿cómo quieren distribuirlo entre depósitos al migrar?", type: "text", placeholder: "¿Nos pasarán una planilla? ¿Distribuir equitativamente?", answered: false },
-  { id: "B2-otro-deposito", section: "B", title: "¿Qué política usan cuando un local quiere vender algo que no tiene pero hay en otro?", type: "multiple", options: ["Se le dice al cliente 'no tengo'", "Se anota como pendiente y se pide al otro depósito", "Se hace transferencia rápida y se vende"], answered: false },
-  { id: "B2-mermas", section: "B", title: "¿Llevan registro de mermas, roturas y ajustes de inventario?", type: "multiple", options: ["Sí, llevamos registro", "No lo registramos", "A veces"], answered: false },
-  { id: "B2-inventarios", section: "B", title: "¿Hacen inventarios físicos periódicos? ¿Con qué frecuencia?", type: "text", placeholder: "Diario, semanal, mensual, trimestral, otro...", answered: false },
-  { id: "B3-datos", section: "B", title: "¿Qué datos guardan de cada cliente?", type: "text", placeholder: "Lista de campos que registran por cliente...", answered: false },
-  { id: "B3-cuit", section: "B", title: "¿El CUIT es obligatorio para mayoristas, o se permite cargar sin él?", type: "multiple", options: ["Obligatorio", "Opcional", "Depende del cliente"], answered: false },
-  { id: "B3-iva", section: "B", title: "¿Manejan condición frente al IVA del cliente? ¿Para qué?", type: "text", placeholder: "Responsable inscripto, No inscripto, Exento, etc.", answered: false },
-  { id: "B3-tipos", section: "B", title: "¿Necesitan diferenciar clientes más allá de 'consumidor final' y 'mayorista'?", type: "text", placeholder: "Ej: distribuidor, mayorista premium, cliente especial, etc.", answered: false },
-  { id: "B3-localidades", section: "B", title: "¿Manejan listado de localidades o provincias? ¿Para qué?", type: "multiple", options: ["Para reportes", "Para envíos", "Solo registro", "Varias razones", "No manejamos"], answered: false },
-  { id: "B3-suspension", section: "B", title: "¿Suspenden clientes con deuda u otra razón? ¿Cómo lo manejan?", type: "text", placeholder: "Describe el proceso actual...", answered: false },
-  { id: "B4-listas", section: "B", title: "¿Cuántas listas de precios manejan? Listarlas.", type: "text", placeholder: "Ej: Minorista, Mayorista, Distribuidor, Especial, etc.", answered: false },
-  { id: "B4-asignacion", section: "B", title: "¿Cómo se decide qué lista de precios corresponde a cada cliente?", type: "text", placeholder: "Por tipo de cliente, por volumen, manual, etc.", answered: false },
-  
-  // BLOQUE C
-  { id: "C1-busqueda", section: "C", title: "¿Buscan productos por nombre, código interno, código de barras, o las tres?", type: "multiple", options: ["Solo nombre", "Solo código interno", "Solo código de barras", "Nombre y código", "Todas las opciones"], answered: false },
-  { id: "C1-descuento", section: "C", title: "¿Es común que el cajero modifique el precio al momento de cobrar? ¿Lo puede hacer cualquier cajero o necesita aprobación?", type: "text", placeholder: "Describe cuándo y quién puede hacerlo...", answered: false },
-  { id: "C1-cliente", section: "C", title: "¿Manejan venta con cliente identificado (factura A/B) o casi siempre sin cliente?", type: "multiple", options: ["Casi siempre sin cliente (ticket)", "Mayormente con cliente", "Mitad y mitad", "Depende del local"], answered: false },
-  { id: "C2-formas-pago", section: "C", title: "¿Qué formas de pago aceptan? (Seleccionar todas)", type: "multiple", options: ["Efectivo", "Transferencia bancaria", "Débito", "Crédito", "QR", "Criptomonedas", "Cheques"], answered: false },
-  { id: "C2-recargo", section: "C", title: "¿El recargo de tarjeta se cobra al cliente o lo absorben? ¿Cuál es el porcentaje?", type: "text", placeholder: "Ej: 'Se cobra al cliente, 2.5% por cuota'", answered: false },
-  { id: "C3-cierre", section: "C", title: "¿Qué información necesitan ver en el cierre de caja?", type: "multiple", options: ["Totales por forma de pago", "Anulaciones", "Descuentos aplicados", "Diferencia con monto declarado", "Detalles de movimientos"], answered: false },
-  { id: "C4-comprobantes", section: "C", title: "¿Qué imprimen al vender? (Seleccionar todas)", type: "multiple", options: ["Ticket", "Factura A", "Factura B", "Presupuesto", "Remito", "Otro"], answered: false },
-  { id: "C4-impresora", section: "C", title: "¿Modelo y marca de la impresora térmica? ¿58mm o 80mm de ancho?", type: "text", placeholder: "Ej: Epson TM-T20, 80mm", answered: false },
-  { id: "C4-ticket", section: "C", title: "¿Qué información debe llevar el ticket?", type: "multiple", options: ["Logo del negocio", "Datos del negocio", "Items vendidos", "Totales", "Leyendas legales", "Agradecimiento", "Datos del cajero"], answered: false },
-  { id: "C5-anulacion", section: "C", title: "¿Permiten anular una venta después de cobrada? ¿Hasta cuándo después?", type: "text", placeholder: "Tiempo permitido para anular (mismo día, 24hs, etc.)", answered: false },
-  { id: "C5-devoluciones", section: "C", title: "¿Hay devoluciones de productos? ¿Cómo se procesa?", type: "multiple", options: ["Reintegro en efectivo", "Nota de crédito", "Cambio por otro producto", "No aceptan devoluciones"], answered: false },
-  { id: "C6-login", section: "C", title: "¿El visitante sin login puede ver productos y precios en el e-commerce?", type: "multiple", options: ["Ver productos y precios sin login", "Ver solo productos, precios con login", "Todo requiere login", "Por definir"], answered: false },
-  { id: "C6-stock-visible", section: "C", title: "¿Cómo muestran el stock disponible al cliente?", type: "multiple", options: ["Cantidad exacta ('hay 47 unidades')", "Disponibilidad ('Hay' / 'Pocas' / 'Sin stock')", "No muestran stock", "Otro formato"], answered: false },
-  { id: "C6-productos", section: "C", title: "¿Hay productos en el sistema que NO deben aparecer en el e-commerce?", type: "text", placeholder: "Describa qué productos se ocultan y por qué...", answered: false },
-  { id: "C7-minimo", section: "C", title: "¿Hay mínimo de compra para enviar el pedido por WhatsApp?", type: "text", placeholder: "Por monto, cantidad de unidades, o ambos...", answered: false },
-  { id: "C7-minimo-producto", section: "C", title: "¿Algún producto tiene mínimo propio (por ejemplo, solo por bulto)?", type: "text", placeholder: "Describa productos y sus mínimos...", answered: false },
-  { id: "C7-observaciones", section: "C", title: "¿El cliente puede agregar observaciones al pedido?", type: "multiple", options: ["Sí, forma de entrega, comentarios, urgencia", "Solo comentarios", "No permite observaciones", "Otra opción"], answered: false },
-  { id: "C7-entrega", section: "C", title: "¿Qué opciones de entrega ofrece el cliente?", type: "multiple", options: ["Retira por el local", "Envío local", "Transporte externo", "Se acuerda solo por WhatsApp"], answered: false },
-  { id: "C8-whatsapp", section: "C", title: "¿Cómo quiere que se vea el mensaje de pedido en WhatsApp?", type: "text", placeholder: "Describa el formato deseado o especifique que sea 'Editable desde configuración'", answered: false },
-  { id: "C9-roles", section: "C", title: "¿Qué roles necesitan en el sistema?", type: "multiple", options: ["Admin (ve todo)", "Vendedor (caja)", "Encargado depósito (stock, precios, faltantes)", "Gerente", "Reportes (solo lectura)"], answered: false },
-  
-  // BLOQUE D
-  { id: "D1-reportes", section: "D", title: "¿Cuáles son los reportes que más consultan?", type: "multiple", options: ["Ingresos y egresos", "Ventas por producto", "Ventas por vendedor", "Stock disponible", "Clientes con deuda", "Performance por local"], answered: false },
-  { id: "D1-kpis", section: "D", title: "¿Qué KPIs quieren ver siempre?", type: "text", placeholder: "Lista de indicadores clave para el negocio...", answered: false },
-  { id: "D1-dashboard", section: "D", title: "¿Quieren un dashboard que se actualice en tiempo real desde el celular?", type: "multiple", options: ["Sí, dashboard en tiempo real", "Sí, pero no necesita ser en tiempo real", "No, los reportes son suficientes"], answered: false },
-  { id: "D2-logo", section: "D", title: "¿Tienen logo en alta resolución (PNG y/o SVG)?", type: "multiple", options: ["Sí, tenemos PNG", "Sí, tenemos SVG", "Sí, tenemos ambos", "No, necesitamos hacerlo"], answered: false },
-  { id: "D2-colores", section: "D", title: "¿Tienen paleta de colores definida? (códigos hex)", type: "text", placeholder: "Ej: Principal #FF5733, Secundario #33FF57, etc.", answered: false },
-  { id: "D2-tipografia", section: "D", title: "¿Tipografía preferida o referencias visuales?", type: "text", placeholder: "Ej: Sans-serif moderna, Serif clásica, referencias a sitios...", answered: false },
-  { id: "D2-tono", section: "D", title: "¿Tono de comunicación que quieren transmitir?", type: "multiple", options: ["Formal y profesional", "Cercano y amigable", "Técnico y preciso", "Lúdico y dinámico"], answered: false },
-  { id: "D3-descripciones", section: "D", title: "¿Quién va a cargar las descripciones largas de productos?", type: "multiple", options: ["Todos los usuarios", "Solo admin", "Encargado de contenido", "A definir"], answered: false },
-  { id: "D3-fotos", section: "D", title: "¿Quién va a sacar/cargar las fotos para el e-commerce?", type: "multiple", options: ["Todos los usuarios", "Solo admin", "Fotografo/diseñador externo", "A definir"], answered: false },
-  { id: "D3-paginas", section: "D", title: "¿Necesitan páginas estáticas? (Quiénes somos, Contacto, Política de envíos, Términos y condiciones)", type: "multiple", options: ["Quiénes somos", "Contacto", "Política de envíos", "Términos y condiciones", "Todas las anteriores"], answered: false },
-  { id: "D4-contacto", section: "D", title: "¿Quién es la persona de contacto principal para el UAT y feedback?", type: "text", placeholder: "Nombre, teléfono, email...", answered: false },
-  { id: "D4-capacitacion", section: "D", title: "¿Cuántas personas hay que capacitar? ¿Cuándo y cómo prefieren?", type: "text", placeholder: "Cantidad de personas, presencial/video llamada/video grabado...", answered: false }
-];
-
-let currentQuestion = 0;
-const answers = {};
-
-function getSectionName(s) {
-  const map = { A: "A", B: "B", C: "C", D: "D" };
-  return map[s] || s;
-}
-
-function switchScreen(screenId) {
-  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-  document.getElementById(screenId).classList.add('active');
-  
-  if (screenId === 'screen-quiz') {
-    document.getElementById('topbar-meta').textContent = 'Onboarding en progreso';
-  } else if (screenId === 'screen-confirmed') {
-    document.getElementById('topbar-meta').textContent = 'Validación de información';
-  } else {
-    document.getElementById('topbar-meta').textContent = 'Próximos pasos';
-  }
-  window.scrollTo(0, 0);
-}
-
-function startValidation() {
-  switchScreen('screen-confirmed');
-}
-
-function startOnboarding() {
-  switchScreen('screen-quiz');
-  showQuestion(0);
-}
-
-document.addEventListener('DOMContentLoaded', function() {
-  const totalQEl = document.getElementById('total-q');
-  if (totalQEl) {
-    totalQEl.textContent = questions.length;
-  }
-  
-  const navGrid = document.getElementById('navigator-grid');
-  const navToggle = document.getElementById('navigator-toggle');
-  if (navGrid && navToggle) {
-    navGrid.classList.add('collapsed');
-    navToggle.textContent = '+';
-  }
-});
-</script>
 </head>
 <body>
 
-<!-- TOPBAR -->
 <div class="topbar">
   <div class="topbar-brand">Pragma Studio</div>
   <div class="topbar-meta" id="topbar-meta">Próximos pasos</div>
 </div>
 
-<!-- SCREEN 1: PROXIMO PASOS -->
+<!-- SCREEN 0: PROXIMOS PASOS -->
 <div class="screen active" id="screen-steps">
-  <div class="steps-container">
-    <div class="steps-header">
-      <div class="steps-header-eyebrow">🚀 Plan de implementación</div>
-      <h1 class="steps-header-title">Próximos Pasos del Proyecto</h1>
-      <p class="steps-header-body">Te presentamos un plan estructurado en tres fases para asegurar que el producto final se ajuste perfectamente a tus necesidades.</p>
+  <div class="container">
+    <div class="header">
+      <div class="header-eyebrow">🚀 Plan de implementación</div>
+      <h1 class="header-title">Próximos Pasos del Proyecto</h1>
+      <p class="header-body">Te presentamos un plan estructurado en tres fases para asegurar que el producto final se ajuste perfectamente a tus necesidades.</p>
     </div>
 
-    <div class="steps-content">
+    <div class="content">
       <!-- FASE 1 -->
       <div class="phase-card">
         <div class="phase-number">1</div>
@@ -1115,10 +332,6 @@ document.addEventListener('DOMContentLoaded', function() {
           <div class="checkpoint">Editar si es necesario</div>
           <div class="checkpoint">Confirmar cambios</div>
         </div>
-        <div class="phase-highlight">
-          <strong>📌 Lo que necesitamos:</strong>
-          Revisión rápida de los datos que ya tenemos registrados.
-        </div>
       </div>
 
       <!-- FASE 2 -->
@@ -1126,16 +339,11 @@ document.addEventListener('DOMContentLoaded', function() {
         <div class="phase-number">2</div>
         <h2 class="phase-title">Onboarding</h2>
         <div class="phase-duration">⏱ 20-30 minutos</div>
-        <p class="phase-description">Cuestionario interactivo de descubrimiento para entender tu operación en detalle.</p>
+        <p class="phase-description">Cuestionario interactivo para completar los datos que aún faltan.</p>
         <div class="phase-checkpoints">
-          <div class="checkpoint">Entender tu flujo operativo actual</div>
-          <div class="checkpoint">Confirmar requisitos específicos</div>
-          <div class="checkpoint">Validar viabilidad técnica</div>
-          <div class="checkpoint">Establecer cronograma de desarrollo</div>
-        </div>
-        <div class="phase-highlight">
-          <strong>📌 Lo que necesitamos:</strong>
-          Completar en 5 días hábiles con máxima precisión. Designar persona de contacto principal.
+          <div class="checkpoint">Responder todas las preguntas</div>
+          <div class="checkpoint">Copiar o descargar respuestas</div>
+          <div class="checkpoint">Enviar por WhatsApp</div>
         </div>
       </div>
 
@@ -1146,35 +354,9 @@ document.addEventListener('DOMContentLoaded', function() {
         <div class="phase-duration">⏱ 3-5 días</div>
         <p class="phase-description">Análisis de respuestas y establecimiento formal de términos del proyecto.</p>
         <div class="phase-checkpoints">
-          <div class="checkpoint">Validación de alcance del proyecto</div>
-          <div class="checkpoint">Confirmación de presupuesto final</div>
-          <div class="checkpoint">Plan de implementación técnica</div>
-          <div class="checkpoint">Firma de contrato de desarrollo</div>
-        </div>
-        <div class="phase-highlight">
-          <strong>💳 Requisito de pago:</strong>
-          Anticipo del 50% del presupuesto para iniciar desarrollo.
-        </div>
-      </div>
-
-      <!-- TIMELINE -->
-      <div class="timeline-box">
-        <div class="timeline-title">📅 Cronograma Estimado</div>
-        <div class="timeline-item">
-          <div class="timeline-label">Fase 1 (Validación)</div>
-          <div class="timeline-value">Ahora</div>
-        </div>
-        <div class="timeline-item">
-          <div class="timeline-label">Fase 2 (Onboarding)</div>
-          <div class="timeline-value">3-5 días</div>
-        </div>
-        <div class="timeline-item">
-          <div class="timeline-label">Fase 3 (Confirmación)</div>
-          <div class="timeline-value">3-5 días</div>
-        </div>
-        <div class="timeline-item">
-          <div class="timeline-label"><strong>TOTAL</strong></div>
-          <div class="timeline-value"><strong>2-3 semanas</strong></div>
+          <div class="checkpoint">Validación de alcance</div>
+          <div class="checkpoint">Confirmación de presupuesto</div>
+          <div class="checkpoint">Firma de contrato</div>
         </div>
       </div>
 
@@ -1200,323 +382,299 @@ document.addEventListener('DOMContentLoaded', function() {
             Enviar datos
           </div>
         </div>
-        <button class="btn-start-quiz" onclick="startValidation()">Comenzar Validación →</button>
+        <button class="btn-cta" onclick="switchScreen('screen-validation')">Comenzar Validación →</button>
       </div>
     </div>
   </div>
-
   <div class="footer">
-    <div class="foot-brand">Pragma Studio</div>
-    <div class="foot-tagline">Desarrollo de software a medida | Córdoba, Argentina</div>
-    <div class="foot-contact">
-      <a href="https://wa.me/5493513911596">WhatsApp: +54 3513 91-1596</a>
-    </div>
+    <strong>Pragma Studio</strong><br>
+    Desarrollo de software a medida | Córdoba, Argentina
   </div>
 </div>
 
-<!-- SCREEN 2: VALIDACIÓN -->
-<div class="screen" id="screen-confirmed">
-  <div class="confirmed-container">
-    <div class="confirmed-header">
-      <div class="confirmed-header-eyebrow">✓ Validar información</div>
-      <h1 class="confirmed-header-title">Respuestas que ya conocemos</h1>
-      <p class="confirmed-header-body">Estos datos están confirmados en nuestras conversaciones anteriores. Revisalos y confirma que todo está correcto antes de continuar.</p>
+<!-- SCREEN 1: VALIDACION -->
+<div class="screen" id="screen-validation">
+  <div class="container">
+    <div class="header">
+      <div class="header-eyebrow">✓ Validación</div>
+      <h1 class="header-title">Respuestas que ya conocemos</h1>
+      <p class="header-body">Estos datos ya están confirmados. Revisalos y editalos si es necesario.</p>
     </div>
 
-    <div class="confirmed-content">
-      <div class="confirmed-info">
-        <div class="confirmed-info-text">
-          <strong>💡 Tip:</strong> Podés hacer click en cualquier tarjeta para editar la respuesta si es necesario.
-        </div>
-      </div>
+    <div class="content" id="validation-content"></div>
 
-      <div class="confirmed-section">
-        <div class="confirmed-section-title">A · Bloque Crítico</div>
-        <div class="confirmed-card">
-          <div class="confirmed-q">A1 - ¿Pueden generarnos un export completo del sistema actual?</div>
-          <div class="confirmed-a">✓ SÍ</div>
-        </div>
-        <div class="confirmed-card">
-          <div class="confirmed-q">A1 - ¿En qué formato exporta el sistema?</div>
-          <div class="confirmed-a">✓ Por definir</div>
-        </div>
-        <div class="confirmed-card">
-          <div class="confirmed-q">A1 - ¿Cuándo nos lo pueden enviar?</div>
-          <div class="confirmed-a">✓ HOY</div>
-        </div>
-        <div class="confirmed-card">
-          <div class="confirmed-q">A2 - ¿Cuántos depósitos físicos tienen?</div>
-          <div class="confirmed-a">✓ 2 DEPÓSITOS Y 2 LOCALES</div>
-        </div>
-        <div class="confirmed-card">
-          <div class="confirmed-q">A2 - ¿Cuál depósito abastece el e-commerce?</div>
-          <div class="confirmed-a">✓ VA A TENER UNO PROPIO (Nº3)</div>
-        </div>
-        <div class="confirmed-card">
-          <div class="confirmed-q">A3 - ¿Cuántos locales con caja activa?</div>
-          <div class="confirmed-a">✓ 2</div>
-        </div>
-        <div class="confirmed-card">
-          <div class="confirmed-q">A3 - ¿Cuántos cajeros/vendedores por local?</div>
-          <div class="confirmed-a">✓ ENTRE 6 Y 12 DEPENDIENDO DE LA ÉPOCA</div>
-        </div>
-        <div class="confirmed-card">
-          <div class="confirmed-q">A4 - ¿Ya tienen dominio para el e-commerce?</div>
-          <div class="confirmed-a">✓ NO - NECESITA REGISTRARSE</div>
-        </div>
-        <div class="confirmed-card">
-          <div class="confirmed-q">A4 - ¿Tienen logo y paleta de colores?</div>
-          <div class="confirmed-a">✓ NO</div>
-        </div>
-        <div class="confirmed-card">
-          <div class="confirmed-q">A4 - ¿WhatsApp exclusivo del comercio?</div>
-          <div class="confirmed-a">✓ SÍ - LO ATIENDEN DUEÑO/VENDEDOR</div>
-        </div>
-        <div class="confirmed-card">
-          <div class="confirmed-q">A5 - ¿E-commerce mayorista o mayorista+minorista?</div>
-          <div class="confirmed-a">✓ MAYORISTA SOLAMENTE (de momento)</div>
-        </div>
-        <div class="confirmed-card">
-          <div class="confirmed-q">A5 - ¿Quién aprueba nuevos clientes mayoristas?</div>
-          <div class="confirmed-a">✓ DUEÑO</div>
-        </div>
-      </div>
-
-      <div class="confirmed-section">
-        <div class="confirmed-section-title">B · Modelo de Datos</div>
-        <div class="confirmed-card">
-          <div class="confirmed-q">B1 - ¿Cuántos productos activos aproximadamente?</div>
-          <div class="confirmed-a">✓ +1000 APROX</div>
-        </div>
-        <div class="confirmed-card">
-          <div class="confirmed-q">B1 - ¿Ya están organizados en categorías?</div>
-          <div class="confirmed-a">✓ SÍ, HAY CATEGORÍAS</div>
-        </div>
-        <div class="confirmed-card">
-          <div class="confirmed-q">B1 - ¿Productos con variantes (colores, tamaños)?</div>
-          <div class="confirmed-a">✓ SÍ - CANTIDAD A DEFINIR</div>
-        </div>
-        <div class="confirmed-card">
-          <div class="confirmed-q">B1 - ¿Manejan código interno propio?</div>
-          <div class="confirmed-a">✓ SÍ - NUMÉRICO, EN TODOS LOS PRODUCTOS</div>
-        </div>
-        <div class="confirmed-card">
-          <div class="confirmed-q">B1 - ¿Necesitan campos adicionales por tipo de producto?</div>
-          <div class="confirmed-a">✓ SÍ</div>
-        </div>
-        <div class="confirmed-card">
-          <div class="confirmed-q">B2 - ¿Quién está autorizado a mover stock entre depósitos?</div>
-          <div class="confirmed-a">✓ DUEÑO</div>
-        </div>
-        <div class="confirmed-card">
-          <div class="confirmed-q">B4 - ¿Manejan escalas de precio por cantidad?</div>
-          <div class="confirmed-a">✓ SÍ</div>
-        </div>
-        <div class="confirmed-card">
-          <div class="confirmed-q">B4 - ¿Hay precios diferenciales por forma de pago?</div>
-          <div class="confirmed-a">✓ SÍ</div>
-        </div>
-        <div class="confirmed-card">
-          <div class="confirmed-q">B4 - ¿Quién está autorizado a modificar precios?</div>
-          <div class="confirmed-a">✓ TODOS</div>
-        </div>
-        <div class="confirmed-card">
-          <div class="confirmed-q">B4 - ¿Cómo manejan aumentos de precio?</div>
-          <div class="confirmed-a">✓ MASIVO O UNO POR UNO</div>
-        </div>
-      </div>
-
-      <div class="confirmed-section">
-        <div class="confirmed-section-title">C · Operación PoS y E-commerce</div>
-        <div class="confirmed-card">
-          <div class="confirmed-q">C1 - ¿Buscan productos por nombre, código, o ambos?</div>
-          <div class="confirmed-a">✓ NOMBRE Y CÓDIGO INTERNO</div>
-        </div>
-        <div class="confirmed-card">
-          <div class="confirmed-q">C1 - ¿Los cajeros pueden hacer descuentos manuales?</div>
-          <div class="confirmed-a">✓ SÍ - POR PROMOCIONES DE LA TIENDA</div>
-        </div>
-        <div class="confirmed-card">
-          <div class="confirmed-q">C1 - ¿Manejan venta con cliente identificado?</div>
-          <div class="confirmed-a">✓ EN GENERAL CONSUMIDOR FINAL</div>
-        </div>
-        <div class="confirmed-card">
-          <div class="confirmed-q">C2 - ¿Formas de pago aceptadas?</div>
-          <div class="confirmed-a">✓ EFECTIVO, TRANSFERENCIA, DÉBITO, CRÉDITO, QR</div>
-        </div>
-        <div class="confirmed-card">
-          <div class="confirmed-q">C2 - ¿Recargo de tarjeta al cliente?</div>
-          <div class="confirmed-a">✓ SÍ - EDITABLE POR CANTIDAD DE CUOTAS</div>
-        </div>
-        <div class="confirmed-card">
-          <div class="confirmed-q">C2 - ¿Aceptan pago mixto (efectivo + tarjeta)?</div>
-          <div class="confirmed-a">✓ SÍ</div>
-        </div>
-        <div class="confirmed-card">
-          <div class="confirmed-q">C2 - ¿Manejan cuenta corriente?</div>
-          <div class="confirmed-a">✓ SÍ</div>
-        </div>
-        <div class="confirmed-card">
-          <div class="confirmed-q">C3 - ¿Hacen cierre de caja diaria?</div>
-          <div class="confirmed-a">✓ SÍ</div>
-        </div>
-        <div class="confirmed-card">
-          <div class="confirmed-q">C3 - ¿Quién está autorizado a cerrar caja?</div>
-          <div class="confirmed-a">✓ LOS EMPLEADOS</div>
-        </div>
-        <div class="confirmed-card">
-          <div class="confirmed-q">C6 - ¿El e-commerce muestra solo stock del depósito nº3?</div>
-          <div class="confirmed-a">✓ SÍ - NO EL DE LOS LOCALES</div>
-        </div>
-        <div class="confirmed-card">
-          <div class="confirmed-q">C7 - ¿Hay mínimo de compra para WhatsApp?</div>
-          <div class="confirmed-a">✓ SÍ</div>
-        </div>
-        <div class="confirmed-card">
-          <div class="confirmed-q">C7 - ¿Hay productos con mínimo propio?</div>
-          <div class="confirmed-a">✓ SÍ</div>
-        </div>
-        <div class="confirmed-card">
-          <div class="confirmed-q">C7 - ¿Cliente puede agregar observaciones al pedido?</div>
-          <div class="confirmed-a">✓ SÍ</div>
-        </div>
-        <div class="confirmed-card">
-          <div class="confirmed-q">C7 - ¿Opciones de entrega?</div>
-          <div class="confirmed-a">✓ SÍ - RETIRA, ENVÍO LOCAL O TRANSPORTE</div>
-        </div>
-        <div class="confirmed-card">
-          <div class="confirmed-q">C8 - ¿Mensaje WhatsApp editable desde configuración?</div>
-          <div class="confirmed-a">✓ SÍ</div>
-        </div>
-        <div class="confirmed-card">
-          <div class="confirmed-q">C9 - ¿Necesitan log de auditoría por usuario?</div>
-          <div class="confirmed-a">✓ SÍ - VER CAJAS CON NOMBRE DE VENDEDOR</div>
-        </div>
-      </div>
-
-      <div class="confirmed-section">
-        <div class="confirmed-section-title">D · Reportes y Branding</div>
-        <div class="confirmed-card">
-          <div class="confirmed-q">D1 - ¿Reportes que más consultan?</div>
-          <div class="confirmed-a">✓ INGRESOS Y EGRESOS</div>
-        </div>
-        <div class="confirmed-card">
-          <div class="confirmed-q">D1 - ¿Cada cuánto los miran?</div>
-          <div class="confirmed-a">✓ SEMANAL</div>
-        </div>
-        <div class="confirmed-card">
-          <div class="confirmed-q">D1 - ¿KPIs deseados?</div>
-          <div class="confirmed-a">✓ VENTAS, INGRESOS, PRODUCTOS SIN STOCK, DEUDAS</div>
-        </div>
-        <div class="confirmed-card">
-          <div class="confirmed-q">D1 - ¿Dashboard en tiempo real desde celular?</div>
-          <div class="confirmed-a">✓ SÍ</div>
-        </div>
-        <div class="confirmed-card">
-          <div class="confirmed-q">D2 - ¿Tono de comunicación?</div>
-          <div class="confirmed-a">✓ CERCANO Y AMIGABLE PERO FORMAL</div>
-        </div>
-        <div class="confirmed-card">
-          <div class="confirmed-q">D3 - ¿Quién carga descripciones de productos?</div>
-          <div class="confirmed-a">✓ TODOS</div>
-        </div>
-        <div class="confirmed-card">
-          <div class="confirmed-q">D3 - ¿Quién carga fotos para e-commerce?</div>
-          <div class="confirmed-a">✓ TODOS</div>
-        </div>
-        <div class="confirmed-card">
-          <div class="confirmed-q">D3 - ¿Páginas estáticas requeridas?</div>
-          <div class="confirmed-a">✓ QUIÉNES SOMOS, CONTACTO, POLÍTICA, T&C, FORMULARIO</div>
-        </div>
-        <div class="confirmed-card">
-          <div class="confirmed-q">D4 - ¿Estrategia para capacitación?</div>
-          <div class="confirmed-a">✓ CLONAR EL POS ORIGINAL - UBICACIÓN SIMILAR, ACTUALIZADO VISUALMENTE</div>
-        </div>
-      </div>
-
-      <div class="confirmed-cta">
-        <div class="confirmed-cta-title">¿Todo está correcto?</div>
-        <p class="confirmed-cta-desc">Si hay algo que cambiar, avisanos ahora. Si todo está bien, pasamos al cuestionario de onboarding.</p>
-        <button class="confirmed-cta-btn" onclick="startOnboarding()">Continuar al Onboarding →</button>
-      </div>
+    <div class="cta-box" style="margin: 32px 20px;">
+      <div style="font-size: 18px; font-weight: 600; margin-bottom: 12px;">¿Todo está correcto?</div>
+      <button class="btn-cta" onclick="switchScreen('screen-onboarding')">Continuar al Onboarding →</button>
     </div>
   </div>
-
   <div class="footer">
-    <div class="foot-brand">Pragma Studio</div>
-    <div class="foot-tagline">Desarrollo de software a medida | Córdoba, Argentina</div>
-    <div class="foot-contact">
-      <a href="https://wa.me/5493513911596">WhatsApp: +54 3513 91-1596</a>
-    </div>
+    <strong>Pragma Studio</strong><br>
+    Desarrollo de software a medida | Córdoba, Argentina
   </div>
 </div>
 
-<!-- SCREEN 3: ONBOARDING -->
-<div class="screen" id="screen-quiz">
-  <div class="quiz-header">
-    <div class="quiz-header-eyebrow">Cuestionario de descubrimiento</div>
-    <h1 class="quiz-header-title">Confirmemos los detalles <em>antes de arrancar</em></h1>
-    <p class="quiz-header-body">Necesitamos validar todas las respuestas para asegurar que el sistema sea exactamente como lo necesitás.</p>
-  </div>
+<!-- SCREEN 2: ONBOARDING -->
+<div class="screen" id="screen-onboarding">
+  <div class="container">
+    <div class="header">
+      <div class="header-eyebrow">❓ Preguntas sin responder</div>
+      <h1 class="header-title">Completemos los detalles</h1>
+      <p class="header-body">Necesitamos estas respuestas para avanzar con el desarrollo.</p>
+    </div>
 
-  <div class="quiz-sidebar">
-    <div class="quiz-progress">
-      <div class="progress-label">Progreso</div>
-      <div class="progress-bar-container">
-        <div class="progress-bar" id="progress-bar"></div>
-      </div>
-      <div class="progress-text"><span id="current-q">1</span> / <span id="total-q">56</span></div>
-    </div>
-    <div class="quiz-section-badge" id="section-badge">A</div>
-    <div class="quiz-navigator">
-      <div class="navigator-header">
-        <div class="navigator-label">Nav</div>
-        <button class="navigator-toggle" id="navigator-toggle" onclick="toggleNavigator()">−</button>
-      </div>
-      <div class="navigator-grid" id="navigator-grid"></div>
-    </div>
-    <div class="quiz-estimated">
-      <div class="estimated-icon">⏱</div>
-      <div class="estimated-time" id="estimated-time">15m</div>
+    <div class="content" id="onboarding-content"></div>
+
+    <div class="cta-box" style="margin: 32px 20px;">
+      <button class="btn-copy" onclick="copyAnswers()">📋 Copiar respuestas</button>
+      <button class="btn-copy" onclick="downloadAnswers()" style="background: var(--white); color: var(--accent); border: 1px solid var(--accent); margin-left: 8px;">⬇ Descargar HTML</button>
     </div>
   </div>
-
-  <div class="quiz-main">
-    <h2 class="question-title" id="q-title">Pregunta</h2>
-    <div class="options-hint" id="options-hint"></div>
-    <div class="options-group" id="q-options"></div>
-    <div class="text-input-group" id="q-text-input">
-      <textarea id="text-answer" placeholder="Tu respuesta..."></textarea>
-    </div>
-    <div class="quiz-controls">
-      <button class="btn-nav" id="btn-prev" onclick="previousQuestion()">← Ant</button>
-      <button class="btn-next" id="btn-next" onclick="nextQuestion()">Sig →</button>
-      <button class="btn-next" id="btn-finish" onclick="finishQuiz()" style="display: none;">Finalizar</button>
-    </div>
-  </div>
-
-  <div class="quiz-review hidden" id="quiz-review">
-    <h2 class="review-title">Respuestas</h2>
-    <div id="review-sections"></div>
-    <div class="review-actions">
-      <button class="btn-copy" onclick="copyAnswers()">📋 Copiar</button>
-      <button class="btn-download" onclick="downloadAnswers()">⬇ HTML</button>
-    </div>
-    <div class="completion-box">
-      <div class="completion-icon">✓</div>
-      <div class="completion-text">¡Completado!</div>
-      <div class="completion-subtext">Listo para compartir por WhatsApp</div>
-    </div>
-  </div>
-
   <div class="footer">
-    <div class="foot-brand">Pragma Studio</div>
-    <div class="foot-tagline">Desarrollo de software a medida | Córdoba, Argentina</div>
-    <div class="foot-contact">
-      <a href="https://wa.me/5493513911596">WhatsApp: +54 3513 91-1596</a>
-    </div>
+    <strong>Pragma Studio</strong><br>
+    Desarrollo de software a medida | Córdoba, Argentina
   </div>
 </div>
+
+<script>
+// Preguntas YA RESPONDIDAS
+const validationQuestions = [
+  { id: "A1-format", q: "¿En qué formato exporta el sistema?", a: "Por definir" },
+  { id: "A1-cuando", q: "¿Cuándo pueden enviar el export?", a: "HOY" },
+  { id: "A2-depositos", q: "¿Cuántos depósitos y locales?", a: "2 DEPÓSITOS Y 2 LOCALES" },
+  { id: "A2-ecommerce", q: "¿Cuál depósito para e-commerce?", a: "VA A TENER UNO PROPIO (Nº3)" },
+  { id: "A3-cajas", q: "¿Cuántos locales con caja activa?", a: "2" },
+  { id: "A3-cajeros", q: "¿Cuántos cajeros por local?", a: "ENTRE 6 Y 12 DEPENDIENDO DE LA ÉPOCA" },
+  { id: "A4-dominio", q: "¿Ya tienen dominio?", a: "NO - NECESITA REGISTRARSE" },
+  { id: "A4-branding", q: "¿Logo y paleta de colores?", a: "NO" },
+  { id: "A4-whatsapp", q: "¿WhatsApp del comercio?", a: "SÍ - EXCLUSIVO, LO ATIENDEN DUEÑO/VENDEDOR" },
+  { id: "A5-tipo", q: "¿E-commerce mayorista o mixto?", a: "MAYORISTA SOLAMENTE (de momento)" },
+  { id: "A5-aprobacion", q: "¿Quién aprueba nuevos clientes?", a: "DUEÑO" },
+  { id: "B1-productos", q: "¿Cuántos productos?", a: "+1000 APROX" },
+  { id: "B1-categorias", q: "¿Organizados en categorías?", a: "SÍ" },
+  { id: "B1-variantes", q: "¿Productos con variantes?", a: "SÍ - CANTIDAD A DEFINIR" },
+  { id: "B1-codigo", q: "¿Código interno propio?", a: "SÍ - NUMÉRICO, EN TODOS" },
+  { id: "B1-campos", q: "¿Campos adicionales por tipo?", a: "SÍ" },
+  { id: "B2-stock", q: "¿Autorizado a mover stock?", a: "DUEÑO" },
+  { id: "B4-escalas", q: "¿Escalas de precio por cantidad?", a: "SÍ" },
+  { id: "B4-pago", q: "¿Precios diferenciales por pago?", a: "SÍ" },
+  { id: "B4-modifica", q: "¿Quién modifica precios?", a: "TODOS" },
+  { id: "B4-aumentos", q: "¿Cómo manejan aumentos?", a: "MASIVO O UNO POR UNO" },
+  { id: "C1-busqueda", q: "¿Buscan por nombre o código?", a: "NOMBRE Y CÓDIGO INTERNO" },
+  { id: "C1-descuento", q: "¿Descuentos manuales?", a: "SÍ - POR PROMOCIONES" },
+  { id: "C1-cliente", q: "¿Venta con cliente identificado?", a: "EN GENERAL CONSUMIDOR FINAL" },
+  { id: "C2-pagos", q: "¿Formas de pago?", a: "EFECTIVO, TRANSFERENCIA, DÉBITO, CRÉDITO, QR" },
+  { id: "C2-recargo", q: "¿Recargo de tarjeta?", a: "SÍ - EDITABLE POR CUOTAS" },
+  { id: "C2-mixto", q: "¿Pago mixto?", a: "SÍ" },
+  { id: "C2-cuenta", q: "¿Cuenta corriente?", a: "SÍ" },
+  { id: "C3-cierre", q: "¿Cierre de caja diaria?", a: "SÍ" },
+  { id: "C3-cierre-quien", q: "¿Quién cierra caja?", a: "LOS EMPLEADOS" },
+  { id: "C6-stock", q: "¿E-commerce muestra solo depósito nº3?", a: "SÍ - NO EL DE LOS LOCALES" },
+  { id: "C7-minimo", q: "¿Mínimo de compra?", a: "SÍ" },
+  { id: "C7-minimo-prod", q: "¿Productos con mínimo propio?", a: "SÍ" },
+  { id: "C7-observaciones", q: "¿Cliente agrega observaciones?", a: "SÍ" },
+  { id: "C7-entrega", q: "¿Opciones de entrega?", a: "SÍ - RETIRA, ENVÍO LOCAL O TRANSPORTE" },
+  { id: "C8-whatsapp", q: "¿Mensaje WhatsApp editable?", a: "SÍ" },
+  { id: "C9-auditoria", q: "¿Log de auditoría?", a: "SÍ - VER CAJAS CON NOMBRE DE VENDEDOR" },
+  { id: "D1-reportes", q: "¿Reportes que más consultan?", a: "INGRESOS Y EGRESOS" },
+  { id: "D1-frecuencia", q: "¿Cada cuánto los miran?", a: "SEMANAL" },
+  { id: "D1-kpis", q: "¿KPIs deseados?", a: "VENTAS, INGRESOS, PRODUCTOS SIN STOCK, DEUDAS" },
+  { id: "D1-dashboard", q: "¿Dashboard en tiempo real?", a: "SÍ" },
+  { id: "D2-tono", q: "¿Tono de comunicación?", a: "CERCANO Y AMIGABLE PERO FORMAL" },
+  { id: "D3-descripciones", q: "¿Quién carga descripciones?", a: "TODOS" },
+  { id: "D3-fotos", q: "¿Quién carga fotos?", a: "TODOS" },
+  { id: "D3-paginas", q: "¿Páginas estáticas?", a: "QUIÉNES SOMOS, CONTACTO, POLÍTICA, T&C, FORMULARIO" },
+  { id: "D4-capacitacion", q: "¿Estrategia capacitación?", a: "CLONAR EL POS ORIGINAL - UBICACIÓN SIMILAR, ACTUALIZADO" }
+];
+
+// Preguntas SIN RESPONDER (para el onboarding)
+const onboardingQuestions = [
+  { id: "A1-historico", section: "A", title: "¿Hay datos históricos de ventas para migrar?", type: "multiple", options: ["Solo catálogo y clientes", "Incluir histórico de ventas", "Incluir todo"] },
+  { id: "A2-estructura", section: "A", title: "¿Hay depósito central que abastece a los demás?", type: "text", placeholder: "Describe la estructura..." },
+  { id: "A2-responsables", section: "A", title: "¿Cada depósito tiene responsable distinto?", type: "text", placeholder: "Nombres..." },
+  { id: "B2-distribucion", section: "B", title: "Si stock es único, ¿cómo distribuir entre depósitos?", type: "text", placeholder: "Planilla o equitativo..." },
+  { id: "B2-otro-deposito", section: "B", title: "¿Política cuando un local quiere vender algo que no tiene?", type: "multiple", options: ["Se le dice 'no tengo'", "Se anota como pendiente", "Transferencia rápida"] },
+  { id: "B2-mermas", section: "B", title: "¿Llevan registro de mermas y roturas?", type: "multiple", options: ["Sí", "No", "A veces"] },
+  { id: "B2-inventarios", section: "B", title: "¿Hacen inventarios físicos? ¿Cada cuánto?", type: "text", placeholder: "Frecuencia..." },
+  { id: "B3-datos", section: "B", title: "¿Qué datos guardan de cada cliente?", type: "text", placeholder: "Lista de campos..." },
+  { id: "B3-cuit", section: "B", title: "¿CUIT obligatorio para mayoristas?", type: "multiple", options: ["Obligatorio", "Opcional", "Depende"] },
+  { id: "B3-iva", section: "B", title: "¿Manejan condición frente al IVA?", type: "text", placeholder: "Responsable inscripto, etc..." },
+  { id: "B3-tipos", section: "B", title: "¿Necesitan diferenciar tipos de cliente?", type: "text", placeholder: "Distribuidor, mayorista premium, etc..." },
+  { id: "B3-localidades", section: "B", title: "¿Manejan listado de localidades o provincias?", type: "multiple", options: ["Para reportes", "Para envíos", "Solo registro", "Varias razones", "No"] },
+  { id: "B3-suspension", section: "B", title: "¿Suspenden clientes con deuda?", type: "text", placeholder: "Describe el proceso..." },
+  { id: "B4-listas", section: "B", title: "¿Cuántas listas de precios manejan?", type: "text", placeholder: "Minorista, mayorista, etc..." },
+  { id: "B4-asignacion", section: "B", title: "¿Cómo decide qué lista corresponde a cada cliente?", type: "text", placeholder: "Por tipo, volumen, manual..." },
+  { id: "C1-descuento-quien", section: "C", title: "¿Cualquier cajero puede hacer descuentos?", type: "text", placeholder: "Describe quién..." },
+  { id: "C3-cierre-info", section: "C", title: "¿Qué información necesitan en el cierre de caja?", type: "multiple", options: ["Totales por forma de pago", "Anulaciones", "Descuentos", "Diferencia declarada", "Detalles"] },
+  { id: "C4-impresora", section: "C", title: "¿Modelo y marca de impresora térmica?", type: "text", placeholder: "Ej: Epson TM-T20..." },
+  { id: "C5-anulacion", section: "C", title: "¿Permiten anular venta? ¿Hasta cuándo?", type: "text", placeholder: "Mismo día, 24hs..." },
+  { id: "C5-devoluciones", section: "C", title: "¿Hay devoluciones? ¿Cómo se procesan?", type: "multiple", options: ["Reintegro efectivo", "Nota de crédito", "Cambio", "No aceptan"] },
+  { id: "C6-login", section: "C", title: "¿Visitante sin login ve productos y precios?", type: "multiple", options: ["Ver todo sin login", "Solo productos sin login", "Todo requiere login", "Por definir"] },
+  { id: "C6-stock-visible", section: "C", title: "¿Cómo muestran stock al cliente?", type: "multiple", options: ["Cantidad exacta", "Disponibilidad (Hay/Pocas)", "No muestran", "Otro"] },
+];
+
+const answers = {};
+
+function switchScreen(screenId) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(screenId).classList.add('active');
+  if (screenId === 'screen-steps') {
+    document.getElementById('topbar-meta').textContent = 'Próximos pasos';
+  } else if (screenId === 'screen-validation') {
+    document.getElementById('topbar-meta').textContent = 'Validación';
+  } else {
+    document.getElementById('topbar-meta').textContent = 'Onboarding';
+  }
+  window.scrollTo(0, 0);
+}
+
+function renderValidation() {
+  const container = document.getElementById('validation-content');
+  container.innerHTML = '';
+  
+  validationQuestions.forEach(q => {
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.innerHTML = `
+      <div class="card-question">${q.q}</div>
+      <div class="card-answer" id="answer-${q.id}">✓ ${q.a}</div>
+      <div class="card-input" id="input-${q.id}">
+        <input type="text" value="${q.a}" placeholder="Editar respuesta...">
+        <div class="card-buttons">
+          <button class="btn btn-save" onclick="saveValidation('${q.id}')">Guardar</button>
+          <button class="btn btn-cancel" onclick="cancelValidation('${q.id}')">Cancelar</button>
+        </div>
+      </div>
+    `;
+    card.onclick = () => editValidation(q.id);
+    container.appendChild(card);
+  });
+}
+
+function editValidation(qId) {
+  const answerDiv = document.getElementById(`answer-${qId}`);
+  const inputDiv = document.getElementById(`input-${qId}`);
+  answerDiv.style.display = 'none';
+  inputDiv.classList.add('active');
+  inputDiv.querySelector('input').focus();
+}
+
+function saveValidation(qId) {
+  const inputDiv = document.getElementById(`input-${qId}`);
+  const newValue = inputDiv.querySelector('input').value;
+  const answerDiv = document.getElementById(`answer-${qId}`);
+  answerDiv.textContent = '✓ ' + newValue;
+  answers[qId] = newValue;
+  answerDiv.style.display = 'block';
+  inputDiv.classList.remove('active');
+}
+
+function cancelValidation(qId) {
+  const answerDiv = document.getElementById(`answer-${qId}`);
+  const inputDiv = document.getElementById(`input-${qId}`);
+  answerDiv.style.display = 'block';
+  inputDiv.classList.remove('active');
+}
+
+function renderOnboarding() {
+  const container = document.getElementById('onboarding-content');
+  container.innerHTML = '';
+  
+  onboardingQuestions.forEach(q => {
+    const card = document.createElement('div');
+    card.className = 'card';
+    
+    if (q.type === 'text') {
+      card.innerHTML = `
+        <div class="card-question">${q.title}</div>
+        <div class="card-input active">
+          <textarea placeholder="${q.placeholder}" id="textarea-${q.id}"></textarea>
+          <button class="btn btn-save" onclick="saveOnboarding('${q.id}')">Guardar</button>
+        </div>
+      `;
+    } else {
+      card.innerHTML = `
+        <div class="card-question">${q.title}</div>
+        <div class="card-input active" id="options-${q.id}"></div>
+      `;
+      const optionsDiv = card.querySelector(`#options-${q.id}`);
+      q.options.forEach(opt => {
+        const label = document.createElement('label');
+        label.style.display = 'flex';
+        label.style.alignItems = 'center';
+        label.style.marginBottom = '8px';
+        label.style.cursor = 'pointer';
+        const checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+        checkbox.style.marginRight = '8px';
+        checkbox.onchange = () => saveOnboarding(q.id);
+        const span = document.createElement('span');
+        span.textContent = opt;
+        span.style.fontSize = '12px';
+        label.appendChild(checkbox);
+        label.appendChild(span);
+        optionsDiv.appendChild(label);
+      });
+    }
+    
+    container.appendChild(card);
+  });
+}
+
+function saveOnboarding(qId) {
+  const textarea = document.getElementById(`textarea-${qId}`);
+  if (textarea) {
+    answers[qId] = textarea.value;
+  }
+}
+
+function copyAnswers() {
+  let txt = 'RESPUESTAS ONBOARDING\n' + '='.repeat(40) + '\n\n';
+  let section = '';
+  
+  onboardingQuestions.forEach(q => {
+    const ans = answers[q.id];
+    if (ans && ans.trim()) {
+      if (section !== q.section) {
+        section = q.section;
+        txt += `\nSección ${section}\n` + '-'.repeat(40) + '\n\n';
+      }
+      txt += `• ${q.title}\n  ${ans}\n\n`;
+    }
+  });
+  
+  navigator.clipboard.writeText(txt).then(() => {
+    alert('✓ Copiado al portapapeles!');
+  });
+}
+
+function downloadAnswers() {
+  let html = '<style>body{font-family:sans-serif;padding:20px}h1{color:#1847F0}h2{color:#1847F0}p{margin:10px 0}</style>';
+  html += '<h1>Respuestas Onboarding</h1>';
+  let section = '';
+  
+  onboardingQuestions.forEach(q => {
+    const ans = answers[q.id];
+    if (ans && ans.trim()) {
+      if (section !== q.section) {
+        section = q.section;
+        html += `<h2>Sección ${section}</h2>`;
+      }
+      html += `<p><strong>${q.title}</strong><br>${ans}</p>`;
+    }
+  });
+  
+  const blob = new Blob([html], { type: 'text/html' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'respuestas_onboarding.html';
+  a.click();
+}
+
+renderValidation();
+renderOnboarding();
+</script>
 
 </body>
 </html>
