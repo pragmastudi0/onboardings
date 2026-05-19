@@ -1099,8 +1099,62 @@ const questions = [
   { id: "D4-capacitacion", section: "D", title: "¿Cuántas personas hay que capacitar? ¿Cuándo y cómo prefieren?", type: "text", placeholder: "Cantidad de personas, presencial/video llamada/video grabado...", answered: false }
 ];
 
+// Respuestas confirmadas por el cliente (precargadas)
+const prefilledAnswers = {
+  "A1-format": ["Excel", "CSV"],
+  "A1-cuando": ["Hoy"],
+  "A1-historico": ["Incluir todo"],
+  "A2-estructura": "2 depósitos y 2 locales (nombres a definir). El e-commerce tendrá depósito propio (Nº3).",
+  "A2-responsables": "Dueño autoriza movimiento de stock entre depósitos.",
+  "A4-dominio": "No",
+  "A4-branding": ["No tenemos nada"],
+  "B1-variantes": "Sí. Más de 1000 productos activos, organizados en categorías. Código interno numérico (sin código de barras).",
+  "B1-campos": "Sí, campos adicionales según tipo de producto.",
+  "B2-stock": ["Stock separado por depósito"],
+  "B2-distribucion": "E-commerce con depósito propio (Nº3), no comparte stock con locales.",
+  "B3-datos": "Dirección de envío, nombre, apellido, DNI, código postal y teléfono. El cliente puede registrarse; aprueba el dueño.",
+  "B3-tipos": "Mayorista solamente al principio en e-commerce.",
+  "B3-localidades": ["Para envíos"],
+  "B4-listas": "Precios por cantidad/escalas. Precios diferenciales según forma de pago.",
+  "B4-asignacion": "Todos pueden modificar precios. No manejan precios en dólares. Aumentos: masivo o uno por uno.",
+  "C1-busqueda": ["Nombre y código"],
+  "C1-descuento": "Sí, por descuentos del día o por cantidad. Cualquier cajero puede modificar el precio.",
+  "C1-cliente": ["Casi siempre sin cliente (ticket)"],
+  "C2-formas-pago": ["Efectivo", "Transferencia bancaria", "Débito", "Crédito", "QR"],
+  "C2-recargo": "Se cobra al cliente según cuotas. Debe ser configurable. Aceptan pago mixto y cuenta corriente.",
+  "C3-cierre": ["Totales por forma de pago", "Detalles de movimientos"],
+  "C4-comprobantes": ["Ticket"],
+  "C6-login": ["Todo requiere login"],
+  "C6-productos": "E-commerce con depósito propio (Nº3). Productos destacados/promociones en home: sí. Sin productos relacionados/recomendados.",
+  "C7-minimo": "Sí",
+  "C7-minimo-producto": "Sí",
+  "C7-observaciones": ["Sí, forma de entrega, comentarios, urgencia"],
+  "C7-entrega": ["Retira por el local", "Envío local", "Transporte externo"],
+  "C8-whatsapp": "Editable desde configuración. Sin copia por mail. Pedido confirmado manualmente por WhatsApp.",
+  "C9-roles": ["Admin (ve todo)", "Vendedor (caja)", "Encargado depósito (stock, precios, faltantes)"],
+  "D1-reportes": ["Ingresos y egresos", "Stock disponible", "Clientes con deuda", "Performance por local"],
+  "D1-kpis": "Ventas, ingresos, productos sin stock y deudas. Consulta semanal. Reportes por local (no consolidados). Sin exportación a Excel.",
+  "D1-dashboard": ["Sí, dashboard en tiempo real"],
+  "D2-logo": ["No, necesitamos hacerlo"],
+  "D2-colores": "No definida",
+  "D2-tipografia": "Sin referencias de e-commerce definidas.",
+  "D2-tono": ["Cercano y amigable"],
+  "D3-descripciones": ["Todos los usuarios"],
+  "D3-fotos": ["Todos los usuarios"],
+  "D3-paginas": ["Quiénes somos", "Contacto", "Política de envíos", "Términos y condiciones"],
+  "D4-capacitacion": "Quieren arrancar ya. 2 locales con caja activa; 6-12 cajeros según época. Cada caja atada a un local. WhatsApp Business: sí (atiende dueño/vendedor). Capacitación: clonar el PoS actual para evitar capacitaciones y mantener ubicación similar. Admin crea usuarios, ve todas las cajas con nombre del vendedor; logs por usuario."
+};
+
 let currentQuestion = 0;
 const answers = {};
+
+function applyPrefilledAnswers() {
+  Object.entries(prefilledAnswers).forEach(([id, val]) => {
+    answers[id] = Array.isArray(val) ? [...val] : val;
+    const q = questions.find(item => item.id === id);
+    if (q) q.answered = hasAnswer(val);
+  });
+}
 
 function getSectionName(s) {
   const map = { A: "A", B: "B", C: "C", D: "D" };
@@ -1279,6 +1333,8 @@ function hasAnswer(ans) {
   if (Array.isArray(ans)) return ans.length > 0;
   return String(ans).trim().length > 0;
 }
+
+applyPrefilledAnswers();
 
 function buildAnswersText() {
   let txt = 'RESPUESTAS ONBOARDING\n' + '='.repeat(40) + '\n\n';
