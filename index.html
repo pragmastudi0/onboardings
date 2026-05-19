@@ -2,18 +2,14 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=5">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes, viewport-fit=cover">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-status-bar-style" content="white">
+<meta name="theme-color" content="#1847F0">
 <title>Onboarding — Pragma Studio</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Instrument+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-* { 
-  margin: 0; 
-  padding: 0; 
-  box-sizing: border-box;
-  -webkit-tap-highlight-color: transparent;
-}
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
 :root {
   --black:  #111110;
@@ -25,459 +21,207 @@
   --accent: #1847F0;
   --rule:   #E2DED9;
   --green:  #22c55e;
-  --success: #22c55e;
 }
 
-html { 
-  font-size: 16px; 
-  -webkit-font-smoothing: antialiased;
-  -webkit-touch-callout: none;
-}
+html { font-size: 16px; -webkit-font-smoothing: antialiased; -webkit-tap-highlight-color: transparent; }
 
 body {
   font-family: 'Instrument Sans', sans-serif;
   background: var(--white);
   color: var(--black);
   line-height: 1.6;
-  overflow-x: hidden;
-  width: 100%;
-  max-width: 100%;
+  -webkit-user-select: none;
+  user-select: none;
 }
 
 /* ── TOPBAR ─────────────────────────────────────────── */
 .topbar {
   border-bottom: 1px solid var(--rule);
-  padding: 16px 20px;
+  padding: 22px 64px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
 }
 
-.topbar-brand { 
-  font-size: 12px; 
-  font-weight: 600; 
-  letter-spacing: 0.04em; 
-}
+.topbar-brand { font-size: 14px; font-weight: 600; letter-spacing: 0.04em; }
+.topbar-meta  { font-size: 12px; color: var(--g3); }
 
-.topbar-meta  { 
-  font-size: 10px; 
-  color: var(--g3); 
-}
-
-/* ── SCREENS ────────────────────────────────────────── */
-.screen {
-  display: none;
-  width: 100%;
-}
-
-.screen.active {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
-
-/* ── SCREEN 1: PROXIMO PASOS ────────────────────────── */
-#screen-steps {
-  flex-direction: column;
-}
-
-.steps-container {
-  flex: 1;
-  padding: 0;
-  overflow-y: auto;
-}
-
-.steps-header {
-  padding: 40px 20px 30px;
+/* ── HERO ───────────────────────────────────────────── */
+.hero {
+  padding: 72px 64px 60px;
+  max-width: 1280px;
+  margin: 0 auto;
   border-bottom: 1px solid var(--rule);
-  background: var(--white);
 }
 
-.steps-header-eyebrow {
-  font-size: 10px; 
-  font-weight: 600;
-  letter-spacing: 0.12em; 
-  text-transform: uppercase;
-  color: var(--accent); 
-  margin-bottom: 12px;
+.hero-eyebrow {
+  font-size: 12px; font-weight: 600;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 16px;
 }
 
-.steps-header-title {
+.hero-title {
   font-family: 'Playfair Display', serif;
-  font-size: 28px;
-  line-height: 1.1;
-  margin-bottom: 12px;
-}
-
-.steps-header-body {
-  font-size: 13px; 
-  color: var(--g4);
-  line-height: 1.6;
-}
-
-.steps-content {
-  padding: 20px;
-}
-
-.phase-card {
-  border-left: 4px solid var(--accent);
-  padding: 20px;
-  background: var(--g1);
-  border-radius: 6px;
-  margin-bottom: 20px;
-  transition: all 0.3s;
-}
-
-.phase-number {
-  display: inline-block;
-  background: var(--accent);
-  color: var(--white);
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 700;
-  font-size: 14px;
-  margin-bottom: 10px;
-}
-
-.phase-title {
-  font-size: 18px;
-  font-weight: 600;
-  margin-bottom: 6px;
-  color: var(--black);
-}
-
-.phase-duration {
-  font-size: 10px;
-  color: var(--accent);
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  margin-bottom: 12px;
-}
-
-.phase-description {
-  font-size: 13px;
-  color: var(--g4);
-  line-height: 1.6;
-  margin-bottom: 12px;
-}
-
-.phase-checkpoints {
-  display: grid;
-  gap: 8px;
-  margin-bottom: 12px;
-}
-
-.checkpoint {
-  font-size: 12px;
-  color: var(--black);
-  padding-left: 20px;
-  position: relative;
-}
-
-.checkpoint::before {
-  content: "✓";
-  position: absolute;
-  left: 0;
-  color: var(--green);
-  font-weight: 700;
-  font-size: 14px;
-}
-
-.phase-highlight {
-  background: var(--white);
-  border: 1px solid var(--rule);
-  border-radius: 6px;
-  padding: 12px;
-  font-size: 11px;
-  color: var(--g4);
-  line-height: 1.6;
-}
-
-.phase-highlight strong {
-  display: block;
-  margin-bottom: 6px;
-  color: var(--black);
-}
-
-.timeline-box {
-  background: var(--white);
-  border: 1px solid var(--rule);
-  border-radius: 6px;
-  padding: 20px;
-  margin-bottom: 20px;
-}
-
-.timeline-title {
-  font-size: 14px;
-  font-weight: 600;
+  font-size: clamp(42px, 5vw, 68px);
+  line-height: 1.06;
+  letter-spacing: -1px;
   margin-bottom: 16px;
-  text-align: center;
-  color: var(--black);
+  max-width: 600px;
 }
 
-.timeline-item {
-  display: grid;
-  grid-template-columns: 120px 1fr;
-  gap: 12px;
-  padding: 10px 0;
+.hero-title em { font-style: italic; color: var(--g3); }
+
+.hero-body {
+  font-size: 15px; color: var(--g4);
+  line-height: 1.75; font-weight: 300;
+  max-width: 540px;
+}
+
+/* ── QUIZ CONTAINER ────────────────────────────────── */
+.quiz-wrap {
+  padding: 60px 64px;
+  max-width: 1280px;
+  margin: 0 auto;
   border-bottom: 1px solid var(--rule);
-  font-size: 12px;
 }
 
-.timeline-item:last-child {
-  border-bottom: none;
-}
-
-.timeline-label {
-  font-weight: 600;
-  color: var(--accent);
-}
-
-.timeline-value {
-  color: var(--g4);
-}
-
-.cta-box {
-  background: linear-gradient(135deg, var(--accent) 0%, #0935c9 100%);
-  color: var(--white);
-  padding: 32px 20px;
-  border-radius: 8px;
-  margin-bottom: 20px;
-  text-align: center;
-}
-
-.cta-title {
-  font-size: 18px;
-  font-weight: 600;
-  margin-bottom: 12px;
-}
-
-.cta-description {
-  font-size: 13px;
-  line-height: 1.6;
-  margin-bottom: 16px;
-  opacity: 0.95;
-}
-
-.cta-steps {
+.quiz-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
-  margin: 16px 0;
-}
-
-.cta-step {
-  background: rgba(255, 255, 255, 0.15);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  padding: 12px;
-  border-radius: 6px;
-  font-size: 11px;
-  line-height: 1.5;
-}
-
-.cta-step-number {
-  display: block;
-  font-size: 16px;
-  font-weight: 700;
-  margin-bottom: 4px;
-}
-
-.btn-start-quiz {
-  background: var(--white);
-  color: var(--accent);
-  border: none;
-  padding: 14px 24px;
-  border-radius: 6px;
-  font-family: 'Instrument Sans', sans-serif;
-  font-size: 13px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.15s;
-  display: inline-block;
-  margin-top: 16px;
-}
-
-.btn-start-quiz:active {
-  transform: scale(0.98);
-}
-
-/* ── SCREEN 2: ONBOARDING ───────────────────────────── */
-#screen-quiz {
-  flex-direction: column;
-}
-
-.quiz-header {
-  padding: 40px 20px 30px;
-  border-bottom: 1px solid var(--rule);
-  background: var(--white);
-}
-
-.quiz-header-eyebrow {
-  font-size: 10px; 
-  font-weight: 600;
-  letter-spacing: 0.12em; 
-  text-transform: uppercase;
-  color: var(--accent); 
-  margin-bottom: 12px;
-}
-
-.quiz-header-title {
-  font-family: 'Playfair Display', serif;
-  font-size: 28px;
-  line-height: 1.1;
-  margin-bottom: 12px;
-}
-
-.quiz-header-title em {
-  font-style: italic;
-  color: var(--g3);
-}
-
-.quiz-header-body {
-  font-size: 13px; 
-  color: var(--g4);
-  line-height: 1.6;
+  grid-template-columns: 280px 1fr;
+  gap: 80px;
+  align-items: start;
 }
 
 .quiz-sidebar {
-  padding: 16px 20px;
-  background: var(--g1);
-  border-bottom: 1px solid var(--rule);
-  width: 100%;
+  position: sticky;
+  top: 40px;
 }
 
 .quiz-progress {
-  margin-bottom: 12px;
+  margin-bottom: 48px;
 }
 
 .progress-label {
-  font-size: 10px; 
-  font-weight: 600;
-  letter-spacing: 0.12em; 
-  text-transform: uppercase;
-  color: var(--accent); 
-  margin-bottom: 8px;
+  font-size: 11px; font-weight: 600;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 12px;
 }
 
 .progress-bar-container {
-  height: 6px;
-  background: var(--white);
-  border-radius: 3px;
+  height: 8px;
+  background: var(--g1);
+  border-radius: 4px;
   overflow: hidden;
-  margin-bottom: 8px;
+  margin-bottom: 12px;
 }
 
 .progress-bar {
   height: 100%;
   background: var(--accent);
-  transition: width 0.3s ease;
+  transition: width 0.4s ease;
 }
 
 .progress-text {
-  font-size: 11px; 
-  color: var(--g4); 
-  font-weight: 500;
+  font-size: 13px; color: var(--g4); font-weight: 500;
 }
 
 .quiz-section-badge {
   display: inline-block;
-  background: var(--white);
+  background: var(--g1);
   color: var(--accent);
-  font-size: 8px;
+  font-size: 10px;
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  padding: 4px 8px;
-  border-radius: 3px;
-  margin-top: 12px;
-  margin-bottom: 0;
+  padding: 6px 10px;
+  border-radius: 4px;
+  margin-top: 32px;
+  margin-bottom: 20px;
 }
 
 .quiz-navigator {
-  margin-top: 12px;
-  padding: 10px;
-  background: var(--white);
-  border: 1px solid var(--rule);
-  border-radius: 6px;
+  margin-top: 28px;
+  margin-bottom: 28px;
+  padding: 16px;
+  background: var(--g1);
+  border-radius: 8px;
 }
 
 .navigator-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 8px;
+  margin-bottom: 12px;
 }
 
 .navigator-label {
-  font-size: 9px;
+  font-size: 10px;
   font-weight: 700;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--g3);
+  margin: 0;
 }
 
 .navigator-toggle {
-  background: var(--accent);
-  border: none;
-  color: var(--white);
-  width: 24px;
-  height: 24px;
-  border-radius: 3px;
+  background: var(--white);
+  border: 1px solid var(--rule);
+  color: var(--g4);
+  width: 28px;
+  height: 28px;
+  border-radius: 4px;
   cursor: pointer;
-  font-size: 12px;
+  font-size: 16px;
   font-weight: bold;
+  transition: all 0.2s;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 0;
-  transition: all 0.2s;
 }
 
-.navigator-toggle:active {
-  transform: scale(0.95);
+.navigator-toggle:hover {
+  border-color: var(--accent);
+  color: var(--accent);
 }
 
 .navigator-grid {
   display: grid;
-  grid-template-columns: repeat(8, 1fr);
-  gap: 4px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
   transition: all 0.3s ease;
+  max-height: 500px;
+  overflow: hidden;
 }
 
 .navigator-grid.collapsed {
   max-height: 0;
   opacity: 0;
-  overflow: hidden;
-  gap: 0;
+  margin-bottom: 0;
 }
 
 .navigator-item {
   aspect-ratio: 1;
-  border: 1px solid var(--rule);
-  border-radius: 3px;
+  border: 2px solid var(--rule);
+  border-radius: 4px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 7px;
+  font-size: 10px;
   font-weight: 700;
   cursor: pointer;
+  transition: all 0.2s;
   background: var(--white);
   color: var(--g4);
-  transition: all 0.15s;
-  padding: 0;
-  min-height: 28px;
-  -webkit-user-select: none;
-  user-select: none;
+  min-width: 36px;
+  min-height: 36px;
 }
 
-.navigator-item:active {
-  transform: scale(0.95);
+.navigator-item:hover:not(.current) {
+  border-color: var(--accent);
+  transform: scale(1.08);
 }
 
 .navigator-item.answered {
@@ -493,84 +237,109 @@ body {
   font-weight: 700;
 }
 
+.navigator-item.current.answered {
+  background: var(--accent);
+}
+
 .quiz-estimated {
-  margin-top: 12px;
-  padding: 10px;
+  margin-top: 20px;
+  padding: 16px;
   background: var(--white);
   border: 1px solid var(--rule);
-  border-radius: 6px;
-  text-align: center;
+  border-radius: 8px;
 }
 
 .estimated-icon {
-  font-size: 9px; 
-  font-weight: 600;
-  letter-spacing: 0.1em; 
-  text-transform: uppercase;
-  color: var(--g3); 
-  margin-bottom: 4px;
+  font-size: 10px; font-weight: 600;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--g3); margin-bottom: 6px;
 }
 
 .estimated-time {
-  font-size: 13px; 
-  font-weight: 600; 
-  color: var(--black);
+  font-size: 16px; font-weight: 600; color: var(--black);
 }
 
+.estimated-note {
+  font-size: 12px; color: var(--g3); margin-top: 4px;
+}
+
+/* ── MAIN QUIZ ─────────────────────────────────────── */
 .quiz-main {
-  flex: 1;
-  padding: 20px;
-  overflow-y: auto;
+  display: none;
+}
+
+.quiz-main.active {
+  display: block;
+}
+
+.question-card {
+  margin-bottom: 40px;
 }
 
 .question-title {
   font-family: 'Playfair Display', serif;
-  font-size: 20px;
+  font-size: 32px;
   line-height: 1.2;
-  margin-bottom: 20px;
+  letter-spacing: -0.5px;
+  margin-bottom: 32px;
   color: var(--black);
 }
 
 .options-hint {
-  font-size: 11px;
+  font-size: 12px;
   color: var(--g3);
-  margin-bottom: 12px;
+  margin-bottom: 16px;
   font-style: italic;
 }
 
 .options-group {
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  margin-bottom: 24px;
+  gap: 12px;
+  margin-bottom: 40px;
 }
 
 .option-label {
   display: flex;
   align-items: flex-start;
-  gap: 12px;
-  padding: 12px 14px;
+  gap: 16px;
+  padding: 18px 20px;
   border: 1px solid var(--rule);
-  border-radius: 6px;
+  border-radius: 8px;
   cursor: pointer;
+  transition: all 0.2s ease;
   background: var(--white);
-  transition: all 0.15s;
-  -webkit-user-select: none;
-  user-select: none;
 }
 
-.option-label:active {
+.option-label:hover {
+  border-color: var(--accent);
   background: var(--g1);
 }
 
 .option-label input[type="checkbox"],
 .option-label input[type="radio"] {
-  margin-top: 3px;
+  margin-top: 2px;
   cursor: pointer;
   accent-color: var(--accent);
-  width: 18px;
-  height: 18px;
+  width: 20px;
+  height: 20px;
   flex-shrink: 0;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.option-label input[type="checkbox"] {
+  position: relative;
+}
+
+.option-label input[type="checkbox"]:checked::before {
+  content: '✓';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: var(--accent);
+  font-weight: bold;
 }
 
 .option-label input:checked + .option-text {
@@ -579,15 +348,15 @@ body {
 }
 
 .option-text {
-  font-size: 13px;
+  font-size: 15px;
   color: var(--black);
-  line-height: 1.4;
+  line-height: 1.5;
   flex: 1;
 }
 
 .text-input-group {
   display: none;
-  margin-bottom: 24px;
+  margin-bottom: 40px;
 }
 
 .text-input-group.active {
@@ -596,16 +365,19 @@ body {
 
 .text-input-group textarea {
   width: 100%;
-  padding: 12px 14px;
-  font-size: 14px;
+  padding: 18px 20px;
+  font-size: 15px;
   font-family: 'Instrument Sans', sans-serif;
   border: 1px solid var(--rule);
-  border-radius: 6px;
+  border-radius: 8px;
   resize: vertical;
-  min-height: 100px;
+  min-height: 120px;
   color: var(--black);
+  transition: border-color 0.2s;
   -webkit-appearance: none;
   appearance: none;
+  -webkit-user-select: text;
+  user-select: text;
 }
 
 .text-input-group textarea:focus {
@@ -618,219 +390,671 @@ body {
   color: var(--g3);
 }
 
-.quiz-controls {
-  display: flex;
-  gap: 10px;
-  margin-top: 20px;
-  margin-bottom: 20px;
-}
-
-.btn-nav {
-  padding: 12px 14px;
-  border: 1px solid var(--rule);
-  background: var(--white);
-  color: var(--black);
-  border-radius: 6px;
-  font-family: 'Instrument Sans', sans-serif;
-  font-size: 11px;
-  font-weight: 600;
-  cursor: pointer;
-  display: none;
-  transition: all 0.15s;
-}
-
-.btn-nav.visible {
-  display: block;
-}
-
-.btn-nav:active {
-  background: var(--g1);
-}
-
-.btn-next {
-  flex: 1;
-  padding: 12px 14px;
-  background: var(--accent);
-  color: var(--white);
-  border: none;
-  border-radius: 6px;
-  font-family: 'Instrument Sans', sans-serif;
-  font-size: 11px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.15s;
-}
-
-.btn-next:active {
-  background: #0935c9;
-  transform: scale(0.98);
-}
-
+/* ── REVIEW SCREEN ─────────────────────────────────── */
 .quiz-review {
-  flex: 1;
-  padding: 20px;
-  overflow-y: auto;
+  display: none;
 }
 
-.quiz-review.hidden {
-  display: none;
+.quiz-review.active {
+  display: block;
 }
 
 .review-title {
   font-family: 'Playfair Display', serif;
-  font-size: 24px;
+  font-size: 48px;
   line-height: 1.1;
-  margin-bottom: 24px;
+  letter-spacing: -1px;
+  margin-bottom: 40px;
   color: var(--black);
 }
 
 .review-section {
-  margin-bottom: 32px;
+  margin-bottom: 48px;
 }
 
 .review-section-title {
-  font-size: 12px;
+  font-size: 16px;
   font-weight: 600;
   color: var(--accent);
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  margin-bottom: 16px;
-  padding-bottom: 8px;
+  margin-bottom: 24px;
+  padding-bottom: 12px;
   border-bottom: 1px solid var(--rule);
 }
 
 .review-grid {
   display: grid;
-  grid-template-columns: 1fr;
-  gap: 12px;
-  margin-bottom: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
+  margin-bottom: 32px;
 }
 
 .review-card {
   border: 1px solid var(--rule);
-  border-radius: 6px;
-  padding: 12px;
+  border-radius: 10px;
+  padding: 24px;
   background: var(--white);
 }
 
 .review-card-label {
-  font-size: 9px; 
-  font-weight: 600;
-  letter-spacing: 0.1em; 
-  text-transform: uppercase;
-  color: var(--accent); 
-  margin-bottom: 6px;
+  font-size: 11px; font-weight: 600;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 10px;
 }
 
 .review-card-question {
-  font-size: 12px; 
-  font-weight: 600;
-  color: var(--black); 
-  margin-bottom: 8px;
+  font-size: 14px; font-weight: 600;
+  color: var(--black); margin-bottom: 12px;
 }
 
 .review-card-answer {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--g4);
-  line-height: 1.5;
+  line-height: 1.6;
 }
 
 .review-actions {
   display: grid;
-  grid-template-columns: 1fr;
-  gap: 10px;
-  margin-bottom: 20px;
-}
-
-.btn-copy,
-.btn-download {
-  padding: 12px 14px;
-  border: none;
-  border-radius: 6px;
-  font-family: 'Instrument Sans', sans-serif;
-  font-size: 11px;
-  font-weight: 600;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  transition: all 0.15s;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 32px;
 }
 
 .btn-copy {
+  padding: 18px 24px;
   background: var(--accent);
   color: var(--white);
+  border: none;
+  border-radius: 8px;
+  font-family: 'Instrument Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
 }
 
-.btn-copy:active {
+.btn-copy:hover {
   background: #0935c9;
+  transform: translateY(-2px);
 }
 
 .btn-download {
+  padding: 18px 24px;
   background: var(--white);
   color: var(--accent);
   border: 1px solid var(--accent);
+  border-radius: 8px;
+  font-family: 'Instrument Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
 }
 
-.btn-download:active {
+.btn-download:hover {
   background: var(--g1);
 }
 
 .completion-box {
   border: 1px solid var(--rule);
-  border-radius: 6px;
-  padding: 16px 12px;
+  border-radius: 10px;
+  padding: 32px 24px;
   text-align: center;
   background: var(--g1);
 }
 
 .completion-icon {
-  font-size: 28px;
-  margin-bottom: 8px;
+  font-size: 32px;
+  margin-bottom: 12px;
 }
 
 .completion-text {
-  font-size: 13px; 
-  font-weight: 600;
+  font-size: 16px; font-weight: 600;
   color: var(--black);
 }
 
 .completion-subtext {
-  font-size: 11px;
+  font-size: 13px;
   color: var(--g4);
-  margin-top: 6px;
+  margin-top: 8px;
+}
+
+/* ── BUTTONS ────────────────────────────────────────── */
+.quiz-controls {
+  display: flex;
+  gap: 12px;
+  margin-top: 48px;
+}
+
+.btn-nav {
+  padding: 14px 28px;
+  border: 1px solid var(--rule);
+  background: var(--white);
+  color: var(--black);
+  border-radius: 8px;
+  font-family: 'Instrument Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: none;
+}
+
+.btn-nav.visible {
+  display: inline-block;
+}
+
+.btn-nav:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.btn-next {
+  flex: 1;
+  padding: 14px 28px;
+  background: var(--accent);
+  color: var(--white);
+  border: none;
+  border-radius: 8px;
+  font-family: 'Instrument Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-next:hover {
+  background: #0935c9;
+  transform: translateY(-2px);
 }
 
 /* ── FOOTER ─────────────────────────────────────────── */
-.footer {
+.doc-footer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: center;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 48px 64px;
   border-top: 1px solid var(--rule);
-  padding: 24px 20px;
-  font-size: 11px;
+  font-size: 13px;
   color: var(--g4);
-  text-align: center;
 }
 
-.foot-brand { 
-  font-size: 11px; 
-  font-weight: 600; 
-  color: var(--black); 
-  margin-bottom: 4px; 
+.foot-brand { font-size: 14px; font-weight: 600; color: var(--black); margin-bottom: 4px; }
+.foot-tagline { font-size: 12px; color: var(--g3); }
+
+.foot-contact { text-align: right; }
+.foot-contact a { color: var(--accent); text-decoration: none; }
+.foot-contact a:hover { text-decoration: underline; }
+
+/* ── RESPONSIVE ────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .topbar, .hero, .quiz-wrap, .doc-footer {
+    padding-left: 48px;
+    padding-right: 48px;
+  }
+
+  .quiz-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .quiz-sidebar {
+    position: static;
+  }
+
+  .doc-footer {
+    grid-template-columns: 1fr;
+    text-align: left;
+  }
+
+  .foot-contact {
+    text-align: left;
+  }
+
+  .navigator-grid {
+    grid-template-columns: repeat(6, 1fr);
+  }
 }
 
-.foot-tagline { 
-  font-size: 10px; 
-  color: var(--g3); 
-  margin-bottom: 8px;
+@media (max-width: 768px) {
+  .topbar, .hero, .quiz-wrap, .doc-footer {
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+
+  .topbar {
+    flex-direction: column;
+    gap: 12px;
+    text-align: center;
+  }
+
+  .hero {
+    padding: 48px 32px 40px;
+  }
+
+  .hero-title {
+    font-size: 36px;
+    margin-bottom: 12px;
+  }
+
+  .hero-body {
+    font-size: 14px;
+  }
+
+  .question-title {
+    font-size: 24px;
+    margin-bottom: 24px;
+  }
+
+  .review-title {
+    font-size: 36px;
+  }
+
+  .quiz-wrap {
+    padding: 40px 32px;
+  }
+
+  .quiz-grid {
+    gap: 30px;
+  }
+
+  .quiz-sidebar {
+    order: 2;
+  }
+
+  .quiz-main {
+    order: 1;
+  }
+
+  .review-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .review-actions {
+    grid-template-columns: 1fr;
+  }
+
+  .quiz-controls {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .btn-nav {
+    flex: 1;
+    min-width: 120px;
+  }
+
+  .btn-next {
+    width: 100%;
+  }
+
+  .navigator-grid {
+    grid-template-columns: repeat(8, 1fr);
+    gap: 5px;
+  }
+
+  .navigator-item {
+    min-width: 32px;
+    min-height: 32px;
+    font-size: 9px;
+  }
+
+  .quiz-navigator {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 12px;
+  }
+
+  .quiz-estimated {
+    margin-top: 16px;
+    padding: 12px;
+  }
+
+  .estimated-time {
+    font-size: 14px;
+  }
+
+  .estimated-note {
+    font-size: 11px;
+  }
 }
 
-.foot-contact { 
-  font-size: 10px;
+@media (max-width: 640px) {
+  .topbar, .hero, .quiz-wrap, .doc-footer {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .topbar {
+    padding: 16px 20px;
+  }
+
+  .topbar-brand {
+    font-size: 12px;
+  }
+
+  .topbar-meta {
+    font-size: 10px;
+  }
+
+  .hero {
+    padding: 40px 20px 32px;
+    border-bottom: none;
+  }
+
+  .hero-eyebrow {
+    margin-bottom: 12px;
+    font-size: 10px;
+  }
+
+  .hero-title {
+    font-size: 28px;
+    line-height: 1.1;
+    margin-bottom: 12px;
+  }
+
+  .hero-body {
+    font-size: 13px;
+    max-width: 100%;
+  }
+
+  .quiz-wrap {
+    padding: 32px 20px;
+    border-bottom: none;
+  }
+
+  .quiz-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .quiz-sidebar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--white);
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+  }
+
+  .quiz-progress {
+    margin-bottom: 16px;
+  }
+
+  .progress-label {
+    font-size: 10px;
+  }
+
+  .progress-text {
+    font-size: 12px;
+  }
+
+  .quiz-section-badge {
+    margin-top: 12px;
+    margin-bottom: 12px;
+    font-size: 8px;
+    padding: 4px 8px;
+  }
+
+  .quiz-navigator {
+    margin-top: 12px;
+    margin-bottom: 12px;
+    padding: 10px;
+    background: var(--g1);
+  }
+
+  .navigator-header {
+    margin-bottom: 8px;
+  }
+
+  .navigator-label {
+    font-size: 9px;
+  }
+
+  .navigator-toggle {
+    width: 24px;
+    height: 24px;
+    font-size: 14px;
+  }
+
+  .navigator-grid {
+    grid-template-columns: repeat(8, 1fr);
+    gap: 4px;
+  }
+
+  .navigator-grid.collapsed {
+    max-height: 0;
+    opacity: 0;
+    gap: 0;
+  }
+
+  .navigator-item {
+    min-width: 28px;
+    min-height: 28px;
+    font-size: 8px;
+    border-radius: 3px;
+  }
+
+  .quiz-estimated {
+    margin-top: 12px;
+    padding: 10px;
+    background: var(--white);
+    border: 1px solid var(--rule);
+  }
+
+  .estimated-icon {
+    font-size: 9px;
+    margin-bottom: 4px;
+  }
+
+  .estimated-time {
+    font-size: 13px;
+  }
+
+  .estimated-note {
+    font-size: 10px;
+    margin-top: 2px;
+  }
+
+  .question-card {
+    margin-bottom: 24px;
+  }
+
+  .question-title {
+    font-size: 20px;
+    margin-bottom: 20px;
+  }
+
+  .options-hint {
+    font-size: 11px;
+    margin-bottom: 12px;
+  }
+
+  .options-group {
+    gap: 10px;
+    margin-bottom: 24px;
+  }
+
+  .option-label {
+    padding: 14px 16px;
+    gap: 12px;
+  }
+
+  .option-label input[type="checkbox"],
+  .option-label input[type="radio"] {
+    width: 18px;
+    height: 18px;
+  }
+
+  .option-text {
+    font-size: 14px;
+  }
+
+  .text-input-group textarea {
+    padding: 14px 16px;
+    font-size: 14px;
+    min-height: 100px;
+  }
+
+  .quiz-controls {
+    gap: 10px;
+    margin-top: 32px;
+  }
+
+  .btn-nav {
+    padding: 12px 16px;
+    font-size: 12px;
+  }
+
+  .btn-next {
+    padding: 12px 16px;
+    font-size: 12px;
+  }
+
+  .review-title {
+    font-size: 28px;
+    margin-bottom: 24px;
+  }
+
+  .review-section-title {
+    font-size: 13px;
+    margin-bottom: 16px;
+  }
+
+  .review-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    margin-bottom: 20px;
+  }
+
+  .review-card {
+    border-radius: 8px;
+    padding: 16px;
+  }
+
+  .review-card-label {
+    font-size: 10px;
+    margin-bottom: 8px;
+  }
+
+  .review-card-question {
+    font-size: 13px;
+    margin-bottom: 10px;
+  }
+
+  .review-card-answer {
+    font-size: 13px;
+  }
+
+  .review-actions {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+
+  .btn-copy,
+  .btn-download {
+    padding: 14px 16px;
+    font-size: 12px;
+  }
+
+  .completion-box {
+    padding: 20px 16px;
+  }
+
+  .completion-icon {
+    font-size: 28px;
+    margin-bottom: 10px;
+  }
+
+  .completion-text {
+    font-size: 14px;
+  }
+
+  .completion-subtext {
+    font-size: 12px;
+    margin-top: 6px;
+  }
+
+  .doc-footer {
+    padding: 32px 20px;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    font-size: 12px;
+  }
+
+  .foot-brand {
+    font-size: 12px;
+  }
+
+  .foot-tagline {
+    font-size: 11px;
+  }
+
+  .foot-contact {
+    text-align: left;
+    font-size: 11px;
+  }
 }
 
-.foot-contact a { 
-  color: var(--accent); 
-  text-decoration: none; 
+@media (max-width: 480px) {
+  .topbar, .hero, .quiz-wrap, .doc-footer {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .hero-title {
+    font-size: 24px;
+  }
+
+  .hero-body {
+    font-size: 12px;
+  }
+
+  .quiz-sidebar {
+    top: -20px;
+    padding: 0 -16px;
+    margin: 0 -16px 16px;
+  }
+
+  .navigator-grid {
+    grid-template-columns: repeat(7, 1fr);
+  }
+
+  .question-title {
+    font-size: 18px;
+    margin-bottom: 18px;
+  }
+
+  .option-label {
+    padding: 12px 14px;
+    gap: 10px;
+  }
+
+  .review-title {
+    font-size: 24px;
+  }
+
+  .quiz-wrap {
+    padding: 24px 16px;
+  }
+
+  .quiz-grid {
+    gap: 20px;
+  }
 }
 </style>
 </head>
@@ -839,304 +1063,725 @@ body {
 <!-- TOPBAR -->
 <div class="topbar">
   <div class="topbar-brand">Pragma Studio</div>
-  <div class="topbar-meta" id="topbar-meta">Próximos pasos</div>
+  <div class="topbar-meta">Onboarding del proyecto</div>
 </div>
 
-<!-- SCREEN 1: PROXIMO PASOS -->
-<div class="screen active" id="screen-steps">
-  <div class="steps-container">
-    <div class="steps-header">
-      <div class="steps-header-eyebrow">🚀 Plan de implementación</div>
-      <h1 class="steps-header-title">Próximos Pasos del Proyecto</h1>
-      <p class="steps-header-body">Te presentamos un plan estructurado en tres fases para asegurar que el producto final se ajuste perfectamente a tus necesidades.</p>
-    </div>
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-eyebrow">Cuestionario de descubrimiento</div>
+  <h1 class="hero-title">Confirmemos los detalles <em>antes de arrancar</em></h1>
+  <p class="hero-body">Necesitamos validar todas las respuestas para asegurar que el sistema sea exactamente como lo necesitás. Usa el navegador de preguntas para ir donde quieras. Una vez completado, tendrás un resumen para compartir con el equipo.</p>
+</div>
 
-    <div class="steps-content">
-      <!-- FASE 1 -->
-      <div class="phase-card">
-        <div class="phase-number">1</div>
-        <h2 class="phase-title">Onboarding</h2>
-        <div class="phase-duration">⏱ 20-30 minutos</div>
-        <p class="phase-description">Cuestionario interactivo de descubrimiento para entender tu operación en detalle.</p>
-        <div class="phase-checkpoints">
-          <div class="checkpoint">Entender tu flujo operativo actual</div>
-          <div class="checkpoint">Confirmar requisitos específicos</div>
-          <div class="checkpoint">Validar viabilidad técnica</div>
-          <div class="checkpoint">Establecer cronograma de desarrollo</div>
+<!-- QUIZ -->
+<div class="quiz-wrap">
+  <div class="quiz-grid">
+    
+    <!-- SIDEBAR -->
+    <div class="quiz-sidebar">
+      <div class="quiz-progress">
+        <div class="progress-label">Progreso</div>
+        <div class="progress-bar-container">
+          <div class="progress-bar" id="progress-bar"></div>
         </div>
-        <div class="phase-highlight">
-          <strong>📌 Lo que necesitamos:</strong>
-          Completar en 5 días hábiles con máxima precisión. Designar persona de contacto principal.
-        </div>
+        <div class="progress-text"><span id="current-q">1</span> de <span id="total-q">56</span></div>
       </div>
 
-      <!-- FASE 2 -->
-      <div class="phase-card">
-        <div class="phase-number">2</div>
-        <h2 class="phase-title">Confirmación y Acuerdo</h2>
-        <div class="phase-duration">⏱ 3-5 días</div>
-        <p class="phase-description">Análisis de respuestas y establecimiento formal de términos del proyecto.</p>
-        <div class="phase-checkpoints">
-          <div class="checkpoint">Validación de alcance del proyecto</div>
-          <div class="checkpoint">Confirmación de presupuesto final</div>
-          <div class="checkpoint">Plan de implementación técnica</div>
-          <div class="checkpoint">Firma de contrato de desarrollo</div>
+      <div class="quiz-section-badge" id="section-badge">A · CRÍTICO</div>
+
+      <div class="quiz-navigator">
+        <div class="navigator-header">
+          <div class="navigator-label">📍 Navegación</div>
+          <button class="navigator-toggle" id="navigator-toggle" onclick="toggleNavigator()">−</button>
         </div>
-        <div class="phase-highlight">
-          <strong>💳 Requisito de pago:</strong>
-          Anticipo del 50% del presupuesto para iniciar desarrollo.
-        </div>
+        <div class="navigator-grid" id="navigator-grid"></div>
       </div>
 
-      <!-- FASE 3 -->
-      <div class="phase-card">
-        <div class="phase-number">3</div>
-        <h2 class="phase-title">Desarrollo, Instalación y Migración</h2>
-        <div class="phase-duration">⏱ 2-4 semanas</div>
-        <p class="phase-description">Desarrollo integral del sistema con migración de datos y capacitación.</p>
-        <div class="phase-checkpoints">
-          <div class="checkpoint">Desarrollo del PoS (Punto de Venta)</div>
-          <div class="checkpoint">Panel administrativo completo</div>
-          <div class="checkpoint">E-commerce mayorista con portal</div>
-          <div class="checkpoint">Migración de datos del sistema actual</div>
-          <div class="checkpoint">Pruebas integrales y UAT</div>
-          <div class="checkpoint">Capacitación de tu equipo</div>
-          <div class="checkpoint">Go-live en producción</div>
-        </div>
-        <div class="phase-highlight">
-          <strong>🔄 Durante esta fase:</strong>
-          Actualizaciones semanales, pruebas continuas, ajustes por feedback, soporte dedicado.
-        </div>
-      </div>
-
-      <!-- TIMELINE -->
-      <div class="timeline-box">
-        <div class="timeline-title">📅 Cronograma Estimado</div>
-        <div class="timeline-item">
-          <div class="timeline-label">Fase 1 (Onboarding)</div>
-          <div class="timeline-value">3-5 días</div>
-        </div>
-        <div class="timeline-item">
-          <div class="timeline-label">Fase 2 (Confirmación)</div>
-          <div class="timeline-value">3-5 días</div>
-        </div>
-        <div class="timeline-item">
-          <div class="timeline-label">Fase 3 (Desarrollo)</div>
-          <div class="timeline-value">14-28 días</div>
-        </div>
-        <div class="timeline-item">
-          <div class="timeline-label"><strong>TOTAL</strong></div>
-          <div class="timeline-value"><strong>4-6 semanas</strong></div>
-        </div>
-      </div>
-
-      <!-- CTA -->
-      <div class="cta-box">
-        <div class="cta-title">¿Listos para comenzar?</div>
-        <p class="cta-description">Estamos entusiasmados de trabajar contigo. Tu sistema será exactamente como lo necesitás.</p>
-        <div class="cta-steps">
-          <div class="cta-step">
-            <span class="cta-step-number">1️⃣</span>
-            Confirma que estás listo
-          </div>
-          <div class="cta-step">
-            <span class="cta-step-number">2️⃣</span>
-            Abrí el cuestionario
-          </div>
-          <div class="cta-step">
-            <span class="cta-step-number">3️⃣</span>
-            Respondé con detalle
-          </div>
-          <div class="cta-step">
-            <span class="cta-step-number">4️⃣</span>
-            Enviá respuestas
-          </div>
-        </div>
-        <button class="btn-start-quiz" onclick="startQuiz()">Comenzar Onboarding →</button>
+      <div class="quiz-estimated">
+        <div class="estimated-icon">⏱</div>
+        <div class="estimated-time" id="estimated-time">15 min</div>
+        <div class="estimated-note">Tiempo estimado</div>
       </div>
     </div>
-  </div>
 
-  <div class="footer">
-    <div class="foot-brand">Pragma Studio</div>
-    <div class="foot-tagline">Desarrollo de software a medida | Córdoba, Argentina</div>
-    <div class="foot-contact">
-      <a href="https://wa.me/5493513911596">WhatsApp: +54 3513 91-1596</a>
+    <!-- MAIN CONTENT -->
+    <div class="quiz-main active" id="quiz-main">
+      <div class="question-card">
+        <h2 class="question-title" id="q-title">¿En qué formato exporta?</h2>
+        
+        <div class="options-hint" id="options-hint"></div>
+        <div class="options-group" id="q-options"></div>
+        
+        <div class="text-input-group" id="q-text-input">
+          <textarea id="text-answer" placeholder="Escribí aquí tu respuesta..."></textarea>
+        </div>
+      </div>
+
+      <div class="quiz-controls">
+        <button class="btn-nav" id="btn-prev" onclick="previousQuestion()">← Anterior</button>
+        <button class="btn-next" id="btn-next" onclick="nextQuestion()">Siguiente</button>
+        <button class="btn-next" id="btn-finish" onclick="finishQuiz()" style="display: none;">Ver respuestas →</button>
+      </div>
     </div>
+
+    <!-- REVIEW SCREEN -->
+    <div class="quiz-review" id="quiz-review">
+      <h2 class="review-title">Resumen de respuestas</h2>
+      
+      <div id="review-sections"></div>
+
+      <div class="review-actions">
+        <button class="btn-copy" onclick="copyAnswers(this)">
+          <span>📋</span> Copiar respuestas
+        </button>
+        <button class="btn-download" onclick="downloadAnswers()">
+          <span>⬇</span> Descargar HTML
+        </button>
+      </div>
+
+      <div class="completion-box">
+        <div class="completion-icon">✓</div>
+        <div class="completion-text">¡Cuestionario completado!</div>
+        <div class="completion-subtext">Tus respuestas están listas para compartir con el equipo de desarrollo</div>
+      </div>
+    </div>
+
   </div>
 </div>
 
-<!-- SCREEN 2: ONBOARDING -->
-<div class="screen" id="screen-quiz">
-  <div class="quiz-header">
-    <div class="quiz-header-eyebrow">Cuestionario de descubrimiento</div>
-    <h1 class="quiz-header-title">Confirmemos los detalles <em>antes de arrancar</em></h1>
-    <p class="quiz-header-body">Necesitamos validar todas las respuestas para asegurar que el sistema sea exactamente como lo necesitás.</p>
-  </div>
-
-  <div class="quiz-sidebar">
-    <div class="quiz-progress">
-      <div class="progress-label">Progreso</div>
-      <div class="progress-bar-container">
-        <div class="progress-bar" id="progress-bar"></div>
-      </div>
-      <div class="progress-text"><span id="current-q">1</span> / <span id="total-q">56</span></div>
-    </div>
-    <div class="quiz-section-badge" id="section-badge">A</div>
-    <div class="quiz-navigator">
-      <div class="navigator-header">
-        <div class="navigator-label">Nav</div>
-        <button class="navigator-toggle" id="navigator-toggle" onclick="toggleNavigator()">−</button>
-      </div>
-      <div class="navigator-grid" id="navigator-grid"></div>
-    </div>
-    <div class="quiz-estimated">
-      <div class="estimated-icon">⏱</div>
-      <div class="estimated-time" id="estimated-time">15m</div>
-    </div>
-  </div>
-
-  <div class="quiz-main">
-    <h2 class="question-title" id="q-title">Pregunta</h2>
-    <div class="options-hint" id="options-hint"></div>
-    <div class="options-group" id="q-options"></div>
-    <div class="text-input-group" id="q-text-input">
-      <textarea id="text-answer" placeholder="Tu respuesta..."></textarea>
-    </div>
-    <div class="quiz-controls">
-      <button class="btn-nav" id="btn-prev" onclick="previousQuestion()">← Ant</button>
-      <button class="btn-next" id="btn-next" onclick="nextQuestion()">Sig →</button>
-      <button class="btn-next" id="btn-finish" onclick="finishQuiz()" style="display: none;">Finalizar</button>
-    </div>
-  </div>
-
-  <div class="quiz-review hidden" id="quiz-review">
-    <h2 class="review-title">Respuestas</h2>
-    <div id="review-sections"></div>
-    <div class="review-actions">
-      <button class="btn-copy" onclick="copyAnswers()">📋 Copiar</button>
-      <button class="btn-download" onclick="downloadAnswers()">⬇ HTML</button>
-    </div>
-    <div class="completion-box">
-      <div class="completion-icon">✓</div>
-      <div class="completion-text">¡Completado!</div>
-      <div class="completion-subtext">Listo para compartir</div>
-    </div>
-  </div>
-
-  <div class="footer">
+<!-- FOOTER -->
+<div class="doc-footer">
+  <div>
     <div class="foot-brand">Pragma Studio</div>
-    <div class="foot-tagline">Desarrollo de software a medida | Córdoba, Argentina</div>
-    <div class="foot-contact">
-      <a href="https://wa.me/5493513911596">WhatsApp: +54 3513 91-1596</a>
-    </div>
+    <div class="foot-tagline">Desarrollo de software a medida · Córdoba, Argentina</div>
+  </div>
+  <div class="foot-contact">
+    <a href="https://wa.me/5493513911596">+54 9 3513 91-1596</a> · pragmasolucionesdigitales@gmail.com
   </div>
 </div>
 
 <script>
 const questions = [
-  // BLOQUE A
-  { id: "A1-format", section: "A", title: "¿En qué formato exporta el sistema actual los datos?", type: "multiple", options: ["CSV", "Excel", "XML", "PDF", "Base de datos .mdb", "Otro"], answered: false },
-  { id: "A1-cuando", section: "A", title: "¿Cuándo pueden enviar el export? (necesitamos el lunes a primera hora)", type: "multiple", options: ["Hoy", "Mañana", "Esta semana", "Próxima semana"], answered: false },
-  { id: "A1-historico", section: "A", title: "¿Hay datos históricos de ventas que necesiten migrar?", type: "multiple", options: ["Solo catálogo y clientes", "Incluir histórico de ventas", "Incluir todo"], answered: false },
-  { id: "A2-estructura", section: "A", title: "¿Hay un depósito central que abastece a los demás, o cada local recibe directo del proveedor?", type: "text", placeholder: "Describe la estructura actual...", answered: false },
-  { id: "A2-responsables", section: "A", title: "¿Cada depósito tiene un responsable distinto? Si sí, ¿quiénes son?", type: "text", placeholder: "Nombres y depósitos asignados...", answered: false },
-  { id: "A4-dominio", section: "A", title: "¿Ya tienen dominio para el e-commerce? ¿Cuál es?", type: "text", placeholder: "Dominio (ej: mistienda.com.ar) o escribir 'Necesita registrarse'", answered: false },
-  { id: "A4-branding", section: "A", title: "¿Tienen logo en alta resolución y paleta de colores definida?", type: "multiple", options: ["Sí, tenemos logo y colores", "Tenemos logo pero no colores", "No tenemos nada", "Vamos a contratar diseño aparte", "Usamos algo provisorio"], answered: false },
-  
-  // BLOQUE B
-  { id: "B1-variantes", section: "B", title: "¿Cuántos productos aproximadamente tienen variantes (colores, tamaños, sabores)?", type: "text", placeholder: "Cantidad aproximada o 'No sabemos'", answered: false },
-  { id: "B1-bultos", section: "B", title: "¿Algunos productos se venden solo por bulto y no por unidad suelta?", type: "text", placeholder: "Describa cuáles o escriba 'No sabemos'", answered: false },
-  { id: "B1-campos", section: "B", title: "¿Qué campos adicionales necesitan por tipo de producto?", type: "text", placeholder: "Ej: Bazar (material), Belleza (ml), Tecnología (especificaciones)", answered: false },
-  { id: "B2-stock", section: "B", title: "¿En el sistema actual el stock es uno solo o ya está separado por depósito?", type: "multiple", options: ["Stock único consolidado", "Stock separado por depósito", "Parcialmente separado", "No está claro"], answered: false },
-  { id: "B2-distribucion", section: "B", title: "Si es stock único, ¿cómo quieren distribuirlo entre depósitos al migrar?", type: "text", placeholder: "¿Nos pasarán una planilla? ¿Distribuir equitativamente?", answered: false },
-  { id: "B2-otro-deposito", section: "B", title: "¿Qué política usan cuando un local quiere vender algo que no tiene pero hay en otro?", type: "multiple", options: ["Se le dice al cliente 'no tengo'", "Se anota como pendiente y se pide al otro depósito", "Se hace transferencia rápida y se vende"], answered: false },
-  { id: "B2-mermas", section: "B", title: "¿Llevan registro de mermas, roturas y ajustes de inventario?", type: "multiple", options: ["Sí, llevamos registro", "No lo registramos", "A veces"], answered: false },
-  { id: "B2-inventarios", section: "B", title: "¿Hacen inventarios físicos periódicos? ¿Con qué frecuencia?", type: "text", placeholder: "Diario, semanal, mensual, trimestral, otro...", answered: false },
-  { id: "B3-datos", section: "B", title: "¿Qué datos guardan de cada cliente?", type: "text", placeholder: "Lista de campos que registran por cliente...", answered: false },
-  { id: "B3-cuit", section: "B", title: "¿El CUIT es obligatorio para mayoristas, o se permite cargar sin él?", type: "multiple", options: ["Obligatorio", "Opcional", "Depende del cliente"], answered: false },
-  { id: "B3-iva", section: "B", title: "¿Manejan condición frente al IVA del cliente? ¿Para qué?", type: "text", placeholder: "Responsable inscripto, No inscripto, Exento, etc.", answered: false },
-  { id: "B3-tipos", section: "B", title: "¿Necesitan diferenciar clientes más allá de 'consumidor final' y 'mayorista'?", type: "text", placeholder: "Ej: distribuidor, mayorista premium, cliente especial, etc.", answered: false },
-  { id: "B3-localidades", section: "B", title: "¿Manejan listado de localidades o provincias? ¿Para qué?", type: "multiple", options: ["Para reportes", "Para envíos", "Solo registro", "Varias razones", "No manejamos"], answered: false },
-  { id: "B3-suspension", section: "B", title: "¿Suspenden clientes con deuda u otra razón? ¿Cómo lo manejan?", type: "text", placeholder: "Describe el proceso actual...", answered: false },
-  { id: "B4-listas", section: "B", title: "¿Cuántas listas de precios manejan? Listarlas.", type: "text", placeholder: "Ej: Minorista, Mayorista, Distribuidor, Especial, etc.", answered: false },
-  { id: "B4-asignacion", section: "B", title: "¿Cómo se decide qué lista de precios corresponde a cada cliente?", type: "text", placeholder: "Por tipo de cliente, por volumen, manual, etc.", answered: false },
-  
-  // BLOQUE C
-  { id: "C1-busqueda", section: "C", title: "¿Buscan productos por nombre, código interno, código de barras, o las tres?", type: "multiple", options: ["Solo nombre", "Solo código interno", "Solo código de barras", "Nombre y código", "Todas las opciones"], answered: false },
-  { id: "C1-descuento", section: "C", title: "¿Es común que el cajero modifique el precio al momento de cobrar? ¿Lo puede hacer cualquier cajero o necesita aprobación?", type: "text", placeholder: "Describe cuándo y quién puede hacerlo...", answered: false },
-  { id: "C1-cliente", section: "C", title: "¿Manejan venta con cliente identificado (factura A/B) o casi siempre sin cliente?", type: "multiple", options: ["Casi siempre sin cliente (ticket)", "Mayormente con cliente", "Mitad y mitad", "Depende del local"], answered: false },
-  { id: "C2-formas-pago", section: "C", title: "¿Qué formas de pago aceptan? (Seleccionar todas)", type: "multiple", options: ["Efectivo", "Transferencia bancaria", "Débito", "Crédito", "QR", "Criptomonedas", "Cheques"], answered: false },
-  { id: "C2-recargo", section: "C", title: "¿El recargo de tarjeta se cobra al cliente o lo absorben? ¿Cuál es el porcentaje?", type: "text", placeholder: "Ej: 'Se cobra al cliente, 2.5% por cuota'", answered: false },
-  { id: "C3-cierre", section: "C", title: "¿Qué información necesitan ver en el cierre de caja?", type: "multiple", options: ["Totales por forma de pago", "Anulaciones", "Descuentos aplicados", "Diferencia con monto declarado", "Detalles de movimientos"], answered: false },
-  { id: "C4-comprobantes", section: "C", title: "¿Qué imprimen al vender? (Seleccionar todas)", type: "multiple", options: ["Ticket", "Factura A", "Factura B", "Presupuesto", "Remito", "Otro"], answered: false },
-  { id: "C4-impresora", section: "C", title: "¿Modelo y marca de la impresora térmica? ¿58mm o 80mm de ancho?", type: "text", placeholder: "Ej: Epson TM-T20, 80mm", answered: false },
-  { id: "C4-ticket", section: "C", title: "¿Qué información debe llevar el ticket?", type: "multiple", options: ["Logo del negocio", "Datos del negocio", "Items vendidos", "Totales", "Leyendas legales", "Agradecimiento", "Datos del cajero"], answered: false },
-  { id: "C5-anulacion", section: "C", title: "¿Permiten anular una venta después de cobrada? ¿Hasta cuándo después?", type: "text", placeholder: "Tiempo permitido para anular (mismo día, 24hs, etc.)", answered: false },
-  { id: "C5-devoluciones", section: "C", title: "¿Hay devoluciones de productos? ¿Cómo se procesa?", type: "multiple", options: ["Reintegro en efectivo", "Nota de crédito", "Cambio por otro producto", "No aceptan devoluciones"], answered: false },
-  { id: "C6-login", section: "C", title: "¿El visitante sin login puede ver productos y precios en el e-commerce?", type: "multiple", options: ["Ver productos y precios sin login", "Ver solo productos, precios con login", "Todo requiere login", "Por definir"], answered: false },
-  { id: "C6-stock-visible", section: "C", title: "¿Cómo muestran el stock disponible al cliente?", type: "multiple", options: ["Cantidad exacta ('hay 47 unidades')", "Disponibilidad ('Hay' / 'Pocas' / 'Sin stock')", "No muestran stock", "Otro formato"], answered: false },
-  { id: "C6-productos", section: "C", title: "¿Hay productos en el sistema que NO deben aparecer en el e-commerce?", type: "text", placeholder: "Describa qué productos se ocultan y por qué...", answered: false },
-  { id: "C7-minimo", section: "C", title: "¿Hay mínimo de compra para enviar el pedido por WhatsApp?", type: "text", placeholder: "Por monto, cantidad de unidades, o ambos...", answered: false },
-  { id: "C7-minimo-producto", section: "C", title: "¿Algún producto tiene mínimo propio (por ejemplo, solo por bulto)?", type: "text", placeholder: "Describa productos y sus mínimos...", answered: false },
-  { id: "C7-observaciones", section: "C", title: "¿El cliente puede agregar observaciones al pedido?", type: "multiple", options: ["Sí, forma de entrega, comentarios, urgencia", "Solo comentarios", "No permite observaciones", "Otra opción"], answered: false },
-  { id: "C7-entrega", section: "C", title: "¿Qué opciones de entrega ofrece el cliente?", type: "multiple", options: ["Retira por el local", "Envío local", "Transporte externo", "Se acuerda solo por WhatsApp"], answered: false },
-  { id: "C8-whatsapp", section: "C", title: "¿Cómo quiere que se vea el mensaje de pedido en WhatsApp?", type: "text", placeholder: "Describa el formato deseado o especifique que sea 'Editable desde configuración'", answered: false },
-  { id: "C9-roles", section: "C", title: "¿Qué roles necesitan en el sistema?", type: "multiple", options: ["Admin (ve todo)", "Vendedor (caja)", "Encargado depósito (stock, precios, faltantes)", "Gerente", "Reportes (solo lectura)"], answered: false },
-  
-  // BLOQUE D
-  { id: "D1-reportes", section: "D", title: "¿Cuáles son los reportes que más consultan?", type: "multiple", options: ["Ingresos y egresos", "Ventas por producto", "Ventas por vendedor", "Stock disponible", "Clientes con deuda", "Performance por local"], answered: false },
-  { id: "D1-kpis", section: "D", title: "¿Qué KPIs quieren ver siempre?", type: "text", placeholder: "Lista de indicadores clave para el negocio...", answered: false },
-  { id: "D1-dashboard", section: "D", title: "¿Quieren un dashboard que se actualice en tiempo real desde el celular?", type: "multiple", options: ["Sí, dashboard en tiempo real", "Sí, pero no necesita ser en tiempo real", "No, los reportes son suficientes"], answered: false },
-  { id: "D2-logo", section: "D", title: "¿Tienen logo en alta resolución (PNG y/o SVG)?", type: "multiple", options: ["Sí, tenemos PNG", "Sí, tenemos SVG", "Sí, tenemos ambos", "No, necesitamos hacerlo"], answered: false },
-  { id: "D2-colores", section: "D", title: "¿Tienen paleta de colores definida? (códigos hex)", type: "text", placeholder: "Ej: Principal #FF5733, Secundario #33FF57, etc.", answered: false },
-  { id: "D2-tipografia", section: "D", title: "¿Tipografía preferida o referencias visuales?", type: "text", placeholder: "Ej: Sans-serif moderna, Serif clásica, referencias a sitios...", answered: false },
-  { id: "D2-tono", section: "D", title: "¿Tono de comunicación que quieren transmitir?", type: "multiple", options: ["Formal y profesional", "Cercano y amigable", "Técnico y preciso", "Lúdico y dinámico"], answered: false },
-  { id: "D3-descripciones", section: "D", title: "¿Quién va a cargar las descripciones largas de productos?", type: "multiple", options: ["Todos los usuarios", "Solo admin", "Encargado de contenido", "A definir"], answered: false },
-  { id: "D3-fotos", section: "D", title: "¿Quién va a sacar/cargar las fotos para el e-commerce?", type: "multiple", options: ["Todos los usuarios", "Solo admin", "Fotografo/diseñador externo", "A definir"], answered: false },
-  { id: "D3-paginas", section: "D", title: "¿Necesitan páginas estáticas? (Quiénes somos, Contacto, Política de envíos, Términos y condiciones)", type: "multiple", options: ["Quiénes somos", "Contacto", "Política de envíos", "Términos y condiciones", "Todas las anteriores"], answered: false },
-  { id: "D4-contacto", section: "D", title: "¿Quién es la persona de contacto principal para el UAT y feedback?", type: "text", placeholder: "Nombre, teléfono, email...", answered: false },
-  { id: "D4-capacitacion", section: "D", title: "¿Cuántas personas hay que capacitar? ¿Cuándo y cómo prefieren?", type: "text", placeholder: "Cantidad de personas, presencial/video llamada/video grabado...", answered: false }
+  // BLOQUE A - CRÍTICO
+  {
+    id: "A1-format",
+    section: "A",
+    title: "¿En qué formato exporta el sistema actual los datos?",
+    type: "multiple",
+    options: ["CSV", "Excel", "XML", "PDF", "Base de datos .mdb", "Otro"],
+    answered: false
+  },
+  {
+    id: "A1-cuandonos",
+    section: "A",
+    title: "¿Cuándo pueden enviar el export? (necesitamos el lunes a primera hora)",
+    type: "multiple",
+    options: ["Hoy", "Mañana", "Esta semana", "Próxima semana"],
+    answered: false
+  },
+  {
+    id: "A1-historico",
+    section: "A",
+    title: "¿Hay datos históricos de ventas que necesiten migrar?",
+    type: "multiple",
+    options: ["Solo catálogo y clientes", "Incluir histórico de ventas", "Incluir todo"],
+    answered: false
+  },
+  {
+    id: "A2-depositos",
+    section: "A",
+    title: "¿Hay un depósito central que abastece a los demás, o cada local recibe directo del proveedor?",
+    type: "text",
+    placeholder: "Describe la estructura actual...",
+    answered: false
+  },
+  {
+    id: "A2-responsables",
+    section: "A",
+    title: "¿Cada depósito tiene un responsable distinto? Si sí, ¿quiénes son?",
+    type: "text",
+    placeholder: "Nombres y depósitos asignados...",
+    answered: false
+  },
+  {
+    id: "A4-dominio",
+    section: "A",
+    title: "¿Ya tienen dominio para el e-commerce? ¿Cuál es?",
+    type: "text",
+    placeholder: "Dominio (ej: mistienda.com.ar) o escribir 'Necesita registrarse'",
+    answered: false
+  },
+  {
+    id: "A4-branding",
+    section: "A",
+    title: "¿Tienen logo en alta resolución y paleta de colores definida?",
+    type: "multiple",
+    options: [
+      "Sí, tenemos logo y colores",
+      "Tenemos logo pero no colores",
+      "No tenemos nada",
+      "Vamos a contratar diseño aparte",
+      "Usamos algo provisorio"
+    ],
+    answered: false
+  },
+
+  // BLOQUE B - MODELO DE DATOS
+  {
+    id: "B1-variantes",
+    section: "B",
+    title: "¿Cuántos productos aproximadamente tienen variantes (colores, tamaños, sabores)?",
+    type: "text",
+    placeholder: "Cantidad aproximada o 'No sabemos'",
+    answered: false
+  },
+  {
+    id: "B1-bultos",
+    section: "B",
+    title: "¿Algunos productos se venden solo por bulto y no por unidad suelta?",
+    type: "text",
+    placeholder: "Describa cuáles o escriba 'No sabemos'",
+    answered: false
+  },
+  {
+    id: "B1-campos",
+    section: "B",
+    title: "¿Qué campos adicionales necesitan por tipo de producto?",
+    type: "text",
+    placeholder: "Ej: Bazar (material), Belleza (ml), Tecnología (especificaciones)",
+    answered: false
+  },
+  {
+    id: "B2-stock",
+    section: "B",
+    title: "¿En el sistema actual el stock es uno solo o ya está separado por depósito?",
+    type: "multiple",
+    options: [
+      "Stock único consolidado",
+      "Stock separado por depósito",
+      "Parcialmente separado",
+      "No está claro"
+    ],
+    answered: false
+  },
+  {
+    id: "B2-distribucion",
+    section: "B",
+    title: "Si es stock único, ¿cómo quieren distribuirlo entre depósitos al migrar?",
+    type: "text",
+    placeholder: "¿Nos pasarán una planilla? ¿Distribuir equitativamente?",
+    answered: false
+  },
+  {
+    id: "B2-otro-deposito",
+    section: "B",
+    title: "¿Qué política usan cuando un local quiere vender algo que no tiene pero hay en otro?",
+    type: "multiple",
+    options: [
+      "Se le dice al cliente 'no tengo'",
+      "Se anota como pendiente y se pide al otro depósito",
+      "Se hace transferencia rápida y se vende"
+    ],
+    answered: false
+  },
+  {
+    id: "B2-mermas",
+    section: "B",
+    title: "¿Llevan registro de mermas, roturas y ajustes de inventario?",
+    type: "multiple",
+    options: ["Sí, llevamos registro", "No lo registramos", "A veces"],
+    answered: false
+  },
+  {
+    id: "B2-inventarios",
+    section: "B",
+    title: "¿Hacen inventarios físicos periódicos? ¿Con qué frecuencia?",
+    type: "text",
+    placeholder: "Diario, semanal, mensual, trimestral, otro...",
+    answered: false
+  },
+  {
+    id: "B3-datos-clientes",
+    section: "B",
+    title: "¿Qué datos guardan de cada cliente?",
+    type: "text",
+    placeholder: "Lista de campos que registran por cliente...",
+    answered: false
+  },
+  {
+    id: "B3-cuit",
+    section: "B",
+    title: "¿El CUIT es obligatorio para mayoristas, o se permite cargar sin él?",
+    type: "multiple",
+    options: ["Obligatorio", "Opcional", "Depende del cliente"],
+    answered: false
+  },
+  {
+    id: "B3-iva",
+    section: "B",
+    title: "¿Manejan condición frente al IVA del cliente? ¿Para qué?",
+    type: "text",
+    placeholder: "Responsable inscripto, No inscripto, Exento, etc.",
+    answered: false
+  },
+  {
+    id: "B3-tipos",
+    section: "B",
+    title: "¿Necesitan diferenciar clientes más allá de 'consumidor final' y 'mayorista'?",
+    type: "text",
+    placeholder: "Ej: distribuidor, mayorista premium, cliente especial, etc.",
+    answered: false
+  },
+  {
+    id: "B3-localidades",
+    section: "B",
+    title: "¿Manejan listado de localidades o provincias? ¿Para qué?",
+    type: "multiple",
+    options: [
+      "Para reportes",
+      "Para envíos",
+      "Solo registro",
+      "Varias razones",
+      "No manejamos"
+    ],
+    answered: false
+  },
+  {
+    id: "B3-suspension",
+    section: "B",
+    title: "¿Suspenden clientes con deuda u otra razón? ¿Cómo lo manejan?",
+    type: "text",
+    placeholder: "Describe el proceso actual...",
+    answered: false
+  },
+  {
+    id: "B4-listas",
+    section: "B",
+    title: "¿Cuántas listas de precios manejan? Listarlas.",
+    type: "text",
+    placeholder: "Ej: Minorista, Mayorista, Distribuidor, Especial, etc.",
+    answered: false
+  },
+  {
+    id: "B4-asignacion",
+    section: "B",
+    title: "¿Cómo se decide qué lista de precios corresponde a cada cliente?",
+    type: "text",
+    placeholder: "Por tipo de cliente, por volumen, manual, etc.",
+    answered: false
+  },
+
+  // BLOQUE C - OPERACIÓN
+  {
+    id: "C1-busqueda",
+    section: "C",
+    title: "¿Buscan productos por nombre, código interno, código de barras, o combinar?",
+    type: "multiple",
+    options: [
+      "Solo nombre",
+      "Solo código interno",
+      "Solo código de barras",
+      "Nombre y código",
+      "Todas las opciones"
+    ],
+    answered: false
+  },
+  {
+    id: "C1-descuento",
+    section: "C",
+    title: "¿Es común que el cajero modifique el precio? ¿Lo puede hacer cualquiera o necesita aprobación?",
+    type: "text",
+    placeholder: "Describe cuándo y quién puede hacerlo...",
+    answered: false
+  },
+  {
+    id: "C1-cliente",
+    section: "C",
+    title: "¿Manejan venta con cliente identificado (factura A/B) o casi siempre sin cliente?",
+    type: "multiple",
+    options: [
+      "Casi siempre sin cliente (ticket)",
+      "Mayormente con cliente",
+      "Mitad y mitad",
+      "Depende del local"
+    ],
+    answered: false
+  },
+  {
+    id: "C2-formas-pago",
+    section: "C",
+    title: "¿Qué formas de pago aceptan? (Seleccionar todas)",
+    type: "multiple",
+    options: [
+      "Efectivo",
+      "Transferencia bancaria",
+      "Débito",
+      "Crédito",
+      "QR",
+      "Criptomonedas",
+      "Cheques"
+    ],
+    answered: false
+  },
+  {
+    id: "C2-recargo",
+    section: "C",
+    title: "¿El recargo de tarjeta se cobra al cliente o lo absorben? ¿Cuál es el porcentaje?",
+    type: "text",
+    placeholder: "Ej: 'Se cobra al cliente, 2.5% por cuota'",
+    answered: false
+  },
+  {
+    id: "C3-cierre-info",
+    section: "C",
+    title: "¿Qué información necesitan ver en el cierre de caja?",
+    type: "multiple",
+    options: [
+      "Totales por forma de pago",
+      "Anulaciones",
+      "Descuentos aplicados",
+      "Diferencia con monto declarado",
+      "Detalles de movimientos"
+    ],
+    answered: false
+  },
+  {
+    id: "C4-comprobantes",
+    section: "C",
+    title: "¿Qué imprimen al vender? (Seleccionar todas)",
+    type: "multiple",
+    options: [
+      "Ticket",
+      "Factura A",
+      "Factura B",
+      "Presupuesto",
+      "Remito",
+      "Otro"
+    ],
+    answered: false
+  },
+  {
+    id: "C4-impresora",
+    section: "C",
+    title: "¿Modelo y marca de la impresora térmica? ¿58mm o 80mm de ancho?",
+    type: "text",
+    placeholder: "Ej: Epson TM-T20, 80mm",
+    answered: false
+  },
+  {
+    id: "C4-ticket-info",
+    section: "C",
+    title: "¿Qué información debe llevar el ticket?",
+    type: "multiple",
+    options: [
+      "Logo del negocio",
+      "Datos del negocio",
+      "Items vendidos",
+      "Totales",
+      "Leyendas legales",
+      "Agradecimiento",
+      "Datos del cajero"
+    ],
+    answered: false
+  },
+  {
+    id: "C5-anulacion",
+    section: "C",
+    title: "¿Permiten anular una venta después de cobrada? ¿Hasta cuándo después?",
+    type: "text",
+    placeholder: "Tiempo permitido para anular (mismo día, 24hs, etc.)",
+    answered: false
+  },
+  {
+    id: "C5-devoluciones",
+    section: "C",
+    title: "¿Hay devoluciones de productos? ¿Cómo se procesa?",
+    type: "multiple",
+    options: [
+      "Reintegro en efectivo",
+      "Nota de crédito",
+      "Cambio por otro producto",
+      "No aceptan devoluciones"
+    ],
+    answered: false
+  },
+  {
+    id: "C6-login",
+    section: "C",
+    title: "¿El visitante sin login puede ver productos y precios en el e-commerce?",
+    type: "multiple",
+    options: [
+      "Ver productos y precios sin login",
+      "Ver solo productos, precios con login",
+      "Todo requiere login",
+      "Por definir"
+    ],
+    answered: false
+  },
+  {
+    id: "C6-stock-visible",
+    section: "C",
+    title: "¿Cómo muestran el stock disponible al cliente?",
+    type: "multiple",
+    options: [
+      "Cantidad exacta ('hay 47 unidades')",
+      "Disponibilidad ('Hay' / 'Pocas' / 'Sin stock')",
+      "No muestran stock",
+      "Otro formato"
+    ],
+    answered: false
+  },
+  {
+    id: "C6-productos-ocultos",
+    section: "C",
+    title: "¿Hay productos en el sistema que NO deben aparecer en el e-commerce?",
+    type: "text",
+    placeholder: "Describa qué productos se ocultan y por qué...",
+    answered: false
+  },
+  {
+    id: "C7-minimo",
+    section: "C",
+    title: "¿Hay mínimo de compra para enviar pedido por WhatsApp?",
+    type: "text",
+    placeholder: "Por monto, cantidad de unidades, o ambos...",
+    answered: false
+  },
+  {
+    id: "C7-minimo-producto",
+    section: "C",
+    title: "¿Algún producto tiene mínimo propio (por ejemplo, solo por bulto)?",
+    type: "text",
+    placeholder: "Describa productos y sus mínimos...",
+    answered: false
+  },
+  {
+    id: "C7-observaciones",
+    section: "C",
+    title: "¿El cliente puede agregar observaciones al pedido?",
+    type: "multiple",
+    options: [
+      "Sí, forma de entrega, comentarios, urgencia",
+      "Solo comentarios",
+      "No permite observaciones",
+      "Otra opción"
+    ],
+    answered: false
+  },
+  {
+    id: "C7-opciones-entrega",
+    section: "C",
+    title: "¿Qué opciones de entrega ofrece el cliente?",
+    type: "multiple",
+    options: [
+      "Retira por el local",
+      "Envío local",
+      "Transporte externo",
+      "Se acuerda solo por WhatsApp"
+    ],
+    answered: false
+  },
+  {
+    id: "C8-whatsapp",
+    section: "C",
+    title: "¿Cómo quiere que se vea el mensaje de pedido en WhatsApp?",
+    type: "text",
+    placeholder: "Describa el formato deseado o especifique que sea 'Editable desde configuración'",
+    answered: false
+  },
+  {
+    id: "C9-roles",
+    section: "C",
+    title: "¿Qué roles necesitan en el sistema?",
+    type: "multiple",
+    options: [
+      "Admin (ve todo)",
+      "Vendedor (caja)",
+      "Encargado depósito (stock, precios, faltantes)",
+      "Gerente",
+      "Reportes (solo lectura)"
+    ],
+    answered: false
+  },
+
+  // BLOQUE D - REPORTES Y BRANDING
+  {
+    id: "D1-reportes",
+    section: "D",
+    title: "¿Cuáles son los reportes que más consultan?",
+    type: "multiple",
+    options: [
+      "Ingresos y egresos",
+      "Ventas por producto",
+      "Ventas por vendedor",
+      "Stock disponible",
+      "Clientes con deuda",
+      "Performance por local"
+    ],
+    answered: false
+  },
+  {
+    id: "D1-kpis",
+    section: "D",
+    title: "¿Qué KPIs quieren ver siempre?",
+    type: "text",
+    placeholder: "Lista de indicadores clave para el negocio...",
+    answered: false
+  },
+  {
+    id: "D1-dashboard",
+    section: "D",
+    title: "¿Quieren un dashboard que se actualice en tiempo real desde el celular?",
+    type: "multiple",
+    options: [
+      "Sí, dashboard en tiempo real",
+      "Sí, pero no necesita ser en tiempo real",
+      "No, los reportes son suficientes"
+    ],
+    answered: false
+  },
+  {
+    id: "D2-logo",
+    section: "D",
+    title: "¿Tienen logo en alta resolución (PNG y/o SVG)?",
+    type: "multiple",
+    options: [
+      "Sí, tenemos PNG",
+      "Sí, tenemos SVG",
+      "Sí, tenemos ambos",
+      "No, necesitamos hacerlo"
+    ],
+    answered: false
+  },
+  {
+    id: "D2-colores",
+    section: "D",
+    title: "¿Tienen paleta de colores definida? (códigos hex)",
+    type: "text",
+    placeholder: "Ej: Principal #FF5733, Secundario #33FF57, etc.",
+    answered: false
+  },
+  {
+    id: "D2-tipografia",
+    section: "D",
+    title: "¿Tipografía preferida o referencias visuales?",
+    type: "text",
+    placeholder: "Ej: Sans-serif moderna, Serif clásica, referencias a sitios...",
+    answered: false
+  },
+  {
+    id: "D2-tono",
+    section: "D",
+    title: "¿Tono de comunicación que quieren transmitir?",
+    type: "multiple",
+    options: [
+      "Formal y profesional",
+      "Cercano y amigable",
+      "Técnico y preciso",
+      "Lúdico y dinámico"
+    ],
+    answered: false
+  },
+  {
+    id: "D3-descripciones",
+    section: "D",
+    title: "¿Quién va a cargar las descripciones largas de productos?",
+    type: "multiple",
+    options: [
+      "Todos los usuarios",
+      "Solo admin",
+      "Encargado de contenido",
+      "A definir"
+    ],
+    answered: false
+  },
+  {
+    id: "D3-fotos",
+    section: "D",
+    title: "¿Quién va a sacar/cargar las fotos para el e-commerce?",
+    type: "multiple",
+    options: [
+      "Todos los usuarios",
+      "Solo admin",
+      "Fotografo/diseñador externo",
+      "A definir"
+    ],
+    answered: false
+  },
+  {
+    id: "D3-paginas",
+    section: "D",
+    title: "¿Necesitan páginas estáticas? (Quiénes somos, Contacto, etc.)",
+    type: "multiple",
+    options: [
+      "Quiénes somos",
+      "Contacto",
+      "Política de envíos",
+      "Términos y condiciones",
+      "Todas las anteriores"
+    ],
+    answered: false
+  },
+  {
+    id: "D4-contacto-principal",
+    section: "D",
+    title: "¿Quién es la persona de contacto principal para el UAT y feedback?",
+    type: "text",
+    placeholder: "Nombre, teléfono, email...",
+    answered: false
+  },
+  {
+    id: "D4-capacitacion",
+    section: "D",
+    title: "¿Cuántas personas hay que capacitar? ¿Cuándo y cómo prefieren?",
+    type: "text",
+    placeholder: "Cantidad de personas, presencial/video llamada/video grabado...",
+    answered: false
+  }
 ];
 
 let currentQuestion = 0;
 const answers = {};
 
-function getSectionName(s) {
-  const map = { A: "A", B: "B", C: "C", D: "D" };
-  return map[s] || s;
-}
-
-document.getElementById('total-q').textContent = questions.length;
-
-function switchScreen(screenId) {
-  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-  document.getElementById(screenId).classList.add('active');
-  
-  if (screenId === 'screen-quiz') {
-    document.getElementById('topbar-meta').textContent = 'Onboarding en progreso';
-  } else {
-    document.getElementById('topbar-meta').textContent = 'Próximos pasos';
+function getSectionName(section) {
+  switch(section) {
+    case 'A': return 'A · Bloque crítico';
+    case 'B': return 'B · Modelo de datos';
+    case 'C': return 'C · Operación';
+    case 'D': return 'D · Reportes y branding';
+    default: return section;
   }
 }
 
-function startQuiz() {
-  switchScreen('screen-quiz');
-  showQuestion(0);
-}
+// Initialize
+document.getElementById('total-q').textContent = questions.length;
 
 function buildNavigatorGrid() {
   const grid = document.getElementById('navigator-grid');
   grid.innerHTML = '';
-  questions.forEach((q, i) => {
+  
+  questions.forEach((q, index) => {
     const item = document.createElement('button');
     item.className = 'navigator-item';
-    item.textContent = i + 1;
+    item.textContent = index + 1;
+    item.id = 'nav-' + index;
     item.type = 'button';
-    if (q.answered) item.classList.add('answered');
-    if (i === currentQuestion) item.classList.add('current');
-    item.onclick = (e) => { e.preventDefault(); showQuestion(i); };
-    item.title = `P${i + 1}`;
+    
+    if (q.answered) {
+      item.classList.add('answered');
+    }
+    
+    if (index === currentQuestion) {
+      item.classList.add('current');
+    }
+    
+    item.onclick = (e) => {
+      e.preventDefault();
+      showQuestion(index);
+    };
+    
+    item.title = `P${index + 1}: ${q.title.substring(0, 50)}`;
+    
     grid.appendChild(item);
   });
 }
@@ -1144,189 +1789,329 @@ function buildNavigatorGrid() {
 function toggleNavigator() {
   const grid = document.getElementById('navigator-grid');
   const btn = document.getElementById('navigator-toggle');
+  
   grid.classList.toggle('collapsed');
-  btn.textContent = grid.classList.contains('collapsed') ? '+' : '−';
+  
+  if (grid.classList.contains('collapsed')) {
+    btn.textContent = '+';
+  } else {
+    btn.textContent = '−';
+  }
 }
 
-function showQuestion(i) {
-  currentQuestion = i;
-  const q = questions[i];
+function showQuestion(index) {
+  currentQuestion = index;
+  const q = questions[index];
   
   document.getElementById('q-title').textContent = q.title;
-  document.getElementById('current-q').textContent = i + 1;
+  document.getElementById('current-q').textContent = index + 1;
   document.getElementById('section-badge').textContent = getSectionName(q.section);
   
-  const pct = ((i + 1) / questions.length) * 100;
-  document.getElementById('progress-bar').style.width = pct + '%';
+  const progressPercent = ((index + 1) / questions.length) * 100;
+  document.getElementById('progress-bar').style.width = progressPercent + '%';
   
-  const remain = Math.ceil((questions.length - i - 1) * 0.5);
-  document.getElementById('estimated-time').textContent = (remain > 0 ? remain + 'm' : 'Listo');
+  const remainingQuestions = questions.length - index - 1;
+  const estimatedMinutes = Math.ceil(remainingQuestions * 0.5);
+  document.getElementById('estimated-time').textContent = (estimatedMinutes > 0 ? estimatedMinutes + ' min' : 'Listo!');
   
-  const opts = document.getElementById('q-options');
-  const hint = document.getElementById('options-hint');
-  opts.innerHTML = '';
+  const optionsDiv = document.getElementById('q-options');
+  const hintDiv = document.getElementById('options-hint');
+  optionsDiv.innerHTML = '';
+  
   document.getElementById('q-text-input').classList.remove('active');
   
   if (q.type === 'multiple') {
-    hint.textContent = 'Selecciona una o más';
-    hint.style.display = 'block';
-    q.options.forEach((opt) => {
+    hintDiv.textContent = '👇 Podés seleccionar una o más opciones';
+    hintDiv.style.display = 'block';
+    
+    q.options.forEach((opt, optIndex) => {
       const label = document.createElement('label');
       label.className = 'option-label';
+      
       const input = document.createElement('input');
       input.type = 'checkbox';
-      if (!answers[q.id]) answers[q.id] = [];
+      input.name = 'option-' + index + '-' + optIndex;
+      input.value = opt;
+      
+      if (!answers[q.id]) {
+        answers[q.id] = [];
+      }
       input.checked = answers[q.id].includes(opt);
+      
       input.onchange = (e) => {
         if (e.target.checked) {
-          if (!answers[q.id].includes(opt)) answers[q.id].push(opt);
+          if (!answers[q.id].includes(opt)) {
+            answers[q.id].push(opt);
+          }
         } else {
           answers[q.id] = answers[q.id].filter(a => a !== opt);
         }
-        questions[i].answered = answers[q.id].length > 0;
+        questions[index].answered = answers[q.id].length > 0;
         buildNavigatorGrid();
       };
+      
       const span = document.createElement('span');
       span.className = 'option-text';
       span.textContent = opt;
+      
       label.appendChild(input);
       label.appendChild(span);
-      opts.appendChild(label);
+      optionsDiv.appendChild(label);
     });
   } else {
-    hint.style.display = 'none';
+    hintDiv.style.display = 'none';
     document.getElementById('q-text-input').classList.add('active');
     const textarea = document.getElementById('text-answer');
     textarea.value = answers[q.id] || '';
-    textarea.placeholder = q.placeholder;
+    textarea.placeholder = q.placeholder || 'Escribí aquí tu respuesta...';
     textarea.oninput = (e) => {
       answers[q.id] = e.target.value;
-      questions[i].answered = e.target.value.trim().length > 0;
+      questions[index].answered = e.target.value.trim().length > 0;
       buildNavigatorGrid();
     };
   }
   
-  document.getElementById('btn-prev').classList.toggle('visible', i > 0);
-  document.getElementById('btn-next').style.display = i < questions.length - 1 ? 'block' : 'none';
-  document.getElementById('btn-finish').style.display = i === questions.length - 1 ? 'block' : 'none';
+  document.getElementById('btn-prev').classList.toggle('visible', index > 0);
+  document.getElementById('btn-next').style.display = index < questions.length - 1 ? 'block' : 'none';
+  document.getElementById('btn-finish').style.display = index === questions.length - 1 ? 'block' : 'none';
+  
   buildNavigatorGrid();
 }
 
 function nextQuestion() {
-  if (currentQuestion < questions.length - 1) showQuestion(currentQuestion + 1);
+  if (currentQuestion < questions.length - 1) {
+    showQuestion(currentQuestion + 1);
+  }
 }
 
 function previousQuestion() {
-  if (currentQuestion > 0) showQuestion(currentQuestion - 1);
+  if (currentQuestion > 0) {
+    showQuestion(currentQuestion - 1);
+  }
 }
 
 function finishQuiz() {
-  document.getElementById('quiz-main').style.display = 'none';
-  document.getElementById('quiz-review').classList.remove('hidden');
+  document.getElementById('quiz-main').classList.remove('active');
+  document.getElementById('quiz-review').classList.add('active');
   
-  const sec = document.getElementById('review-sections');
-  sec.innerHTML = '';
-  const grouped = {};
+  const reviewSectionsDiv = document.getElementById('review-sections');
+  reviewSectionsDiv.innerHTML = '';
+  
+  const groupedBySection = {};
   questions.forEach(q => {
-    const ans = answers[q.id];
-    if (ans && ((Array.isArray(ans) && ans.length > 0) || (!Array.isArray(ans) && ans.trim()))) {
-      if (!grouped[q.section]) grouped[q.section] = [];
-      grouped[q.section].push(q);
+    const answer = answers[q.id];
+    if (answer && ((Array.isArray(answer) && answer.length > 0) || (!Array.isArray(answer) && answer.trim()))) {
+      if (!groupedBySection[q.section]) {
+        groupedBySection[q.section] = [];
+      }
+      groupedBySection[q.section].push(q);
     }
   });
-  Object.keys(grouped).sort().forEach(s => {
-    const div = document.createElement('div');
-    div.className = 'review-section';
-    const title = document.createElement('div');
-    title.className = 'review-section-title';
-    title.textContent = 'Bloque ' + getSectionName(s);
-    div.appendChild(title);
-    const grid = document.createElement('div');
-    grid.className = 'review-grid';
-    grouped[s].forEach(q => {
-      const ans = answers[q.id];
+  
+  Object.keys(groupedBySection).sort().forEach(section => {
+    const sectionDiv = document.createElement('div');
+    sectionDiv.className = 'review-section';
+    
+    const sectionTitle = document.createElement('div');
+    sectionTitle.className = 'review-section-title';
+    sectionTitle.textContent = getSectionName(section);
+    sectionDiv.appendChild(sectionTitle);
+    
+    const gridDiv = document.createElement('div');
+    gridDiv.className = 'review-grid';
+    
+    groupedBySection[section].forEach(q => {
+      const answer = answers[q.id];
       const card = document.createElement('div');
       card.className = 'review-card';
-      const lbl = document.createElement('div');
-      lbl.className = 'review-card-label';
-      lbl.textContent = Array.isArray(ans) ? 'Selección' : 'Respuesta';
-      const qtitle = document.createElement('div');
-      qtitle.className = 'review-card-question';
-      qtitle.textContent = q.title;
-      const aDiv = document.createElement('div');
-      aDiv.className = 'review-card-answer';
-      if (Array.isArray(ans)) {
-        aDiv.innerHTML = ans.map(a => `<div>✓ ${a}</div>`).join('');
+      
+      const label = document.createElement('div');
+      label.className = 'review-card-label';
+      label.textContent = q.type === 'multiple' ? 'Opción(es) seleccionada(s)' : 'Respuesta libre';
+      
+      const question = document.createElement('div');
+      question.className = 'review-card-question';
+      question.textContent = q.title;
+      
+      const answerDiv = document.createElement('div');
+      answerDiv.className = 'review-card-answer';
+      
+      if (Array.isArray(answer)) {
+        answerDiv.innerHTML = answer.map(a => `<div style="margin-bottom: 8px;">✓ ${a}</div>`).join('');
       } else {
-        aDiv.textContent = ans;
+        answerDiv.textContent = answer;
       }
-      card.appendChild(lbl);
-      card.appendChild(qtitle);
-      card.appendChild(aDiv);
-      grid.appendChild(card);
+      
+      card.appendChild(label);
+      card.appendChild(question);
+      card.appendChild(answerDiv);
+      gridDiv.appendChild(card);
     });
-    div.appendChild(grid);
-    sec.appendChild(div);
+    
+    sectionDiv.appendChild(gridDiv);
+    reviewSectionsDiv.appendChild(sectionDiv);
   });
 }
 
-function copyAnswers() {
-  let txt = 'RESPUESTAS ONBOARDING\n' + '='.repeat(40) + '\n\n';
-  let sec = '';
+function hasAnswer(ans) {
+  if (!ans) return false;
+  if (Array.isArray(ans)) return ans.length > 0;
+  return String(ans).trim().length > 0;
+}
+
+async function copyTextToClipboard(text) {
+  if (navigator.clipboard && window.isSecureContext) {
+    await navigator.clipboard.writeText(text);
+    return;
+  }
+  const ta = document.createElement('textarea');
+  ta.value = text;
+  ta.setAttribute('readonly', '');
+  ta.style.cssText = 'position:fixed;left:-9999px;top:0';
+  document.body.appendChild(ta);
+  ta.select();
+  ta.setSelectionRange(0, text.length);
+  const ok = document.execCommand('copy');
+  document.body.removeChild(ta);
+  if (!ok) throw new Error('No se pudo copiar al portapapeles');
+}
+
+async function copyAnswers(btn) {
+  let text = 'RESPUESTAS DEL CUESTIONARIO ONBOARDING\n';
+  text += '='.repeat(60) + '\n\n';
+  text += 'Pragma Studio - Cuestionario de descubrimiento\n';
+  text += 'Fecha: ' + new Date().toLocaleDateString('es-AR') + '\n';
+  text += 'Preguntas respondidas: ' + Object.keys(answers).length + ' de ' + questions.length + '\n\n';
+  text += '='.repeat(60) + '\n\n';
+  
+  let currentSection = '';
   questions.forEach(q => {
-    const ans = answers[q.id];
-    if (ans && ((Array.isArray(ans) && ans.length > 0) || (!Array.isArray(ans) && ans.trim()))) {
-      if (sec !== q.section) {
-        sec = q.section;
-        txt += '\nBloque ' + getSectionName(sec) + '\n' + '-'.repeat(40) + '\n\n';
+    const answer = answers[q.id];
+    if (hasAnswer(answer)) {
+      if (currentSection !== q.section) {
+        currentSection = q.section;
+        text += '\n' + getSectionName(q.section) + '\n';
+        text += '-'.repeat(50) + '\n\n';
       }
-      txt += '• ' + q.title + '\n';
-      if (Array.isArray(ans)) {
-        ans.forEach(a => { txt += '  ✓ ' + a + '\n'; });
+      text += '• ' + q.title + '\n';
+      if (Array.isArray(answer)) {
+        answer.forEach(a => {
+          text += '  ✓ ' + a + '\n';
+        });
       } else {
-        txt += '  ' + ans + '\n';
+        text += '  ' + answer + '\n';
       }
-      txt += '\n';
+      text += '\n';
     }
   });
-  navigator.clipboard.writeText(txt).then(() => {
-    const btn = event.target;
-    btn.textContent = '✓ Copiado!';
-    setTimeout(() => { btn.textContent = '📋 Copiar'; }, 1500);
-  });
+  
+  const button = btn || document.querySelector('.btn-copy');
+  const originalHtml = button ? button.innerHTML : '';
+  try {
+    await copyTextToClipboard(text);
+    if (button) {
+      button.innerHTML = '<span>✓</span> ¡Copiado!';
+      button.style.background = '#22c55e';
+      setTimeout(() => {
+        button.innerHTML = originalHtml;
+        button.style.background = '';
+      }, 2000);
+    }
+  } catch (err) {
+    console.error(err);
+    alert('No se pudo copiar. Probá abrir la página con HTTPS o seleccioná el texto manualmente.');
+  }
 }
 
 function downloadAnswers() {
-  let html = '<style>body{font-family:sans-serif;padding:20px}h1{color:#1847F0}h2{color:#1847F0;font-size:14px;margin-top:20px}.card{border:1px solid #eee;padding:10px;margin:10px 0;border-radius:5px}.q{font-weight:bold;margin:5px 0}.a{color:#666}</style>';
-  html += '<h1>Respuestas Cuestionario</h1>';
-  let sec = '';
+  let html = `<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Respuestas Onboarding - Pragma Studio</title>
+<style>
+body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; padding: 40px; background: #f9f9f9; }
+.container { max-width: 900px; margin: 0 auto; background: white; padding: 40px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+h1 { color: #1847F0; font-size: 28px; margin-bottom: 8px; }
+.meta { color: #999; font-size: 12px; margin-bottom: 32px; }
+.section { margin-bottom: 40px; }
+.section-title { color: #1847F0; font-size: 16px; font-weight: bold; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 1px solid #e0e0e0; }
+.question { margin-bottom: 24px; page-break-inside: avoid; }
+.q-text { font-weight: 600; color: #111; margin: 8px 0; }
+.q-ans { background: #f5f3f0; padding: 12px 16px; border-radius: 8px; color: #555; border-left: 3px solid #1847F0; }
+.q-ans ul { margin: 0; padding-left: 20px; }
+.q-ans li { margin: 4px 0; }
+footer { margin-top: 40px; padding-top: 20px; border-top: 1px solid #e0e0e0; font-size: 12px; color: #999; }
+</style>
+</head>
+<body>
+<div class="container">
+<h1>Respuestas del Cuestionario de Descubrimiento</h1>
+<div class="meta">
+Pragma Studio · ${new Date().toLocaleDateString('es-AR')} · ${new Date().toLocaleTimeString('es-AR')}
+</div>
+`;
+
+  let currentSection = '';
   questions.forEach(q => {
-    const ans = answers[q.id];
-    if (ans && ((Array.isArray(ans) && ans.length > 0) || (!Array.isArray(ans) && ans.trim()))) {
-      if (sec !== q.section) {
-        sec = q.section;
-        html += '<h2>Bloque ' + getSectionName(sec) + '</h2>';
+    const answer = answers[q.id];
+    if (answer && ((Array.isArray(answer) && answer.length > 0) || (!Array.isArray(answer) && answer.trim()))) {
+      if (currentSection !== q.section) {
+        if (currentSection !== '') {
+          html += `</div>`;
+        }
+        currentSection = q.section;
+        html += `<div class="section"><div class="section-title">${getSectionName(q.section)}</div>`;
       }
-      html += '<div class="card"><div class="q">' + q.title + '</div><div class="a">';
-      if (Array.isArray(ans)) {
-        html += ans.map(a => '✓ ' + a).join('<br>');
+      
+      html += `<div class="question">
+<p class="q-text">${q.title}</p>
+<div class="q-ans">`;
+      
+      if (Array.isArray(answer)) {
+        html += '<ul>';
+        answer.forEach(a => {
+          html += `<li>${a}</li>`;
+        });
+        html += '</ul>';
       } else {
-        html += ans;
+        html += answer;
       }
-      html += '</div></div>';
+      
+      html += `</div>
+</div>`;
     }
   });
+
+  html += `</div>
+<footer>
+<strong>Pragma Studio</strong> · Desarrollo de software a medida · Córdoba, Argentina<br>
+<a href="https://wa.me/5493513911596">+54 9 3513 91-1596</a> · pragmasolucionesdigitales@gmail.com
+</footer>
+</div>
+</body>
+</html>`;
+
   const blob = new Blob([html], { type: 'text/html' });
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
   a.href = url;
-  a.download = 'respuestas.html';
+  a.download = 'onboarding-respuestas-' + new Date().toISOString().split('T')[0] + '.html';
   a.click();
 }
 
-// Comprimir navegador por defecto
-document.getElementById('navigator-grid').classList.add('collapsed');
-document.getElementById('navigator-toggle').textContent = '+';
+// Start
+showQuestion(0);
+
+// Detectar si está abierto en WhatsApp
+const isWhatsApp = /WhatsApp/i.test(navigator.userAgent);
+if (isWhatsApp) {
+  document.body.style.maxWidth = '100%';
+  document.body.style.width = '100%';
+  // Forzar viewport en WhatsApp
+  document.querySelector('meta[name="viewport"]').setAttribute('content', 'width=device-width, initial-scale=1.0, user-scalable=yes');
+}
 </script>
+
 </body>
 </html>
