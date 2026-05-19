@@ -1014,7 +1014,7 @@ body {
     <h2 class="review-title">Respuestas</h2>
     <div id="review-sections"></div>
     <div class="review-actions">
-      <button class="btn-copy" onclick="copyAnswers()">📋 Copiar</button>
+      <button class="btn-copy" onclick="copyAnswers(this)">📋 Copiar</button>
       <button class="btn-download" onclick="downloadAnswers()">⬇ HTML</button>
     </div>
     <div class="completion-box">
@@ -1270,29 +1270,69 @@ function finishQuiz() {
   });
 }
 
-function copyAnswers() {
+function hasAnswer(ans) {
+  if (!ans) return false;
+  if (Array.isArray(ans)) return ans.length > 0;
+  return String(ans).trim().length > 0;
+}
+
+function buildAnswersText() {
   let txt = 'RESPUESTAS ONBOARDING\n' + '='.repeat(40) + '\n\n';
   let sec = '';
   questions.forEach(q => {
     const ans = answers[q.id];
-    if (ans && ((Array.isArray(ans) && ans.length > 0) || (!Array.isArray(ans) && ans.trim()))) {
-      if (sec !== q.section) {
-        sec = q.section;
-        txt += '\nBloque ' + getSectionName(sec) + '\n' + '-'.repeat(40) + '\n\n';
-      }
-      txt += '• ' + q.title + '\n';
-      if (Array.isArray(ans)) {
-        ans.forEach(a => { txt += '  ✓ ' + a + '\n'; });
-      } else {
-        txt += '  ' + ans + '\n';
-      }
-      txt += '\n';
+    if (!hasAnswer(ans)) return;
+    if (sec !== q.section) {
+      sec = q.section;
+      txt += '\nBloque ' + getSectionName(sec) + '\n' + '-'.repeat(40) + '\n\n';
+    }
+    txt += '• ' + q.title + '\n';
+    if (Array.isArray(ans)) {
+      ans.forEach(a => { txt += '  ✓ ' + a + '\n'; });
+    } else {
+      txt += '  ' + ans + '\n';
+    }
+    txt += '\n';
+  });
+  return txt;
+}
+
+function copyToClipboard(text) {
+  if (navigator.clipboard && window.isSecureContext) {
+    return navigator.clipboard.writeText(text);
+  }
+  return new Promise((resolve, reject) => {
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    ta.setAttribute('readonly', '');
+    ta.style.position = 'fixed';
+    ta.style.left = '-9999px';
+    document.body.appendChild(ta);
+    ta.select();
+    ta.setSelectionRange(0, text.length);
+    try {
+      const ok = document.execCommand('copy');
+      document.body.removeChild(ta);
+      ok ? resolve() : reject(new Error('copy failed'));
+    } catch (err) {
+      document.body.removeChild(ta);
+      reject(err);
     }
   });
-  navigator.clipboard.writeText(txt).then(() => {
-    const btn = event.target;
+}
+
+function copyAnswers(btn) {
+  const txt = buildAnswersText();
+  if (!questions.some(q => hasAnswer(answers[q.id]))) {
+    alert('No hay respuestas para copiar. Completá al menos una pregunta.');
+    return;
+  }
+  copyToClipboard(txt).then(() => {
+    const label = btn.textContent;
     btn.textContent = '✓ Copiado!';
-    setTimeout(() => { btn.textContent = '📋 Copiar'; }, 1500);
+    setTimeout(() => { btn.textContent = label; }, 1500);
+  }).catch(() => {
+    alert('No se pudo copiar. Seleccioná el texto manualmente o abrí la página desde https:// (Vercel).');
   });
 }
 
