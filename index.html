@@ -996,7 +996,7 @@ body {
     </div>
   </div>
 
-  <div class="quiz-main">
+  <div id="quiz-main" class="quiz-main">
     <h2 class="question-title" id="q-title">Pregunta</h2>
     <div class="options-hint" id="options-hint"></div>
     <div class="options-group" id="q-options"></div>
@@ -1221,15 +1221,19 @@ function previousQuestion() {
 }
 
 function finishQuiz() {
-  document.getElementById('quiz-main').style.display = 'none';
-  document.getElementById('quiz-review').classList.remove('hidden');
-  
+  const main = document.getElementById('quiz-main');
+  const review = document.getElementById('quiz-review');
+  if (!main || !review) return;
+  main.style.display = 'none';
+  review.classList.remove('hidden');
+  review.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
   const sec = document.getElementById('review-sections');
   sec.innerHTML = '';
   const grouped = {};
   questions.forEach(q => {
     const ans = answers[q.id];
-    if (ans && ((Array.isArray(ans) && ans.length > 0) || (!Array.isArray(ans) && ans.trim()))) {
+    if (hasAnswer(ans)) {
       if (!grouped[q.section]) grouped[q.section] = [];
       grouped[q.section].push(q);
     }
